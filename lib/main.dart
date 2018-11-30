@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:plastik_ui/screens/item-product/model/item-product.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert' show json;
 
 void main() {
   runApp(new MaterialApp(
@@ -14,6 +17,23 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  List userData;
+
+  Future<String> ambildata() async {
+    http.Response hasil = await http.get(
+      Uri.encodeFull("https://jsonplaceholder.typicode.com/posts")
+    );
+
+    this.setState((){
+      userData = json.decode(hasil.body);
+    });
+  }
+  @override
+  void initState(){
+    this.ambildata();
+  }
+
   final List<String> names = ["äzhar", "rian"];
   // 2 data map / obj
 
@@ -138,17 +158,24 @@ class _HomeState extends State<Home> {
                         ),
                       ));
                 },
-                // itemBuilder: List.generate(4, (index) {
-                //   return Center(
-                //       child: GestureDetector(
-                //           onTap: () {},
-                //           child: Container(child: Icon(Icons.home))));
-                // }),
               ),
             ),
+
+            Expanded(
+              child: new ListView.builder(
+                itemCount: userData == null ? 0 : userData.length,
+                itemBuilder: (context,i){
+                  return new Card(
+                    child: new Text(userData[i]['title']),
+                  );
+                }
+              )
+            )
           ],
         ),
       ),
     );
   }
+
+
 }
