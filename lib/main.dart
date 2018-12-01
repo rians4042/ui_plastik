@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plastik_ui/domain/itemcategory/itemcategory.dart';
 import 'package:plastik_ui/screens/item-product/model/item-product.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
@@ -17,21 +18,20 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   List userData;
 
   Future<String> ambildata() async {
-    http.Response hasil = await http.get(
-      Uri.encodeFull("https://jsonplaceholder.typicode.com/posts")
-    );
+    http.Response hasil = await http
+        .get(Uri.encodeFull("https://jsonplaceholder.typicode.com/posts"));
 
-    this.setState((){
+    this.setState(() {
       userData = json.decode(hasil.body);
     });
   }
+
   @override
-  void initState(){
-    this.ambildata();
+  void initState() {
+    // this.ambildata();
   }
 
   final List<String> names = ["äzhar", "rian"];
@@ -72,110 +72,7 @@ class _HomeState extends State<Home> {
       appBar: new AppBar(
         title: new Text("plastik"),
       ),
-      drawer: new Drawer(
-        child: new ListView(
-          children: <Widget>[
-            new UserAccountsDrawerHeader(
-              accountEmail: Text("hallo@gmail.com"),
-              accountName: Text("suparman"),
-              currentAccountPicture: new CircleAvatar(
-                backgroundImage: NetworkImage(
-                    "https://i.ytimg.com/vi/qE9lgnBaIUg/maxresdefault.jpg"),
-              ),
-            ),
-            new ListTile(
-              title: new Text("Retail"),
-              trailing: new Icon(Icons.content_copy),
-            ),
-            new ListTile(
-              title: new Text("Suplier"),
-              trailing: new Icon(Icons.donut_small),
-              // contentPadding: EdgeInsets.only(left: 50.0, right: 15.0),
-            ),
-            new ListTile(
-              title: new Text("Produksi"),
-              trailing: new Icon(Icons.toys),
-            )
-          ],
-        ),
-      ),
-      body: Container(
-        //color: Colors.blue,
-        child: Column(
-          children: <Widget>[
-            Container(
-              height: MediaQuery.of(context).size.height * 0.30,
-              width: double.infinity,
-              child: ListView.builder(
-                itemCount: names.length,
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    width: 370.0,
-                    margin: EdgeInsets.symmetric(horizontal: 8.0),
-                    color: Colors.grey[300],
-                    child: Text(names[index]),
-                  );
-                },
-              ),
-            ),
-            Expanded(
-              child: GridView.builder(
-                // Create a grid with 2 columns. If you change the scrollDirection to
-                // horizontal, this would produce 2 rows.
-                // crossAxisCount: 2,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  //crossAxisSpacing: 5.0,
-                  //mainAxisSpacing: 0.0,
-                ),
-                // Generate 100 Widgets that display their index in the List
-                itemCount: examples.length,
-                itemBuilder: (BuildContext ctx, int index) {
-                  return GestureDetector(
-                      onTap: () {
-                        print("kuda $index");
-                      },
-                      child: new Container(
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            new BoxShadow(
-                              color: Colors.grey[100],
-                              blurRadius: 7.0,
-                            ),
-                          ],
-                          //border: Border.all(color: Colors.black38),
-                        ),
-                        margin: const EdgeInsets.all(25.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            examples[index].icon,
-                            examples[index].label,
-                          ],
-                        ),
-                      ));
-                },
-              ),
-            ),
-
-            Expanded(
-              child: new ListView.builder(
-                itemCount: userData == null ? 0 : userData.length,
-                itemBuilder: (context,i){
-                  return new Card(
-                    child: new Text(userData[i]['title']),
-                  );
-                }
-              )
-            )
-          ],
-        ),
-      ),
+      body: ItemCategory(),
     );
   }
-
-
 }
