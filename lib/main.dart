@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plastik_ui/domain/category/category.dart';
 import 'package:plastik_ui/domain/itemcategory/itemcategory.dart';
 import 'package:plastik_ui/screens/item-product/model/item-product.dart';
 import 'package:http/http.dart' as http;
@@ -10,7 +11,8 @@ void main() {
     title: "Pabrik_Plastik",
     home: new Home(),
     routes: <String, WidgetBuilder>{
-      '/itemacategory': (BuildContext contex) => new ItemCategory()
+      '/itemacategory': (BuildContext contex) => new ItemCategory(),
+      '/category': (BuildContext contex) => new Category()
     },
   ));
 }

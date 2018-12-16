@@ -26,10 +26,9 @@ class ItemCategoryService extends ItemCategoryServiceInterface {
       // make modelling
       for (int i = 0; i < body.length; i++) {
         final ItemCategoryAPIModel temp = ItemCategoryAPIModel(
-          body: body[i]['body'],
+          name: body[i]['name'],
           id: body[i]['id'],
-          title: body[i]['title'],
-          userId: body[i]['userId'],
+          createdaAt: body[i]['createdAt'],
         );
 
         results.add(temp);

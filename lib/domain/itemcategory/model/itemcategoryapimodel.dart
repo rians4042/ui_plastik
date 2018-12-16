@@ -1,13 +1,11 @@
 class ItemCategoryAPIModel {
-  int userId;
-  int id;
-  String title;
-  String body;
+  String name;
+  String id;
+  String createdaAt;
 
   ItemCategoryAPIModel({
-    this.userId,
     this.id,
-    this.title,
-    this.body,
+    this.name,
+    this.createdaAt,
   });
 }

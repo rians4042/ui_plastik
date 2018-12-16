@@ -97,19 +97,13 @@ class _ItemCategoryState extends State<ItemCategory> {
                       style: TextStyle(fontSize: 12.0, color: Colors.black),
                     ),
                     new Text(_itemCategories[index].createdaAt,
-                        style: TextStyle(fontSize: 12.0, color: Colors.black)),
+                        style: TextStyle(fontSize: 12.0, color: Colors.black))
                   ],
                 )),
               );
             },
           );
         },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: null,
-        tooltip: 'add',
-        backgroundColor: Colors.blueAccent,
-        child: Icon(Icons.add),
       ),
     );
   }
