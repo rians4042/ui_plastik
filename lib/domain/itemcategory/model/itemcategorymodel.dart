@@ -1,10 +1,10 @@
-class CategoryAPIModel {
+class ItemCategoryAPIModel {
   int userId;
   int id;
   String title;
   String body;
 
-  CategoryAPIModel({
+  ItemCategoryAPIModel({
     this.userId,
     this.id,
     this.title,

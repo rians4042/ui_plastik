@@ -1,11 +1,11 @@
-class ItemCategoryAPIModel {
+class ItemAPIModel {
   String name;
   String id;
   String createdaAt;
 
-  ItemCategoryAPIModel({
-    this.id,
+  ItemAPIModel({
     this.name,
+    this.id,
     this.createdaAt,
   });
 }

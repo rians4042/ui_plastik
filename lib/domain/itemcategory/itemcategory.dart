@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plastik_ui/domain/itemcategory/api/itemcategoryapi.dart';
-import 'package:plastik_ui/domain/itemcategory/model/itemcategoryapimodel.dart';
+import 'package:plastik_ui/domain/itemcategory/model/itemcategorymodel.dart';
 import 'package:plastik_ui/domain/itemcategory/service/itemcategoryservice.dart';
 
 class ItemCategory extends StatefulWidget {
@@ -12,26 +12,14 @@ class _ItemCategoryState extends State<ItemCategory> {
   ItemCategoryAPIInterface _api;
   ItemCategoryServiceInterface _service;
 
-  /**
-   * constructor called, whenever the 
-   * itemcategory created a new instance
-   */
-
   _ItemCategoryState() {
-    /**
-   * implement service and api
-   */
     _api = ItemCategoryAPI();
-    _service = ItemCategoryService(api: _api);
+    _service = ItemCategoryService();
   }
-
-  /**
-   * state property inner class item category
-   */
 
   bool _isLoading = false;
   bool _isError = false;
-  List<ItemCategoryAPIModel> _itemCategories = [];
+  List<ItemCategoryAPIModel> _itemcategories = [];
 
   @override
   void initState() {
@@ -45,29 +33,27 @@ class _ItemCategoryState extends State<ItemCategory> {
         _isLoading = true;
       });
 
-      // calling service (for the best part, logical business throw it into service layer)
-      List<ItemCategoryAPIModel> itemCategories =
-          await _service.getItemCategories();
+      List<ItemCategoryAPIModel> itemcategory =
+          await _service.getItemCategory();
 
-      // if success then set item to the state
       setState(() {
         _isLoading = false;
         _isError = false;
-        _itemCategories = itemCategories;
+        _itemcategories = _itemcategories;
       });
     } catch (e) {
       setState(() {
+        _isError = false;
         _isLoading = false;
-        _isError = true;
       });
     }
   }
 
   @override
-  Widget build(BuildContext ctx) {
+  Widget build(BuildContext contex) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Item Category"),
+        title: Text("Category"),
       ),
       body: Builder(
         builder: (BuildContext ctx) {
@@ -79,7 +65,7 @@ class _ItemCategoryState extends State<ItemCategory> {
           }
           return ListView.builder(
             shrinkWrap: true,
-            itemCount: _itemCategories.length,
+            itemCount: _itemcategories.length,
             itemBuilder: (BuildContext ctx, int index) {
               return new Container(
                 padding: EdgeInsets.all(2.0),
@@ -88,28 +74,20 @@ class _ItemCategoryState extends State<ItemCategory> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     new Text(
-                      _itemCategories[index].name,
+                      _itemcategories[index].title,
                       style:
                           TextStyle(fontSize: 20.0, color: Colors.blueAccent),
                     ),
                     new Text(
-                      _itemCategories[index].id,
+                      _itemcategories[index].body,
                       style: TextStyle(fontSize: 12.0, color: Colors.black),
                     ),
-                    new Text(_itemCategories[index].createdaAt,
-                        style: TextStyle(fontSize: 12.0, color: Colors.black)),
                   ],
                 )),
               );
             },
           );
         },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: null,
-        tooltip: 'add',
-        backgroundColor: Colors.blueAccent,
-        child: Icon(Icons.add),
       ),
     );
   }

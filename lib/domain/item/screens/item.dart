@@ -1,58 +1,72 @@
 import 'package:flutter/material.dart';
-import 'package:plastik_ui/domain/category/api/categoryapi.dart';
-import 'package:plastik_ui/domain/category/mode/categorymodel.dart';
-import 'package:plastik_ui/domain/category/service/categoryservice.dart';
+import 'package:plastik_ui/domain/item/api/itemapi.dart';
+import 'package:plastik_ui/domain/item/model/itemmodel.dart';
+import 'package:plastik_ui/domain/item/service/itemservice.dart';
 
-class Category extends StatefulWidget {
+class Item extends StatefulWidget {
   @override
-  _CategoryState createState() => _CategoryState();
+  _ItemState createState() => _ItemState();
 }
 
-class _CategoryState extends State<Category> {
-  CategoryAPIInterface _api;
-  CategoryServiceInterface _service;
+class _ItemState extends State<Item> {
+  ItemAPIInterface _api;
+  ItemServiceInterface _service;
 
-  _CategoryState() {
-    _api = CategoryAPI();
-    _service = CategoryService();
+  /**
+   * constructor called, whenever the 
+   * itemcategory created a new instance
+   */
+
+  _ItemState() {
+    /**
+   * implement service and api
+   */
+    _api = ItemAPI();
+    _service = ItemService(api: _api);
   }
+
+  /**
+   * state property inner class item category
+   */
 
   bool _isLoading = false;
   bool _isError = false;
-  List<CategoryAPIModel> _category = [];
+  List<ItemAPIModel> _item = [];
 
   @override
   void initState() {
     super.initState();
-    _getCategory();
+    _getItemCategories();
   }
 
-  void _getCategory() async {
+  void _getItemCategories() async {
     try {
       setState(() {
         _isLoading = true;
       });
 
-      List<CategoryAPIModel> category = await _service.getCategory();
+      // calling service (for the best part, logical business throw it into service layer)
+      List<ItemAPIModel> items = await _service.getItems();
 
+      // if success then set item to the state
       setState(() {
         _isLoading = false;
         _isError = false;
-        _category = category;
+        _item = items;
       });
     } catch (e) {
       setState(() {
-        _isError = false;
         _isLoading = false;
+        _isError = true;
       });
     }
   }
 
   @override
-  Widget build(BuildContext contex) {
+  Widget build(BuildContext ctx) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Category"),
+        title: Text("Item Category"),
       ),
       body: Builder(
         builder: (BuildContext ctx) {
@@ -64,7 +78,7 @@ class _CategoryState extends State<Category> {
           }
           return ListView.builder(
             shrinkWrap: true,
-            itemCount: _category.length,
+            itemCount: _item.length,
             itemBuilder: (BuildContext ctx, int index) {
               return new Container(
                 padding: EdgeInsets.all(2.0),
@@ -73,14 +87,16 @@ class _CategoryState extends State<Category> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     new Text(
-                      _category[index].title,
+                      _item[index].name,
                       style:
                           TextStyle(fontSize: 20.0, color: Colors.blueAccent),
                     ),
                     new Text(
-                      _category[index].body,
+                      _item[index].id,
                       style: TextStyle(fontSize: 12.0, color: Colors.black),
                     ),
+                    new Text(_item[index].createdaAt,
+                        style: TextStyle(fontSize: 12.0, color: Colors.black))
                   ],
                 )),
               );
