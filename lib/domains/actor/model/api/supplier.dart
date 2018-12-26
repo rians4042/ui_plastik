@@ -8,10 +8,11 @@ class SupplierAPI {
   SupplierAPI(
       {@required this.id, @required this.name, @required this.createdAt});
 
-  SupplierAPI.fromJSON(Map<String, dynamic> json)
-      : id = json['id'],
-        name = json['name'],
-        createdAt = json['createdAt'];
+  static SupplierAPI fromJSON(Map<String, dynamic> json) => SupplierAPI(
+        id: json['id'],
+        name: json['name'],
+        createdAt: json['createdAt'],
+      );
 
   static List<SupplierAPI> fromListJSON(List<Map<String, dynamic>> jsons) {
     List<SupplierAPI> results = [];
