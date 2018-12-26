@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:plastik_ui/domains/home/home_ui.dart';
+import 'package:plastik_ui/presentations/screens/home/widgets/graphics.dart';
 import 'package:plastik_ui/values/colors.dart';
 
 class HomeTabbarNav extends StatefulWidget {
@@ -44,6 +46,10 @@ class _HomeTabbarNavState extends State<HomeTabbarNav> {
     ),
   ];
 
+  final List<Widget> _screens = [
+    Home(),
+  ];
+
   // state property
   int _currIndexBottomNav = 0;
 
@@ -52,7 +58,7 @@ class _HomeTabbarNavState extends State<HomeTabbarNav> {
   @override
   Widget build(BuildContext ctx) => StreamBuilder<dynamic>(
         builder: (BuildContext ctx, AsyncSnapshot<dynamic> data) => Scaffold(
-              body: Text("helo"),
+              body: _screens[_currIndexBottomNav],
               backgroundColor: BACKGROUND_COLOR,
               bottomNavigationBar: BottomNavigationBar(
                 items: _itemsBottomNav,
