@@ -3,150 +3,131 @@ import 'package:plastik_ui/screens/item-product/model/item-product.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert' show json;
-
-void main() {
-  runApp(new MaterialApp(
-    title: "Pabrik_Plastik",
-    home: new Home(),
-  ));
-}
+//import 'package:example/buildin_transformers.dart';
+import 'package:transformer_page_view/transformer_page_view.dart';
+import 'package:flutter/cupertino.dart';
 
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
-  List userData;
+final List<String> names = ["äzhar", "rian"];
 
-  Future<String> ambildata() async {
-    http.Response hasil = await http
-        .get(Uri.encodeFull("https://jsonplaceholder.typicode.com/posts"));
+final List<Example> examples = [
+  Example(
+    onPress: (BuildContext context) {
+      return () {
+        Navigator.pushNamed(context, '/category');
+      };
+    },
+    icon: Icon(
+      Icons.kitchen,
+      size: 40.0,
+    ),
+    label: Text("Category"),
+  ),
+  Example(
+    onPress: (BuildContext context) {
+      return () {
+        Navigator.pushNamed(context, '/itemacategory');
+      };
+    },
+    icon: Icon(
+      Icons.receipt,
+      size: 40.0,
+    ),
+    label: Text("Item Category"),
+  ),
+];
 
-    this.setState(() {
-      userData = json.decode(hasil.body);
-    });
+class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
+  TabController controller;
+  @override
+  void initState() {
+    controller = new TabController(vsync: this, length: 3);
   }
 
   @override
-  void initState() {
-    // this.ambildata();
+  void dispose() {
+    controller.dispose();
+    // TODO: implement dispose
+    super.dispose();
   }
-
-  final List<String> names = ["äzhar", "rian"];
-  // 2 data map / obj
-
-  // final Map<String, dynamic> examples = {
-  //   "name": "azhar prabudi",
-  // };
-
-  // examples["name"]
-
-  // obj
-  final List<Example> examples = [
-    Example(
-        icon: Icon(
-          Icons.kitchen,
-          size: 40.0,
-        ),
-        label: Text("Katergori")),
-    Example(
-        icon: Icon(
-          Icons.receipt,
-          size: 40.0,
-        ),
-        label: Text("Item")),
-    Example(
-        icon: Icon(
-          Icons.people,
-          size: 40.0,
-        ),
-        label: Text("Seller")),
-    Example(icon: Icon(Icons.import_export, size: 40.0), label: Text("")),
-  ];
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("plastik"),
+        title: new Text("Plastik"),
       ),
-      drawer: new Drawer(
-        child: new ListView(
-          children: <Widget>[
-            new UserAccountsDrawerHeader(
-              accountEmail: Text("hallo@gmail.com"),
-              accountName: Text("suparman"),
-              currentAccountPicture: new CircleAvatar(
-                backgroundImage: NetworkImage(
-                    "https://i.ytimg.com/vi/qE9lgnBaIUg/maxresdefault.jpg"),
-              ),
+      bottomNavigationBar: new Material(
+        color: Colors.amber,
+        child: new TabBar(
+          controller: controller,
+          tabs: <Widget>[
+            new Tab(
+              icon: new Icon(Icons.home),
+              text: 'Home',
             ),
-            new ListTile(
-              title: new Text("Retail"),
-              trailing: new Icon(Icons.content_copy),
+            new Tab(
+              icon: new Icon(Icons.monetization_on),
+              text: 'Transaction',
             ),
-            new ListTile(
-              title: new Text("Suplier"),
-              trailing: new Icon(Icons.donut_small),
-              // contentPadding: EdgeInsets.only(left: 50.0, right: 15.0),
-            ),
-            new ListTile(
-              title: new Text("Produksi"),
-              trailing: new Icon(Icons.toys),
-            )
           ],
         ),
       ),
-      body: Container(
-        //color: Colors.blue,
-        child: Column(
-          children: <Widget>[
-            Container(
-              height: MediaQuery.of(context).size.height * 0.30,
-              width: double.infinity,
-              child: ListView.builder(
-                itemCount: names.length,
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    width: 370.0,
-                    margin: EdgeInsets.symmetric(horizontal: 8.0),
-                    color: Colors.grey[300],
-                    child: Text(names[index]),
-                  );
-                },
-              ),
-            ),
-            Expanded(
-              child: GridView.builder(
-                // Create a grid with 2 columns. If you change the scrollDirection to
-                // horizontal, this would produce 2 rows.
-                // crossAxisCount: 2,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  //crossAxisSpacing: 5.0,
-                  //mainAxisSpacing: 0.0,
+      body: Center(
+        child: Card(
+          child: Column(
+            //mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              //Container for graphic
+              Container(
+                height: MediaQuery.of(context).size.height * 0.30,
+                width: double.infinity,
+                child: PageView.builder(
+                  itemCount: names.length,
+                  //shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      width: 370.0,
+                      margin: EdgeInsets.symmetric(horizontal: 8.0),
+                      color: Colors.grey[300],
+                      child: Text(names[index]),
+                    );
+                  },
                 ),
-                // Generate 100 Widgets that display their index in the List
-                itemCount: examples.length,
-                itemBuilder: (BuildContext ctx, int index) {
-                  return GestureDetector(
-                      onTap: () {
-                        print("kuda $index");
-                      },
-                      child: new Container(
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            new BoxShadow(
-                              color: Colors.grey[100],
-                              blurRadius: 7.0,
-                            ),
-                          ],
-                          //border: Border.all(color: Colors.black38),
-                        ),
-                        margin: const EdgeInsets.all(25.0),
+              ),
+              //container for transaction
+              Container(
+                height: MediaQuery.of(context).size.height * 0.30,
+                width: double.infinity,
+                child: Column(
+                  children: <Widget>[],
+                ),
+              ),
+              //container for item & category item
+              Container(
+                height: MediaQuery.of(context).size.height * 0.30,
+                width: double.infinity,
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                  ),
+                  itemCount: examples.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return GestureDetector(
+                      onTap: examples[index].onPress(context),
+                      child: Container(
+                        decoration: BoxDecoration(boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey[100],
+                            blurRadius: 7.0,
+                          )
+                        ]),
+                        margin: const EdgeInsets.all(20.0),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -155,19 +136,13 @@ class _HomeState extends State<Home> {
                             examples[index].label,
                           ],
                         ),
-                      ));
-                },
+                      ),
+                    );
+                  },
+                ),
               ),
-            ),
-            Expanded(
-                child: new ListView.builder(
-                    itemCount: userData == null ? 0 : userData.length,
-                    itemBuilder: (context, i) {
-                      return new Card(
-                        child: new Text(userData[i]['title']),
-                      );
-                    }))
-          ],
+            ],
+          ),
         ),
       ),
     );
