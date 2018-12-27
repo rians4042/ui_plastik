@@ -26,8 +26,11 @@ class ActorServiceImplementation implements ActorService {
   SupplierAPI supplierAPI;
   ActorTransformer transformer;
 
-  ActorServiceImplementation(
-      {@required this.sellerAPI, @required this.supplierAPI});
+  ActorServiceImplementation({
+    @required this.sellerAPI,
+    @required this.supplierAPI,
+    @required this.transformer,
+  });
 
   @override
   Future<List<Supplier>> getSuppliers() async {
