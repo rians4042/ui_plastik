@@ -23,7 +23,7 @@ class SellerAPIImplementation extends Object
 
   @override
   Future<bool> createSeller(model.SellerAPI seller) async {
-    final Response response = await client.post('sellers', data: {
+    final Response response = await client.post('/seller', data: {
       'name': seller.name,
     });
     throwErrorIfErrorFounded(response);
@@ -32,7 +32,7 @@ class SellerAPIImplementation extends Object
 
   @override
   Future<model.SellerAPI> getSellerDetail(String id) async {
-    final Response response = await client.get('sellers/$id');
+    final Response response = await client.get('/seller/$id');
     throwErrorIfErrorFounded(response);
     return parserRawRequest<model.SellerAPI, Map<String, dynamic>>(
         model.SellerAPI.fromJSON, response.data);
@@ -40,7 +40,7 @@ class SellerAPIImplementation extends Object
 
   @override
   Future<List<model.SellerAPI>> getSellers() async {
-    final Response response = await client.get('sellers');
+    final Response response = await client.get('/seller');
     throwErrorIfErrorFounded(response);
     return parserRawRequest<List<model.SellerAPI>, List<Map<String, dynamic>>>(
         model.SellerAPI.fromListJSON, response.data);
@@ -48,7 +48,7 @@ class SellerAPIImplementation extends Object
 
   @override
   Future<bool> updateSeller(String id, model.SellerAPI seller) async {
-    final Response response = await client.patch('sellers', data: {
+    final Response response = await client.patch('/seller', data: {
       'name': seller.name,
     });
     throwErrorIfErrorFounded(response);
@@ -57,7 +57,7 @@ class SellerAPIImplementation extends Object
 
   @override
   Future<bool> deleteSeller(String id) async {
-    final Response response = await client.delete('sellers/$id');
+    final Response response = await client.delete('/seller/$id');
     throwErrorIfErrorFounded(response);
     return true;
   }

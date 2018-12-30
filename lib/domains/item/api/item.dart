@@ -22,7 +22,7 @@ class ItemAPIImplementation extends Object
 
   @override
   Future<bool> createItem(model.ItemAPI item) async {
-    final Response response = await client.post('item', data: {
+    final Response response = await client.post('/item', data: {
       'name': item.name,
       'itemCategoryId': item.itemCategoryId,
     });
@@ -32,14 +32,14 @@ class ItemAPIImplementation extends Object
 
   @override
   Future<bool> deleteItem(String id) async {
-    final Response response = await client.delete('item/$id');
+    final Response response = await client.delete('/item/$id');
     throwErrorIfErrorFounded(response);
     return true;
   }
 
   @override
   Future<List<model.ItemAPI>> getItems() async {
-    final Response response = await client.get('item');
+    final Response response = await client.get('/item');
     throwErrorIfErrorFounded(response);
     return parserRawRequest<List<model.ItemAPI>, List<Map<String, dynamic>>>(
         model.ItemAPI.fromListJSON, response.data);
@@ -47,7 +47,7 @@ class ItemAPIImplementation extends Object
 
   @override
   Future<model.ItemAPI> getItemDetail(String id) async {
-    final Response response = await client.get('item/$id');
+    final Response response = await client.get('/item/$id');
     throwErrorIfErrorFounded(response);
     return parserRawRequest<model.ItemAPI, Map<String, dynamic>>(
         model.ItemAPI.fromJSON, response.data);
@@ -55,7 +55,7 @@ class ItemAPIImplementation extends Object
 
   @override
   Future<bool> updateItem(String id, model.ItemAPI item) async {
-    final Response response = await client.patch('item/$id', data: {
+    final Response response = await client.patch('/item/$id', data: {
       'name': item.name,
       'itemCategoryId': item.itemCategoryId,
     });

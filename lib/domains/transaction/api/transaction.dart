@@ -34,7 +34,7 @@ class TransactionAPIImplementation extends Object
 
   @override
   Future<bool> createTransactionEtc(TransactionEtcAPI trx) async {
-    final Response response = await client.post('transaction/etc', data: {
+    final Response response = await client.post('/transaction/etc', data: {
       'note': trx.note,
       'amount': trx.amount,
       'type': trx.type,
@@ -46,7 +46,7 @@ class TransactionAPIImplementation extends Object
 
   @override
   Future<bool> createTransactionEtcType(TransactionEtcTypeAPI type) async {
-    final Response response = await client.post('transaction/etc/type', data: {
+    final Response response = await client.post('/transaction/etc/type', data: {
       'name': type.name,
     });
     throwErrorIfErrorFounded(response);
@@ -55,7 +55,7 @@ class TransactionAPIImplementation extends Object
 
   @override
   Future<bool> createTransactionIn(TransactionInAPI trx) async {
-    final Response response = await client.post('transaction/in', data: {
+    final Response response = await client.post('/transaction/in', data: {
       'note': trx.note,
       'supplierId': trx.supplierId,
       'details': trx.details
@@ -69,7 +69,7 @@ class TransactionAPIImplementation extends Object
 
   @override
   Future<bool> createTransactionOut(TransactionOutAPI trx) async {
-    final Response response = await client.post('transaction/in', data: {
+    final Response response = await client.post('/transaction/in', data: {
       'note': trx.note,
       'sellerId': trx.sellerId,
       'details': trx.details
@@ -83,7 +83,7 @@ class TransactionAPIImplementation extends Object
 
   @override
   Future<TransactionDetailAPI> getTransactionDetail(String id) async {
-    final Response response = await client.get('transaction/$id');
+    final Response response = await client.get('/transaction/$id');
     throwErrorIfErrorFounded(response);
     return parserRawRequest<TransactionDetailAPI, Map<String, dynamic>>(
         TransactionDetailAPI.fromJSON, response.data);
@@ -91,7 +91,7 @@ class TransactionAPIImplementation extends Object
 
   @override
   Future<List<model.TransactionAPI>> getTransactions() async {
-    final Response response = await client.get('transaction');
+    final Response response = await client.get('/transaction');
     throwErrorIfErrorFounded(response);
     return parserRawRequest<List<model.TransactionAPI>,
             List<Map<String, dynamic>>>(
@@ -100,14 +100,14 @@ class TransactionAPIImplementation extends Object
 
   @override
   Future<bool> deleteTransactionEtcType(String id) async {
-    final Response response = await client.delete('transaction/$id');
+    final Response response = await client.delete('/transaction/$id');
     throwErrorIfErrorFounded(response);
     return true;
   }
 
   @override
   Future<List<TransactionEtcTypeAPI>> getTransactionEtcTypes() async {
-    final Response response = await client.get('transaction/etc/type');
+    final Response response = await client.get('/transaction/etc/type');
     throwErrorIfErrorFounded(response);
     return parserRawRequest<List<TransactionEtcTypeAPI>,
             List<Map<String, dynamic>>>(
@@ -116,7 +116,7 @@ class TransactionAPIImplementation extends Object
 
   @override
   Future<TransactionEtcTypeAPI> getTransactionEtcTypeDetail(String id) async {
-    final Response response = await client.get('transaction/etc/type/$id');
+    final Response response = await client.get('/transaction/etc/type/$id');
     throwErrorIfErrorFounded(response);
     return parserRawRequest<TransactionEtcTypeAPI, Map<String, dynamic>>(
         TransactionEtcTypeAPI.fromJSON, response.data);
@@ -126,7 +126,7 @@ class TransactionAPIImplementation extends Object
   Future<bool> updateTransactionEtcType(
       String id, TransactionEtcTypeAPI type) async {
     final Response response =
-        await client.patch('transaction/etc/type/$id', data: {
+        await client.patch('/transaction/etc/type/$id', data: {
       'name': type.name,
     });
     throwErrorIfErrorFounded(response);

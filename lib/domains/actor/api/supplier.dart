@@ -23,7 +23,7 @@ class SupplierAPIImplementation extends Object
 
   @override
   Future<bool> createSupplier(Model.SupplierAPI supplier) async {
-    final Response response = await client.post('suppliers', data: {
+    final Response response = await client.post('/supplier', data: {
       'name': supplier.name,
     });
     throwErrorIfErrorFounded(response);
@@ -32,7 +32,7 @@ class SupplierAPIImplementation extends Object
 
   @override
   Future<Model.SupplierAPI> getSupplierDetail(String id) async {
-    final Response response = await client.get('sellers/$id');
+    final Response response = await client.get('/supplier/$id');
     throwErrorIfErrorFounded(response);
     return parserRawRequest<Model.SupplierAPI, Map<String, dynamic>>(
         Model.SupplierAPI.fromJSON, response.data);
@@ -40,7 +40,7 @@ class SupplierAPIImplementation extends Object
 
   @override
   Future<List<Model.SupplierAPI>> getSuppliers() async {
-    final Response response = await client.get('suppliers');
+    final Response response = await client.get('/supplier');
     throwErrorIfErrorFounded(response);
     return parserRawRequest<List<Model.SupplierAPI>,
             List<Map<String, dynamic>>>(
@@ -49,7 +49,7 @@ class SupplierAPIImplementation extends Object
 
   @override
   Future<bool> updateSupplier(String id, Model.SupplierAPI supplier) async {
-    final Response response = await client.patch('suppliers', data: {
+    final Response response = await client.patch('/supplier', data: {
       'name': supplier.name,
     });
     throwErrorIfErrorFounded(response);
@@ -58,7 +58,7 @@ class SupplierAPIImplementation extends Object
 
   @override
   Future<bool> deleteSupplier(String id) async {
-    final Response response = await client.delete('suppliers/$id');
+    final Response response = await client.delete('/supplier/$id');
     throwErrorIfErrorFounded(response);
     return true;
   }
