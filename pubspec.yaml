@@ -21,6 +21,8 @@ dependencies:
   dio: ^1.0.13
   rxdart: ^0.20.0
   scoped_model: ^1.0.1
+  flutter_spinkit: "^3.1.0"
+
 
 
 
