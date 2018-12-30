@@ -22,7 +22,7 @@ class ItemCategoryAPIImplementation extends Object
 
   @override
   Future<bool> createCategory(model.ItemCategoryAPI itemCategory) async {
-    final Response response = await client.post('item-category', data: {
+    final Response response = await client.post('/item-category', data: {
       'name': itemCategory.name,
     });
     throwErrorIfErrorFounded(response);
@@ -31,14 +31,14 @@ class ItemCategoryAPIImplementation extends Object
 
   @override
   Future<bool> deleteCategory(String id) async {
-    final Response response = await client.delete('item-category/$id');
+    final Response response = await client.delete('/item-category/$id');
     throwErrorIfErrorFounded(response);
     return true;
   }
 
   @override
   Future<List<model.ItemCategoryAPI>> getCategories() async {
-    final Response response = await client.get('item-category');
+    final Response response = await client.get('/item-category');
     throwErrorIfErrorFounded(response);
     return parserRawRequest<List<model.ItemCategoryAPI>, List<dynamic>>(
         model.ItemCategoryAPI.fromListJSON, response.data);
@@ -46,7 +46,7 @@ class ItemCategoryAPIImplementation extends Object
 
   @override
   Future<model.ItemCategoryAPI> getCategoryDetail(String id) async {
-    final Response response = await client.get('item-category/$id');
+    final Response response = await client.get('/item-category/$id');
     throwErrorIfErrorFounded(response);
     return parserRawRequest<model.ItemCategoryAPI, dynamic>(
         model.ItemCategoryAPI.fromJSON, response.data);
@@ -55,7 +55,7 @@ class ItemCategoryAPIImplementation extends Object
   @override
   Future<bool> updateCategory(
       String id, model.ItemCategoryAPI itemCategory) async {
-    final Response response = await client.patch('item-category/$id', data: {
+    final Response response = await client.patch('/item-category/$id', data: {
       'name': itemCategory.name,
     });
     throwErrorIfErrorFounded(response);
