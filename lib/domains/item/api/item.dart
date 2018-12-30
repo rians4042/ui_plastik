@@ -41,7 +41,7 @@ class ItemAPIImplementation extends Object
   Future<List<model.ItemAPI>> getItems() async {
     final Response response = await client.get('/item');
     throwErrorIfErrorFounded(response);
-    return parserRawRequest<List<model.ItemAPI>, List<Map<String, dynamic>>>(
+    return parserRawRequest<List<model.ItemAPI>, List<dynamic>>(
         model.ItemAPI.fromListJSON, response.data);
   }
 

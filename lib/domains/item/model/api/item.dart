@@ -23,7 +23,7 @@ class ItemAPI {
     );
   }
 
-  static List<ItemAPI> fromListJSON(List<Map<String, dynamic>> jsons) {
+  static List<ItemAPI> fromListJSON(List<dynamic> jsons) {
     List<ItemAPI> results = [];
     jsons.forEach(
       (json) => results.add(
