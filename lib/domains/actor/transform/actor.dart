@@ -27,6 +27,8 @@ class ActorTransformerImplementation implements ActorTransformer {
       Supplier supplier = Supplier(
         id: suppliers[i].id,
         name: suppliers[i].name,
+        phone: suppliers[i].phone,
+        address: suppliers[i].address,
         createdAt: datetime.create(
             suppliers[i].createdAt, DateTimeCustomImplementation.DATEANDTIME),
       );
@@ -41,6 +43,8 @@ class ActorTransformerImplementation implements ActorTransformer {
     return SellerAPI(
       id: seller.id,
       name: seller.name,
+      phone: seller.phone,
+      address: seller.address,
       createdAt: datetime.create(
           seller.createdAt, DateTimeCustomImplementation.DATEANDTIME),
     );
@@ -51,6 +55,8 @@ class ActorTransformerImplementation implements ActorTransformer {
     return Seller(
       id: seller.id,
       name: seller.name,
+      phone: seller.phone,
+      address: seller.address,
       createdAt: datetime.create(
           seller.createdAt, DateTimeCustomImplementation.DATEANDTIME),
     );
@@ -64,6 +70,8 @@ class ActorTransformerImplementation implements ActorTransformer {
             Seller(
               id: seller.id,
               name: seller.name,
+              phone: seller.phone,
+              address: seller.address,
               createdAt: datetime.create(
                   seller.createdAt, DateTimeCustomImplementation.DATEANDTIME),
             ),
@@ -77,6 +85,8 @@ class ActorTransformerImplementation implements ActorTransformer {
     return SupplierAPI(
       id: supplier.id,
       name: supplier.name,
+      phone: supplier.phone,
+      address: supplier.address,
       createdAt: datetime.create(
           supplier.createdAt, DateTimeCustomImplementation.DATEANDTIME),
     );
@@ -87,6 +97,8 @@ class ActorTransformerImplementation implements ActorTransformer {
     return Supplier(
       id: supplier.id,
       name: supplier.name,
+      phone: supplier.phone,
+      address: supplier.address,
       createdAt: datetime.create(
           supplier.createdAt, DateTimeCustomImplementation.DATEANDTIME),
     );

@@ -1,13 +1,17 @@
 class SellerAPI {
   String id;
   String name;
+  String phone;
+  String address;
   String createdAt;
 
-  SellerAPI({this.id, this.name, this.createdAt});
+  SellerAPI({this.id, this.name, this.phone, this.address, this.createdAt});
 
   static SellerAPI fromJSON(dynamic json) => SellerAPI(
         id: json['id'],
         name: json['name'],
+        phone: json['phone'],
+        address: json['address'],
         createdAt: json['createdAt'],
       );
 
@@ -15,10 +19,7 @@ class SellerAPI {
     List<SellerAPI> results = [];
     for (int i = 0; i < jsons.length; i++) {
       results.add(
-        SellerAPI(
-            id: jsons[i]['id'],
-            name: jsons[i]['name'],
-            createdAt: jsons[i]['createdAt']),
+        SellerAPI.fromJSON(jsons[i]),
       );
     }
     return results;

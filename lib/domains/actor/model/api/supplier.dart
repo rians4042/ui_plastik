@@ -1,16 +1,17 @@
-import 'package:flutter/material.dart';
-
 class SupplierAPI {
   String id;
   String name;
+  String phone;
+  String address;
   String createdAt;
 
-  SupplierAPI(
-      {@required this.id, @required this.name, @required this.createdAt});
+  SupplierAPI({this.id, this.name, this.phone, this.address, this.createdAt});
 
   static SupplierAPI fromJSON(dynamic json) => SupplierAPI(
         id: json['id'],
         name: json['name'],
+        phone: json['phone'],
+        address: json['address'],
         createdAt: json['createdAt'],
       );
 
