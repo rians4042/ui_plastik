@@ -1,6 +1,8 @@
 import 'package:plastik_ui/domains/item/model/api/item-category.dart';
+import 'package:plastik_ui/domains/item/model/api/item-unit.dart';
 import 'package:plastik_ui/domains/item/model/api/item.dart';
 import 'package:plastik_ui/domains/item/model/dto/item-category.dart';
+import 'package:plastik_ui/domains/item/model/dto/item-unit.dart';
 import 'package:plastik_ui/domains/item/model/dto/item.dart';
 import 'package:plastik_ui/helpers/datetime/datetime.dart';
 
@@ -12,6 +14,7 @@ abstract class ItemTransformer {
   ItemCategory makeModelItemCategory(ItemCategoryAPI itemCategory);
   List<ItemCategory> makeModelItemCategories(
       List<ItemCategoryAPI> itemCategories);
+  List<ItemUnit> makeModelItemUnit(List<ItemUnitAPI> itemUnits);
 }
 
 class ItemTransformerImplementation implements ItemTransformer {
@@ -108,6 +111,20 @@ class ItemTransformerImplementation implements ItemTransformer {
       id: itemCategory.id,
       name: itemCategory.name,
       createdAt: itemCategory.createdAt,
+    );
+  }
+
+  @override
+  List<ItemUnit> makeModelItemUnit(List<ItemUnitAPI> itemUnits) {
+    return itemUnits.map(
+      (ItemUnitAPI itemUnit) => ItemUnit(
+            id: itemUnit.id,
+            name: itemUnit.name,
+            createdAt: datetime.create(
+              itemUnit.createdAt,
+              DateTimeCustomImplementation.DATEANDTIME,
+            ),
+          ),
     );
   }
 }

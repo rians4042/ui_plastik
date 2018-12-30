@@ -8,10 +8,12 @@ abstract class ItemUnitAPI {
   Future<List<model.ItemUnitAPI>> getItemUnits();
 }
 
-class ItemUnit extends Object with ErrorHandler implements ItemUnitAPI {
+class ItemUnitAPIImplementation extends Object
+    with ErrorHandler
+    implements ItemUnitAPI {
   Dio client;
 
-  ItemUnit({@required this.client});
+  ItemUnitAPIImplementation({@required this.client});
 
   @override
   Future<List<model.ItemUnitAPI>> getItemUnits() async {

@@ -1,11 +1,15 @@
 import 'package:meta/meta.dart';
 import 'package:plastik_ui/domains/item/api/item-category.dart';
+import 'package:plastik_ui/domains/item/api/item-unit.dart';
 import 'package:plastik_ui/domains/item/api/item.dart';
 import 'package:plastik_ui/domains/item/model/dto/item-category.dart';
+import 'package:plastik_ui/domains/item/model/dto/item-unit.dart';
 import 'package:plastik_ui/domains/item/model/dto/item.dart';
 import 'package:plastik_ui/domains/item/model/api/item.dart' as modelItem;
 import 'package:plastik_ui/domains/item/model/api/item-category.dart'
     as modelItemCategory;
+import 'package:plastik_ui/domains/item/model/api/item-unit.dart'
+    as modelItemUnit;
 import 'package:plastik_ui/domains/item/transform/item.dart';
 
 abstract class ItemService {
@@ -13,6 +17,7 @@ abstract class ItemService {
   Future<List<Item>> getItems();
   Future<ItemCategory> getItemCategoryDetail(String id);
   Future<Item> getItemDetail(String id);
+  Future<List<ItemUnit>> getItemUnits();
   Future<bool> createItemCategory(ItemCategory itemCategory);
   Future<bool> createItem(Item item);
   Future<bool> updateItemCategory(String id, ItemCategory itemCategory);
@@ -25,6 +30,7 @@ class ItemServiceImplementation implements ItemService {
   ItemTransformer transformer;
   ItemAPI itemAPI;
   ItemCategoryAPI itemCategoryAPI;
+  ItemUnitAPI itemUnitAPI;
 
   ItemServiceImplementation(
       {@required this.transformer,
@@ -93,5 +99,12 @@ class ItemServiceImplementation implements ItemService {
     await itemCategoryAPI.updateCategory(
         id, transformer.makeModelItemCategoryAPI(itemCategory));
     return true;
+  }
+
+  @override
+  Future<List<ItemUnit>> getItemUnits() async {
+    List<modelItemUnit.ItemUnitAPI> itemUnits =
+        await itemUnitAPI.getItemUnits();
+    return transformer.makeModelItemUnit(itemUnits);
   }
 }
