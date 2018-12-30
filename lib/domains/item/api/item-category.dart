@@ -40,8 +40,7 @@ class ItemCategoryAPIImplementation extends Object
   Future<List<model.ItemCategoryAPI>> getCategories() async {
     final Response response = await client.get('item-category');
     throwErrorIfErrorFounded(response);
-    return parserRawRequest<List<model.ItemCategoryAPI>,
-            List<Map<String, dynamic>>>(
+    return parserRawRequest<List<model.ItemCategoryAPI>, List<dynamic>>(
         model.ItemCategoryAPI.fromListJSON, response.data);
   }
 
@@ -49,7 +48,7 @@ class ItemCategoryAPIImplementation extends Object
   Future<model.ItemCategoryAPI> getCategoryDetail(String id) async {
     final Response response = await client.get('item-category/$id');
     throwErrorIfErrorFounded(response);
-    return parserRawRequest<model.ItemCategoryAPI, Map<String, dynamic>>(
+    return parserRawRequest<model.ItemCategoryAPI, dynamic>(
         model.ItemCategoryAPI.fromJSON, response.data);
   }
 

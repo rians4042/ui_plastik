@@ -34,7 +34,7 @@ class SupplierAPIImplementation extends Object
   Future<Model.SupplierAPI> getSupplierDetail(String id) async {
     final Response response = await client.get('/supplier/$id');
     throwErrorIfErrorFounded(response);
-    return parserRawRequest<Model.SupplierAPI, Map<String, dynamic>>(
+    return parserRawRequest<Model.SupplierAPI, dynamic>(
         Model.SupplierAPI.fromJSON, response.data);
   }
 
@@ -42,8 +42,7 @@ class SupplierAPIImplementation extends Object
   Future<List<Model.SupplierAPI>> getSuppliers() async {
     final Response response = await client.get('/supplier');
     throwErrorIfErrorFounded(response);
-    return parserRawRequest<List<Model.SupplierAPI>,
-            List<Map<String, dynamic>>>(
+    return parserRawRequest<List<Model.SupplierAPI>, List<dynamic>>(
         Model.SupplierAPI.fromListJSON, response.data);
   }
 

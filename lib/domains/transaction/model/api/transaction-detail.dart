@@ -35,8 +35,7 @@ class TransactionDetailAPI {
     this.images,
   });
 
-  static TransactionDetailAPI fromJSON(Map<String, dynamic> json) =>
-      TransactionDetailAPI(
+  static TransactionDetailAPI fromJSON(dynamic json) => TransactionDetailAPI(
         id: json['id'],
         note: json['note'],
         amount: json['amount'],
@@ -66,7 +65,7 @@ class TransactionItemDetailAPI {
   TransactionItemDetailAPI(
       {this.id, this.itemId, this.qty, this.amount, this.itemName});
 
-  static TransactionItemDetailAPI fromJSON(Map<String, dynamic> json) =>
+  static TransactionItemDetailAPI fromJSON(dynamic json) =>
       TransactionItemDetailAPI(
         id: json['id'],
         itemId: json['itemId'],
@@ -75,8 +74,7 @@ class TransactionItemDetailAPI {
         itemName: json['itemName'],
       );
 
-  static List<TransactionItemDetailAPI> fromListJSON(
-      List<Map<String, dynamic>> jsons) {
+  static List<TransactionItemDetailAPI> fromListJSON(List<dynamic> jsons) {
     List<TransactionItemDetailAPI> results = [];
     jsons.forEach(
       (json) => results.add(
@@ -103,14 +101,12 @@ class TransactionImageAPI {
     this.image,
   });
 
-  static TransactionImageAPI fromJSON(Map<String, dynamic> json) =>
-      TransactionImageAPI(
+  static TransactionImageAPI fromJSON(dynamic json) => TransactionImageAPI(
         id: json['id'],
         image: json['image'],
       );
 
-  static List<TransactionImageAPI> fromListJSON(
-      List<Map<String, dynamic>> jsons) {
+  static List<TransactionImageAPI> fromListJSON(List<dynamic> jsons) {
     List<TransactionImageAPI> results = [];
     jsons.forEach(
       (json) => results.add(

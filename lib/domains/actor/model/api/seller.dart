@@ -5,13 +5,13 @@ class SellerAPI {
 
   SellerAPI({this.id, this.name, this.createdAt});
 
-  static SellerAPI fromJSON(Map<String, dynamic> json) => SellerAPI(
+  static SellerAPI fromJSON(dynamic json) => SellerAPI(
         id: json['id'],
         name: json['name'],
         createdAt: json['createdAt'],
       );
 
-  static List<SellerAPI> fromListJSON(List<Map<String, dynamic>> jsons) {
+  static List<SellerAPI> fromListJSON(List<dynamic> jsons) {
     List<SellerAPI> results = [];
     for (int i = 0; i < jsons.length; i++) {
       results.add(

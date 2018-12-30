@@ -85,7 +85,7 @@ class TransactionAPIImplementation extends Object
   Future<TransactionDetailAPI> getTransactionDetail(String id) async {
     final Response response = await client.get('/transaction/$id');
     throwErrorIfErrorFounded(response);
-    return parserRawRequest<TransactionDetailAPI, Map<String, dynamic>>(
+    return parserRawRequest<TransactionDetailAPI, dynamic>(
         TransactionDetailAPI.fromJSON, response.data);
   }
 
@@ -93,8 +93,7 @@ class TransactionAPIImplementation extends Object
   Future<List<model.TransactionAPI>> getTransactions() async {
     final Response response = await client.get('/transaction');
     throwErrorIfErrorFounded(response);
-    return parserRawRequest<List<model.TransactionAPI>,
-            List<Map<String, dynamic>>>(
+    return parserRawRequest<List<model.TransactionAPI>, List<dynamic>>(
         model.TransactionAPI.fromListJSON, response.data);
   }
 
@@ -109,8 +108,7 @@ class TransactionAPIImplementation extends Object
   Future<List<TransactionEtcTypeAPI>> getTransactionEtcTypes() async {
     final Response response = await client.get('/transaction/etc/type');
     throwErrorIfErrorFounded(response);
-    return parserRawRequest<List<TransactionEtcTypeAPI>,
-            List<Map<String, dynamic>>>(
+    return parserRawRequest<List<TransactionEtcTypeAPI>, List<dynamic>>(
         TransactionEtcTypeAPI.fromListJSON, response.data);
   }
 
@@ -118,7 +116,7 @@ class TransactionAPIImplementation extends Object
   Future<TransactionEtcTypeAPI> getTransactionEtcTypeDetail(String id) async {
     final Response response = await client.get('/transaction/etc/type/$id');
     throwErrorIfErrorFounded(response);
-    return parserRawRequest<TransactionEtcTypeAPI, Map<String, dynamic>>(
+    return parserRawRequest<TransactionEtcTypeAPI, dynamic>(
         TransactionEtcTypeAPI.fromJSON, response.data);
   }
 

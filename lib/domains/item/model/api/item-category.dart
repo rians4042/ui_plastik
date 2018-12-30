@@ -9,7 +9,7 @@ class ItemCategoryAPI {
     this.createdAt,
   });
 
-  static ItemCategoryAPI fromJSON(Map<String, dynamic> json) {
+  static ItemCategoryAPI fromJSON(dynamic json) {
     return ItemCategoryAPI(
       id: json['id'],
       name: json['name'],
@@ -17,7 +17,7 @@ class ItemCategoryAPI {
     );
   }
 
-  static List<ItemCategoryAPI> fromListJSON(List<Map<String, dynamic>> jsons) {
+  static List<ItemCategoryAPI> fromListJSON(List<dynamic> jsons) {
     List<ItemCategoryAPI> results = [];
     jsons.forEach(
       (json) => results.add(

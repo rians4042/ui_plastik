@@ -13,7 +13,7 @@ class ItemAPI {
     this.unitId,
   });
 
-  static ItemAPI fromJSON(Map<String, dynamic> json) {
+  static ItemAPI fromJSON(dynamic json) {
     return ItemAPI(
       id: json['id'],
       name: json['name'],

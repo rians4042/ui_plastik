@@ -17,8 +17,7 @@ class ItemUnit extends Object with ErrorHandler implements ItemUnitAPI {
   Future<List<model.ItemUnitAPI>> getItemUnits() async {
     final Response response = await client.get('item-unit');
     throwErrorIfErrorFounded(response);
-    return parserRawRequest<List<model.ItemUnitAPI>,
-            List<Map<String, dynamic>>>(
+    return parserRawRequest<List<model.ItemUnitAPI>, List<dynamic>>(
         model.ItemUnitAPI.fromListJSON, response.data);
   }
 }

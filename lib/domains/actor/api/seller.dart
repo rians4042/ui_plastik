@@ -34,7 +34,7 @@ class SellerAPIImplementation extends Object
   Future<model.SellerAPI> getSellerDetail(String id) async {
     final Response response = await client.get('/seller/$id');
     throwErrorIfErrorFounded(response);
-    return parserRawRequest<model.SellerAPI, Map<String, dynamic>>(
+    return parserRawRequest<model.SellerAPI, dynamic>(
         model.SellerAPI.fromJSON, response.data);
   }
 
@@ -42,7 +42,7 @@ class SellerAPIImplementation extends Object
   Future<List<model.SellerAPI>> getSellers() async {
     final Response response = await client.get('/seller');
     throwErrorIfErrorFounded(response);
-    return parserRawRequest<List<model.SellerAPI>, List<Map<String, dynamic>>>(
+    return parserRawRequest<List<model.SellerAPI>, List<dynamic>>(
         model.SellerAPI.fromListJSON, response.data);
   }
 
