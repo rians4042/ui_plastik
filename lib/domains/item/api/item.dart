@@ -49,7 +49,7 @@ class ItemAPIImplementation extends Object
   Future<model.ItemAPI> getItemDetail(String id) async {
     final Response response = await client.get('/item/$id');
     throwErrorIfErrorFounded(response);
-    return parserRawRequest<model.ItemAPI, Map<String, dynamic>>(
+    return parserRawRequest<model.ItemAPI, dynamic>(
         model.ItemAPI.fromJSON, response.data);
   }
 

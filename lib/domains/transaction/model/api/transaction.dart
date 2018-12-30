@@ -15,7 +15,7 @@ class TransactionAPI {
     this.createdAt,
   });
 
-  static TransactionAPI fromJSON(Map<String, dynamic> json) => TransactionAPI(
+  static TransactionAPI fromJSON(dynamic json) => TransactionAPI(
         id: json['id'],
         note: json['note'],
         amount: json['amount'],
@@ -24,7 +24,7 @@ class TransactionAPI {
         createdAt: json['createdAt'],
       );
 
-  static List<TransactionAPI> fromListJSON(List<Map<String, dynamic>> jsons) {
+  static List<TransactionAPI> fromListJSON(List<dynamic> jsons) {
     List<TransactionAPI> results = [];
     jsons.forEach(
       (json) => results.add(

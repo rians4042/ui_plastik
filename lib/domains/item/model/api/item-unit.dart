@@ -9,7 +9,7 @@ class ItemUnitAPI {
     this.createdAt,
   });
 
-  static ItemUnitAPI fromJSON(Map<String, dynamic> json) {
+  static ItemUnitAPI fromJSON(dynamic json) {
     return ItemUnitAPI(
       id: json['id'],
       name: json['name'],
@@ -17,7 +17,7 @@ class ItemUnitAPI {
     );
   }
 
-  static List<ItemUnitAPI> fromListJSON(List<Map<String, dynamic>> jsons) {
+  static List<ItemUnitAPI> fromListJSON(List<dynamic> jsons) {
     List<ItemUnitAPI> results = [];
     jsons.forEach(
       (json) => results.add(

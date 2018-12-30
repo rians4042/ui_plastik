@@ -9,7 +9,7 @@ class TransactionEtcTypeAPI {
     this.createdAt,
   });
 
-  static TransactionEtcTypeAPI fromJSON(Map<String, dynamic> json) {
+  static TransactionEtcTypeAPI fromJSON(dynamic json) {
     return TransactionEtcTypeAPI(
       id: json['id'],
       name: json['name'],
@@ -17,8 +17,7 @@ class TransactionEtcTypeAPI {
     );
   }
 
-  static List<TransactionEtcTypeAPI> fromListJSON(
-      List<Map<String, dynamic>> jsons) {
+  static List<TransactionEtcTypeAPI> fromListJSON(List<dynamic> jsons) {
     List<TransactionEtcTypeAPI> results = [];
     jsons.forEach(
       (json) => results.add(
