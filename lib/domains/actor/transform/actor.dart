@@ -2,6 +2,7 @@ import 'package:plastik_ui/domains/actor/model/api/seller.dart';
 import 'package:plastik_ui/domains/actor/model/api/supplier.dart';
 import 'package:plastik_ui/domains/actor/model/dto/seller.dart';
 import 'package:plastik_ui/domains/actor/model/dto/supplier.dart';
+import 'package:plastik_ui/helpers/datetime/datetime.dart';
 
 abstract class ActorTransformer {
   SellerAPI makeModelSellerAPI(Seller seller);
@@ -13,6 +14,12 @@ abstract class ActorTransformer {
 }
 
 class ActorTransformerImplementation implements ActorTransformer {
+  DateTimeCustom datetime;
+
+  ActorTransformerImplementation() {
+    datetime = DateTimeCustomImplementation();
+  }
+
   @override
   List<Supplier> makeModelSuppliers(List<SupplierAPI> suppliers) {
     List<Supplier> results = [];
@@ -20,7 +27,8 @@ class ActorTransformerImplementation implements ActorTransformer {
       Supplier supplier = Supplier(
         id: suppliers[i].id,
         name: suppliers[i].name,
-        createdAt: suppliers[i].createdAt,
+        createdAt: datetime.create(
+            suppliers[i].createdAt, DateTimeCustomImplementation.DATEANDTIME),
       );
       results.add(supplier);
     }
@@ -33,7 +41,8 @@ class ActorTransformerImplementation implements ActorTransformer {
     return SellerAPI(
       id: seller.id,
       name: seller.name,
-      createdAt: seller.createdAt,
+      createdAt: datetime.create(
+          seller.createdAt, DateTimeCustomImplementation.DATEANDTIME),
     );
   }
 
@@ -42,7 +51,8 @@ class ActorTransformerImplementation implements ActorTransformer {
     return Seller(
       id: seller.id,
       name: seller.name,
-      createdAt: seller.createdAt,
+      createdAt: datetime.create(
+          seller.createdAt, DateTimeCustomImplementation.DATEANDTIME),
     );
   }
 
@@ -52,7 +62,11 @@ class ActorTransformerImplementation implements ActorTransformer {
     sellers.forEach(
       (seller) => results.add(
             Seller(
-                id: seller.id, name: seller.name, createdAt: seller.createdAt),
+              id: seller.id,
+              name: seller.name,
+              createdAt: datetime.create(
+                  seller.createdAt, DateTimeCustomImplementation.DATEANDTIME),
+            ),
           ),
     );
     return results;
@@ -63,7 +77,8 @@ class ActorTransformerImplementation implements ActorTransformer {
     return SupplierAPI(
       id: supplier.id,
       name: supplier.name,
-      createdAt: supplier.createdAt,
+      createdAt: datetime.create(
+          supplier.createdAt, DateTimeCustomImplementation.DATEANDTIME),
     );
   }
 
@@ -72,7 +87,8 @@ class ActorTransformerImplementation implements ActorTransformer {
     return Supplier(
       id: supplier.id,
       name: supplier.name,
-      createdAt: supplier.createdAt,
+      createdAt: datetime.create(
+          supplier.createdAt, DateTimeCustomImplementation.DATEANDTIME),
     );
   }
 }

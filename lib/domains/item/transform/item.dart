@@ -2,6 +2,7 @@ import 'package:plastik_ui/domains/item/model/api/item-category.dart';
 import 'package:plastik_ui/domains/item/model/api/item.dart';
 import 'package:plastik_ui/domains/item/model/dto/item-category.dart';
 import 'package:plastik_ui/domains/item/model/dto/item.dart';
+import 'package:plastik_ui/helpers/datetime/datetime.dart';
 
 abstract class ItemTransformer {
   ItemAPI makeModelItemAPI(Item item);
@@ -14,13 +15,22 @@ abstract class ItemTransformer {
 }
 
 class ItemTransformerImplementation implements ItemTransformer {
+  DateTimeCustom datetime;
+
+  ItemTransformerImplementation() {
+    datetime = DateTimeCustomImplementation();
+  }
+
   @override
   Item makeModelItem(ItemAPI item) {
     return Item(
       id: item.id,
       name: item.name,
       unitId: item.unitId,
-      createdAt: item.createdAt,
+      createdAt: datetime.create(
+        item.createdAt,
+        DateTimeCustomImplementation.DATEANDTIME,
+      ),
       itemCategoryId: item.itemCategoryId,
     );
   }
@@ -31,7 +41,10 @@ class ItemTransformerImplementation implements ItemTransformer {
       id: item.id,
       name: item.name,
       itemCategoryId: item.itemCategoryId,
-      createdAt: item.createdAt,
+      createdAt: datetime.create(
+        item.createdAt,
+        DateTimeCustomImplementation.DATEANDTIME,
+      ),
       unitId: item.unitId,
     );
   }
@@ -45,7 +58,10 @@ class ItemTransformerImplementation implements ItemTransformer {
               id: item.id,
               name: item.name,
               itemCategoryId: item.itemCategoryId,
-              createdAt: item.createdAt,
+              createdAt: datetime.create(
+                item.createdAt,
+                DateTimeCustomImplementation.DATEANDTIME,
+              ),
               unitId: item.unitId,
             ),
           ),
@@ -63,7 +79,10 @@ class ItemTransformerImplementation implements ItemTransformer {
             ItemCategory(
               id: category.id,
               name: category.name,
-              createdAt: category.createdAt,
+              createdAt: datetime.create(
+                category.createdAt,
+                DateTimeCustomImplementation.DATEANDTIME,
+              ),
             ),
           ),
     );
@@ -76,7 +95,10 @@ class ItemTransformerImplementation implements ItemTransformer {
     return ItemCategory(
       id: itemCategory.id,
       name: itemCategory.name,
-      createdAt: itemCategory.createdAt,
+      createdAt: datetime.create(
+        itemCategory.createdAt,
+        DateTimeCustomImplementation.DATEANDTIME,
+      ),
     );
   }
 

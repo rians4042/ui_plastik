@@ -8,6 +8,9 @@ import 'package:plastik_ui/domains/item/api/item-category.dart';
 import 'package:plastik_ui/domains/item/api/item.dart';
 import 'package:plastik_ui/domains/item/service/item.dart';
 import 'package:plastik_ui/domains/item/transform/item.dart';
+import 'package:plastik_ui/domains/transaction/api/transaction.dart';
+import 'package:plastik_ui/domains/transaction/service/transaction.dart';
+import 'package:plastik_ui/domains/transaction/transform/transaction.dart';
 import 'package:plastik_ui/helpers/httpclient/client.dart';
 
 void injector(GetIt getIt) {
@@ -29,5 +32,14 @@ void injector(GetIt getIt) {
     itemAPI: itemAPI,
     itemCategoryAPI: itemCategoryAPI,
     transformer: itemTransformer,
+  ));
+
+  TransactionAPI transactionAPI =
+      TransactionAPIImplementation(client: client(_user));
+  TransactionTransformer transactionTransformer =
+      TransactionTransformerImplementation();
+  getIt.registerSingleton<TransactionService>(TransactionServiceImplementation(
+    api: transactionAPI,
+    transformer: transactionTransformer,
   ));
 }
