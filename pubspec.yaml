@@ -23,9 +23,7 @@ dependencies:
   scoped_model: ^1.0.1
   flutter_spinkit: "^3.1.0"
   carousel_slider: ^1.0.1
-
-
-
+  intl: ^0.15.7
 
 dev_dependencies:
   flutter_test:
