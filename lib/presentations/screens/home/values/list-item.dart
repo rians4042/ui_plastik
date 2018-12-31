@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plastik_ui/presentations/screens/seller/screens/seller-list.dart';
 import 'package:plastik_ui/presentations/screens/supplier/screens/supplier-list.dart';
 
 final List<Map<String, dynamic>> items = [
@@ -37,7 +38,16 @@ final List<Map<String, dynamic>> items = [
       {
         'name': 'Penjual',
         'asset': 'assets/svg/033-networking-2.svg',
-        'onPress': (BuildContext context) {},
+        'onPress': (BuildContext context) {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => SellerList(),
+              settings: RouteSettings(
+                name: SellerList.routerName,
+              ),
+            ),
+          );
+        },
       }
     ]
   },

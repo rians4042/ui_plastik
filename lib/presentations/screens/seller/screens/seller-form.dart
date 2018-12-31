@@ -1,30 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:plastik_ui/domains/actor/model/dto/supplier.dart';
-import 'package:plastik_ui/presentations/screens/supplier/blocs/supplier-form.dart';
+import 'package:plastik_ui/domains/actor/model/dto/seller.dart';
+import 'package:plastik_ui/presentations/screens/seller/blocs/seller-form.dart';
 import 'package:plastik_ui/presentations/shared/widgets/error-notification.dart';
 import 'package:plastik_ui/values/colors.dart';
 
-class SupplierForm extends StatefulWidget {
+class SellerForm extends StatefulWidget {
   final String id;
 
-  SupplierForm({this.id});
+  SellerForm({this.id});
 
-  static String routeName = '/supplier/form';
+  static String routeName = '/seller/form';
 
   @override
-  _SupplierFormState createState() => _SupplierFormState(id: id);
+  _SellerFormState createState() => _SellerFormState(id: id);
 }
 
-class _SupplierFormState extends State<StatefulWidget> {
+class _SellerFormState extends State<StatefulWidget> {
   final String id;
 
-  SupplierFormBloc _supplierFormBloc;
+  SellerFormBloc _sellerFormBloc;
   TextEditingController _nameController;
   TextEditingController _phoneController;
   TextEditingController _addressController;
 
-  _SupplierFormState({this.id}) {
-    _supplierFormBloc = SupplierFormBloc();
+  _SellerFormState({this.id}) {
+    _sellerFormBloc = SellerFormBloc();
     _nameController = TextEditingController();
     _phoneController = TextEditingController();
     _addressController = TextEditingController();
@@ -32,7 +32,7 @@ class _SupplierFormState extends State<StatefulWidget> {
 
   @override
   void dispose() {
-    _supplierFormBloc.dispose();
+    _sellerFormBloc.dispose();
     super.dispose();
   }
 
@@ -41,24 +41,24 @@ class _SupplierFormState extends State<StatefulWidget> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Formulir Penyuplai'),
+        title: Text('Formulir Penjual'),
       ),
       body: Builder(
         builder: (BuildContext ctx) {
-          void fetchSupplierDetail() {
-            _supplierFormBloc.getSupplierDetail(id, onError: (String message) {
+          void fetchSellerDetail() {
+            _sellerFormBloc.getSellerDetail(id, onError: (String message) {
               Scaffold.of(ctx).showSnackBar(SnackBar(
                 content: Text(message),
               ));
-            }, onSuccess: (Supplier supplier) {
-              _nameController.text = supplier.name;
-              _phoneController.text = supplier.phone;
-              _addressController.text = supplier.address;
+            }, onSuccess: (Seller seller) {
+              _nameController.text = seller.name;
+              _phoneController.text = seller.phone;
+              _addressController.text = seller.address;
             });
           }
 
-          void addOrUpdateSupplier() {
-            _supplierFormBloc.addOrUpdateSupplier(
+          void addOrUpdateSeller() {
+            _sellerFormBloc.addOrUpdateSeller(
               id,
               onSuccess: () {
                 Navigator.of(ctx).pop();
@@ -71,7 +71,7 @@ class _SupplierFormState extends State<StatefulWidget> {
             );
           }
 
-          void deleteSupplier() {
+          void deleteSeller() {
             showDialog(
               context: ctx,
               builder: (BuildContext context) => AlertDialog(
@@ -86,7 +86,7 @@ class _SupplierFormState extends State<StatefulWidget> {
                         child: Text('Hapus'),
                         onPressed: () {
                           Navigator.of(ctx).pop();
-                          _supplierFormBloc.deleteSupplier(
+                          _sellerFormBloc.deleteSeller(
                             id,
                             onSuccess: () {
                               Navigator.of(ctx).pop();
@@ -106,24 +106,24 @@ class _SupplierFormState extends State<StatefulWidget> {
             );
           }
 
-          fetchSupplierDetail();
+          fetchSellerDetail();
           return Container(
             padding: EdgeInsets.symmetric(horizontal: 12),
             child: StreamBuilder<bool>(
-              stream: _supplierFormBloc.loading,
+              stream: _sellerFormBloc.loading,
               builder: (BuildContext ctx, AsyncSnapshot<bool> loadingSnapshot) {
                 bool hasError = loadingSnapshot.error != null;
 
                 if (hasError) {
                   return ErrorNotification(
-                    onRetry: fetchSupplierDetail,
+                    onRetry: fetchSellerDetail,
                   );
                 }
 
                 return Column(
                   children: <Widget>[
                     StreamBuilder<String>(
-                      stream: _supplierFormBloc.name,
+                      stream: _sellerFormBloc.name,
                       builder: (BuildContext ctx,
                           AsyncSnapshot<String> nameSnapshot) {
                         return Container(
@@ -132,7 +132,7 @@ class _SupplierFormState extends State<StatefulWidget> {
                             autofocus: true,
                             controller: _nameController,
                             onChanged: (String name) =>
-                                _supplierFormBloc.changeName.add(name),
+                                _sellerFormBloc.changeName.add(name),
                             decoration: InputDecoration(
                               border: UnderlineInputBorder(
                                 borderSide: BorderSide(
@@ -151,7 +151,7 @@ class _SupplierFormState extends State<StatefulWidget> {
                       },
                     ),
                     StreamBuilder<String>(
-                      stream: _supplierFormBloc.phone,
+                      stream: _sellerFormBloc.phone,
                       builder: (BuildContext ctx,
                           AsyncSnapshot<String> phoneSnapshot) {
                         return Container(
@@ -159,7 +159,7 @@ class _SupplierFormState extends State<StatefulWidget> {
                           child: TextField(
                             controller: _phoneController,
                             onChanged: (String phone) =>
-                                _supplierFormBloc.changePhone.add(phone),
+                                _sellerFormBloc.changePhone.add(phone),
                             keyboardType: TextInputType.phone,
                             maxLength: 16,
                             decoration: InputDecoration(
@@ -180,7 +180,7 @@ class _SupplierFormState extends State<StatefulWidget> {
                       },
                     ),
                     StreamBuilder<String>(
-                      stream: _supplierFormBloc.address,
+                      stream: _sellerFormBloc.address,
                       builder: (BuildContext ctx,
                           AsyncSnapshot<String> addressSnapshot) {
                         return Container(
@@ -188,7 +188,7 @@ class _SupplierFormState extends State<StatefulWidget> {
                           child: TextField(
                             controller: _addressController,
                             onChanged: (String address) =>
-                                _supplierFormBloc.changeAddress.add(address),
+                                _sellerFormBloc.changeAddress.add(address),
                             keyboardType: TextInputType.multiline,
                             maxLines: null,
                             decoration: InputDecoration(
@@ -209,7 +209,7 @@ class _SupplierFormState extends State<StatefulWidget> {
                       },
                     ),
                     StreamBuilder<bool>(
-                      stream: _supplierFormBloc.loading,
+                      stream: _sellerFormBloc.loading,
                       builder: (BuildContext ctx,
                               AsyncSnapshot<bool> loadSnapshot) =>
                           Container(
@@ -220,7 +220,7 @@ class _SupplierFormState extends State<StatefulWidget> {
                               onPressed:
                                   loadSnapshot.hasData && loadSnapshot.data
                                       ? null
-                                      : addOrUpdateSupplier,
+                                      : addOrUpdateSeller,
                               child: Text(
                                 'Simpan',
                                 style: TextStyle(color: WHITE_COLOR),
@@ -230,7 +230,7 @@ class _SupplierFormState extends State<StatefulWidget> {
                     ),
                     id != null
                         ? StreamBuilder<bool>(
-                            stream: _supplierFormBloc.loading,
+                            stream: _sellerFormBloc.loading,
                             builder: (BuildContext ctx,
                                     AsyncSnapshot<bool> loadSnapshot) =>
                                 Container(
@@ -241,7 +241,7 @@ class _SupplierFormState extends State<StatefulWidget> {
                                     onPressed: loadSnapshot.hasData &&
                                             loadSnapshot.data
                                         ? null
-                                        : deleteSupplier,
+                                        : deleteSeller,
                                     child: Text(
                                       'Hapus',
                                       style: TextStyle(color: WHITE_COLOR),
