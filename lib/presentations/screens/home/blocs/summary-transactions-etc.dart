@@ -28,7 +28,6 @@ class SummaryTransactionsEtcBloc implements BaseBloc {
           .getSummaryTransactionsEtc(startAt, endAt);
       _statesSummaryTransaction.sink.add(formatCurrency(amount));
     } catch (e) {
-      print(e);
       _statesSummaryTransaction.sink.addError('Tidak dapat memuat');
     }
   }
