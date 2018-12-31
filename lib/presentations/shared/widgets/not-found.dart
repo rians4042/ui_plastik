@@ -12,7 +12,7 @@ class NotFound extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           SvgPicture.asset(
-            'assets/svg/010-puzzle.svg',
+            'assets/svg/016-effort.svg',
             width: 100,
             height: 100,
           ),
