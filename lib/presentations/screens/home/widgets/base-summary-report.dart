@@ -25,13 +25,8 @@ class BaseSummaryReport extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 8),
       padding: EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: WHITE_COLOR,
+        color: BACKGROUND_COLOR,
         borderRadius: BorderRadius.circular(5),
-        boxShadow: [
-          BoxShadow(
-            color: GREY_COLOR,
-          )
-        ],
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

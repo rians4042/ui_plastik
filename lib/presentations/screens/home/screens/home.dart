@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:plastik_ui/presentations/screens/home/values/list-item.dart';
 import 'package:plastik_ui/presentations/screens/home/values/list-report.dart';
 import 'package:plastik_ui/presentations/screens/home/widgets/item-home.dart';
+import 'package:plastik_ui/values/colors.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -13,6 +14,7 @@ class Home extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Container(
+            color: WHITE_COLOR,
             padding: EdgeInsets.symmetric(vertical: 18),
             child: CarouselSlider(
               initialPage: 0,
@@ -61,6 +63,7 @@ class Home extends StatelessWidget {
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 4,
                           crossAxisSpacing: 10,
+                          mainAxisSpacing: 10,
                         ),
                       )
                     ],
