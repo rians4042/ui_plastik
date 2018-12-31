@@ -57,8 +57,10 @@ class Home extends StatelessWidget {
                                   as List)[childindex]['name'],
                               assetPath: (items[index]['details']
                                   as List)[childindex]['asset'],
-                              onPress: (items[index]['details']
-                                  as List)[childindex]['onPress'],
+                              onPress: () {
+                                (items[index]['details'] as List)[childindex]
+                                    ['onPress'](ctx);
+                              },
                             ),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 4,
