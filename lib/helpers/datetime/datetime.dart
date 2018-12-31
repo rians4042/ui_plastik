@@ -26,12 +26,18 @@ class DateTimeCustomImplementation implements DateTimeCustom {
   }
 
   String _createDate(String datetime) {
-    DateTime _datetime = DateTime.parse(datetime).toLocal();
-    return '${_datetime.year}-${_datetime.month}-${_datetime.day}';
+    if (datetime != null && datetime != '') {
+      DateTime _datetime = DateTime.parse(datetime).toLocal();
+      return '${_datetime.year}-${_datetime.month}-${_datetime.day}';
+    }
+    return '';
   }
 
   String _createTime(String datetime) {
-    DateTime _datetime = DateTime.parse(datetime).toLocal();
-    return '${_datetime.hour}:${_datetime.minute}';
+    if (datetime != null && datetime != '') {
+      DateTime _datetime = DateTime.parse(datetime).toLocal();
+      return '${_datetime.hour}:${_datetime.minute}';
+    }
+    return '';
   }
 }
