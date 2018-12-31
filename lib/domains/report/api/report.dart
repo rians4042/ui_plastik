@@ -5,11 +5,11 @@ import 'package:plastik_ui/helpers/request/error-handler.dart';
 import 'package:plastik_ui/helpers/request/parser.dart';
 
 abstract class ReportAPI {
-  Future<int> getCountTransactions();
-  Future<double> getSummaryTransactions();
-  Future<double> getSummaryTransactionsIn();
-  Future<double> getSummaryTransactionOut();
-  Future<double> getSummaryTransactionEtc();
+  Future<int> getCountTransactions(String startAt, String endAt);
+  Future<double> getSummaryTransactions(String startAt, String endAt);
+  Future<double> getSummaryTransactionsIn(String startAt, String endAt);
+  Future<double> getSummaryTransactionsOut(String startAt, String endAt);
+  Future<double> getSummaryTransactionsEtc(String startAt, String endAt);
   Future<List<ItemStockLogAPI>> getItemStockLogs();
 }
 
@@ -23,45 +23,75 @@ class ReportAPIImplementation extends Object
   });
 
   @override
-  Future<int> getCountTransactions() async {
-    final Response response = await client.get('/get-count-transactions');
+  Future<int> getCountTransactions(String startAt, String endAt) async {
+    final Response response = await client.get(
+      '/report/get-count-transactions',
+      data: {
+        'startAt': startAt,
+        'endAt': endAt,
+      },
+    );
     throwErrorIfErrorFounded(response);
     return (response.data['value'] as int);
   }
 
   @override
   Future<List<ItemStockLogAPI>> getItemStockLogs() async {
-    final Response response = await client.get('/get-item-stock-logs');
+    final Response response = await client.get('/report/get-item-stock-logs');
     throwErrorIfErrorFounded(response);
     return parserRawRequest<List<ItemStockLogAPI>, List<dynamic>>(
         ItemStockLogAPI.fromListJSON, response.data);
   }
 
   @override
-  Future<double> getSummaryTransactionEtc() async {
-    final Response response = await client.get('/get-summary-transactions-etc');
+  Future<double> getSummaryTransactionsEtc(String startAt, String endAt) async {
+    final Response response = await client.get(
+      '/report/get-summary-transactions-etc',
+      data: {
+        'startAt': startAt,
+        'endAt': endAt,
+      },
+    );
     throwErrorIfErrorFounded(response);
-    return (response.data['value'] as double);
+    return double.parse(response.data['value'].toString());
   }
 
   @override
-  Future<double> getSummaryTransactionOut() async {
-    final Response response = await client.get('/get-summary-transactions-out');
+  Future<double> getSummaryTransactionsOut(String startAt, String endAt) async {
+    final Response response = await client.get(
+      '/report/get-summary-transactions-out',
+      data: {
+        'startAt': startAt,
+        'endAt': endAt,
+      },
+    );
     throwErrorIfErrorFounded(response);
-    return (response.data['value'] as double);
+    return double.parse(response.data['value'].toString());
   }
 
   @override
-  Future<double> getSummaryTransactions() async {
-    final Response response = await client.get('/get-summary-transactions');
+  Future<double> getSummaryTransactions(String startAt, String endAt) async {
+    final Response response = await client.get(
+      '/report/get-summary-transactions',
+      data: {
+        'startAt': startAt,
+        'endAt': endAt,
+      },
+    );
     throwErrorIfErrorFounded(response);
-    return (response.data['value'] as double);
+    return double.parse(response.data['value'].toString());
   }
 
   @override
-  Future<double> getSummaryTransactionsIn() async {
-    final Response response = await client.get('/get-summary-transactions-in');
+  Future<double> getSummaryTransactionsIn(String startAt, String endAt) async {
+    final Response response = await client.get(
+      '/report/get-summary-transactions-in',
+      data: {
+        'startAt': startAt,
+        'endAt': endAt,
+      },
+    );
     throwErrorIfErrorFounded(response);
-    return (response.data['value'] as double);
+    return double.parse(response.data['value'].toString());
   }
 }
