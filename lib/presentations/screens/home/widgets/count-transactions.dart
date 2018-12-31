@@ -26,11 +26,12 @@ class _CountTransactionsState extends State<CountTransactions> {
     return StreamBuilder<String>(
       stream: _countTransactionsBloc.countTransaction,
       builder: (BuildContext ctx, AsyncSnapshot<String> snapshot) {
+        bool hasError = snapshot.error != null && snapshot.error != '';
         return BaseSummaryReport(
           label: 'Jumlah Transaksi Bulan Ini',
           value: !snapshot.hasData ? '' : snapshot.data,
-          loading: !snapshot.hasData,
-          error: snapshot.hasData && snapshot.data == 'Tidak dapat memuat' ? true : false,
+          loading: !snapshot.hasData && !hasError,
+          error: snapshot.error != null && snapshot.error != '',
           onRetry: _countTransactionsBloc.fetchCountTransactions,
         );
       },
