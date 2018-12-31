@@ -11,26 +11,45 @@ class ErrorNotification extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        SvgPicture.asset(
-          'assets/svg/020-conflict.svg',
-          width: 100,
-          height: 100,
-        ),
-        Container(
-          margin: EdgeInsets.only(
-            top: 8,
+    return Container(
+      width: double.infinity,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          SvgPicture.asset(
+            'assets/svg/020-conflict.svg',
+            width: 100,
+            height: 100,
           ),
-          child: RaisedButton(
-            onPressed: onRetry,
-            child: Text('Coba Lagi'),
-            color: PRIMARY_COLOR,
+          GestureDetector(
+            onTap: onRetry,
+            child: Container(
+              margin: EdgeInsets.only(
+                top: 8,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Icon(
+                    Icons.refresh,
+                    color: PRIMARY_COLOR,
+                    size: 24,
+                  ),
+                  Text(
+                    'Coba Lagi',
+                    style: TextStyle(
+                      fontSize: 24,
+                      color: PRIMARY_COLOR,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
