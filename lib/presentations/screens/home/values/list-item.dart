@@ -16,6 +16,11 @@ final List<Map<String, dynamic>> items = [
         'name': 'Item',
         'asset': 'assets/svg/010-puzzle.svg',
         'onPress': (BuildContext context) {},
+      },
+      {
+        'name': 'Stok',
+        'asset': 'assets/svg/008-archive.svg',
+        'onPress': (BuildContext context) {},
       }
     ]
   },
