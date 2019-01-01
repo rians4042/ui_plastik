@@ -107,152 +107,155 @@ class _SellerFormState extends State<StatefulWidget> {
           }
 
           fetchSellerDetail();
-          return Container(
-            padding: EdgeInsets.symmetric(horizontal: 12),
-            child: StreamBuilder<bool>(
-              stream: _sellerFormBloc.loading,
-              builder: (BuildContext ctx, AsyncSnapshot<bool> loadingSnapshot) {
-                bool hasError = loadingSnapshot.error != null;
+          return SingleChildScrollView(
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 12),
+              child: StreamBuilder<bool>(
+                stream: _sellerFormBloc.loading,
+                builder:
+                    (BuildContext ctx, AsyncSnapshot<bool> loadingSnapshot) {
+                  bool hasError = loadingSnapshot.error != null;
 
-                if (hasError) {
-                  return ErrorNotification(
-                    onRetry: fetchSellerDetail,
-                  );
-                }
+                  if (hasError) {
+                    return ErrorNotification(
+                      onRetry: fetchSellerDetail,
+                    );
+                  }
 
-                return Column(
-                  children: <Widget>[
-                    StreamBuilder<String>(
-                      stream: _sellerFormBloc.name,
-                      builder: (BuildContext ctx,
-                          AsyncSnapshot<String> nameSnapshot) {
-                        return Container(
-                          margin: EdgeInsets.symmetric(vertical: 8),
-                          child: TextField(
-                            autofocus: true,
-                            controller: _nameController,
-                            onChanged: (String name) =>
-                                _sellerFormBloc.changeName.add(name),
-                            decoration: InputDecoration(
-                              border: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  width: 1,
-                                  color: GREY_COLOR,
-                                ),
-                              ),
-                              enabled: loadingSnapshot.hasData
-                                  ? !loadingSnapshot.data
-                                  : true,
-                              errorText: nameSnapshot.error,
-                              labelText: 'Nama',
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                    StreamBuilder<String>(
-                      stream: _sellerFormBloc.phone,
-                      builder: (BuildContext ctx,
-                          AsyncSnapshot<String> phoneSnapshot) {
-                        return Container(
-                          margin: EdgeInsets.symmetric(vertical: 8),
-                          child: TextField(
-                            controller: _phoneController,
-                            onChanged: (String phone) =>
-                                _sellerFormBloc.changePhone.add(phone),
-                            keyboardType: TextInputType.phone,
-                            maxLength: 16,
-                            decoration: InputDecoration(
-                              border: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  width: 1,
-                                  color: GREY_COLOR,
-                                ),
-                              ),
-                              enabled: loadingSnapshot.hasData
-                                  ? !loadingSnapshot.data
-                                  : true,
-                              errorText: phoneSnapshot.error,
-                              labelText: 'Nomor Telepon',
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                    StreamBuilder<String>(
-                      stream: _sellerFormBloc.address,
-                      builder: (BuildContext ctx,
-                          AsyncSnapshot<String> addressSnapshot) {
-                        return Container(
-                          margin: EdgeInsets.symmetric(vertical: 8),
-                          child: TextField(
-                            controller: _addressController,
-                            onChanged: (String address) =>
-                                _sellerFormBloc.changeAddress.add(address),
-                            keyboardType: TextInputType.multiline,
-                            maxLines: null,
-                            decoration: InputDecoration(
-                              border: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  width: 1,
-                                  color: GREY_COLOR,
-                                ),
-                              ),
-                              enabled: loadingSnapshot.hasData
-                                  ? !loadingSnapshot.data
-                                  : true,
-                              errorText: addressSnapshot.error,
-                              labelText: 'Alamat',
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                    StreamBuilder<bool>(
-                      stream: _sellerFormBloc.loading,
-                      builder: (BuildContext ctx,
-                              AsyncSnapshot<bool> loadSnapshot) =>
-                          Container(
-                            width: double.infinity,
+                  return Column(
+                    children: <Widget>[
+                      StreamBuilder<String>(
+                        stream: _sellerFormBloc.name,
+                        builder: (BuildContext ctx,
+                            AsyncSnapshot<String> nameSnapshot) {
+                          return Container(
                             margin: EdgeInsets.symmetric(vertical: 8),
-                            child: RaisedButton(
-                              color: PRIMARY_COLOR,
-                              onPressed:
-                                  loadSnapshot.hasData && loadSnapshot.data
-                                      ? null
-                                      : addOrUpdateSeller,
-                              child: Text(
-                                'Simpan',
-                                style: TextStyle(color: WHITE_COLOR),
-                              ),
-                            ),
-                          ),
-                    ),
-                    id != null
-                        ? StreamBuilder<bool>(
-                            stream: _sellerFormBloc.loading,
-                            builder: (BuildContext ctx,
-                                    AsyncSnapshot<bool> loadSnapshot) =>
-                                Container(
-                                  width: double.infinity,
-                                  margin: EdgeInsets.symmetric(vertical: 8),
-                                  child: RaisedButton(
-                                    color: RED_COLOR,
-                                    onPressed: loadSnapshot.hasData &&
-                                            loadSnapshot.data
-                                        ? null
-                                        : deleteSeller,
-                                    child: Text(
-                                      'Hapus',
-                                      style: TextStyle(color: WHITE_COLOR),
-                                    ),
+                            child: TextField(
+                              autofocus: true,
+                              controller: _nameController,
+                              onChanged: (String name) =>
+                                  _sellerFormBloc.changeName.add(name),
+                              decoration: InputDecoration(
+                                border: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    width: 1,
+                                    color: GREY_COLOR,
                                   ),
                                 ),
-                          )
-                        : Container(),
-                  ],
-                );
-              },
+                                enabled: loadingSnapshot.hasData
+                                    ? !loadingSnapshot.data
+                                    : true,
+                                errorText: nameSnapshot.error,
+                                labelText: 'Nama',
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                      StreamBuilder<String>(
+                        stream: _sellerFormBloc.phone,
+                        builder: (BuildContext ctx,
+                            AsyncSnapshot<String> phoneSnapshot) {
+                          return Container(
+                            margin: EdgeInsets.symmetric(vertical: 8),
+                            child: TextField(
+                              controller: _phoneController,
+                              onChanged: (String phone) =>
+                                  _sellerFormBloc.changePhone.add(phone),
+                              keyboardType: TextInputType.phone,
+                              maxLength: 16,
+                              decoration: InputDecoration(
+                                border: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    width: 1,
+                                    color: GREY_COLOR,
+                                  ),
+                                ),
+                                enabled: loadingSnapshot.hasData
+                                    ? !loadingSnapshot.data
+                                    : true,
+                                errorText: phoneSnapshot.error,
+                                labelText: 'Nomor Telepon',
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                      StreamBuilder<String>(
+                        stream: _sellerFormBloc.address,
+                        builder: (BuildContext ctx,
+                            AsyncSnapshot<String> addressSnapshot) {
+                          return Container(
+                            margin: EdgeInsets.symmetric(vertical: 8),
+                            child: TextField(
+                              controller: _addressController,
+                              onChanged: (String address) =>
+                                  _sellerFormBloc.changeAddress.add(address),
+                              keyboardType: TextInputType.multiline,
+                              maxLines: null,
+                              decoration: InputDecoration(
+                                border: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    width: 1,
+                                    color: GREY_COLOR,
+                                  ),
+                                ),
+                                enabled: loadingSnapshot.hasData
+                                    ? !loadingSnapshot.data
+                                    : true,
+                                errorText: addressSnapshot.error,
+                                labelText: 'Alamat',
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                      StreamBuilder<bool>(
+                        stream: _sellerFormBloc.loading,
+                        builder: (BuildContext ctx,
+                                AsyncSnapshot<bool> loadSnapshot) =>
+                            Container(
+                              width: double.infinity,
+                              margin: EdgeInsets.symmetric(vertical: 8),
+                              child: RaisedButton(
+                                color: PRIMARY_COLOR,
+                                onPressed:
+                                    loadSnapshot.hasData && loadSnapshot.data
+                                        ? null
+                                        : addOrUpdateSeller,
+                                child: Text(
+                                  'Simpan',
+                                  style: TextStyle(color: WHITE_COLOR),
+                                ),
+                              ),
+                            ),
+                      ),
+                      id != null
+                          ? StreamBuilder<bool>(
+                              stream: _sellerFormBloc.loading,
+                              builder: (BuildContext ctx,
+                                      AsyncSnapshot<bool> loadSnapshot) =>
+                                  Container(
+                                    width: double.infinity,
+                                    margin: EdgeInsets.symmetric(vertical: 8),
+                                    child: RaisedButton(
+                                      color: RED_COLOR,
+                                      onPressed: loadSnapshot.hasData &&
+                                              loadSnapshot.data
+                                          ? null
+                                          : deleteSeller,
+                                      child: Text(
+                                        'Hapus',
+                                        style: TextStyle(color: WHITE_COLOR),
+                                      ),
+                                    ),
+                                  ),
+                            )
+                          : Container(),
+                    ],
+                  );
+                },
+              ),
             ),
           );
         },

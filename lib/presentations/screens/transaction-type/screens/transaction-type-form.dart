@@ -104,94 +104,97 @@ class _TransactionTypeFormState extends State<StatefulWidget> {
           }
 
           fetchTransactionTypeDetail();
-          return Container(
-            padding: EdgeInsets.symmetric(horizontal: 12),
-            child: StreamBuilder<bool>(
-              stream: _transactionTypeFormBloc.loading,
-              builder: (BuildContext ctx, AsyncSnapshot<bool> loadingSnapshot) {
-                bool hasError = loadingSnapshot.error != null;
+          return SingleChildScrollView(
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 12),
+              child: StreamBuilder<bool>(
+                stream: _transactionTypeFormBloc.loading,
+                builder:
+                    (BuildContext ctx, AsyncSnapshot<bool> loadingSnapshot) {
+                  bool hasError = loadingSnapshot.error != null;
 
-                if (hasError) {
-                  return ErrorNotification(
-                    onRetry: fetchTransactionTypeDetail,
-                  );
-                }
+                  if (hasError) {
+                    return ErrorNotification(
+                      onRetry: fetchTransactionTypeDetail,
+                    );
+                  }
 
-                return Column(
-                  children: <Widget>[
-                    StreamBuilder<String>(
-                      stream: _transactionTypeFormBloc.name,
-                      builder: (BuildContext ctx,
-                          AsyncSnapshot<String> nameSnapshot) {
-                        return Container(
-                          margin: EdgeInsets.symmetric(vertical: 8),
-                          child: TextField(
-                            autofocus: true,
-                            controller: _nameController,
-                            onChanged: (String name) =>
-                                _transactionTypeFormBloc.changeName.add(name),
-                            decoration: InputDecoration(
-                              border: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  width: 1,
-                                  color: GREY_COLOR,
-                                ),
-                              ),
-                              enabled: loadingSnapshot.hasData
-                                  ? !loadingSnapshot.data
-                                  : true,
-                              errorText: nameSnapshot.error,
-                              labelText: 'Nama',
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                    StreamBuilder<bool>(
-                      stream: _transactionTypeFormBloc.loading,
-                      builder: (BuildContext ctx,
-                              AsyncSnapshot<bool> loadSnapshot) =>
-                          Container(
-                            width: double.infinity,
+                  return Column(
+                    children: <Widget>[
+                      StreamBuilder<String>(
+                        stream: _transactionTypeFormBloc.name,
+                        builder: (BuildContext ctx,
+                            AsyncSnapshot<String> nameSnapshot) {
+                          return Container(
                             margin: EdgeInsets.symmetric(vertical: 8),
-                            child: RaisedButton(
-                              color: PRIMARY_COLOR,
-                              onPressed:
-                                  loadSnapshot.hasData && loadSnapshot.data
-                                      ? null
-                                      : addOrUpdateTransactionType,
-                              child: Text(
-                                'Simpan',
-                                style: TextStyle(color: WHITE_COLOR),
-                              ),
-                            ),
-                          ),
-                    ),
-                    id != null
-                        ? StreamBuilder<bool>(
-                            stream: _transactionTypeFormBloc.loading,
-                            builder: (BuildContext ctx,
-                                    AsyncSnapshot<bool> loadSnapshot) =>
-                                Container(
-                                  width: double.infinity,
-                                  margin: EdgeInsets.symmetric(vertical: 8),
-                                  child: RaisedButton(
-                                    color: RED_COLOR,
-                                    onPressed: loadSnapshot.hasData &&
-                                            loadSnapshot.data
-                                        ? null
-                                        : deleteTransactionType,
-                                    child: Text(
-                                      'Hapus',
-                                      style: TextStyle(color: WHITE_COLOR),
-                                    ),
+                            child: TextField(
+                              autofocus: true,
+                              controller: _nameController,
+                              onChanged: (String name) =>
+                                  _transactionTypeFormBloc.changeName.add(name),
+                              decoration: InputDecoration(
+                                border: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    width: 1,
+                                    color: GREY_COLOR,
                                   ),
                                 ),
-                          )
-                        : Container(),
-                  ],
-                );
-              },
+                                enabled: loadingSnapshot.hasData
+                                    ? !loadingSnapshot.data
+                                    : true,
+                                errorText: nameSnapshot.error,
+                                labelText: 'Nama',
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                      StreamBuilder<bool>(
+                        stream: _transactionTypeFormBloc.loading,
+                        builder: (BuildContext ctx,
+                                AsyncSnapshot<bool> loadSnapshot) =>
+                            Container(
+                              width: double.infinity,
+                              margin: EdgeInsets.symmetric(vertical: 8),
+                              child: RaisedButton(
+                                color: PRIMARY_COLOR,
+                                onPressed:
+                                    loadSnapshot.hasData && loadSnapshot.data
+                                        ? null
+                                        : addOrUpdateTransactionType,
+                                child: Text(
+                                  'Simpan',
+                                  style: TextStyle(color: WHITE_COLOR),
+                                ),
+                              ),
+                            ),
+                      ),
+                      id != null
+                          ? StreamBuilder<bool>(
+                              stream: _transactionTypeFormBloc.loading,
+                              builder: (BuildContext ctx,
+                                      AsyncSnapshot<bool> loadSnapshot) =>
+                                  Container(
+                                    width: double.infinity,
+                                    margin: EdgeInsets.symmetric(vertical: 8),
+                                    child: RaisedButton(
+                                      color: RED_COLOR,
+                                      onPressed: loadSnapshot.hasData &&
+                                              loadSnapshot.data
+                                          ? null
+                                          : deleteTransactionType,
+                                      child: Text(
+                                        'Hapus',
+                                        style: TextStyle(color: WHITE_COLOR),
+                                      ),
+                                    ),
+                                  ),
+                            )
+                          : Container(),
+                    ],
+                  );
+                },
+              ),
             ),
           );
         },
