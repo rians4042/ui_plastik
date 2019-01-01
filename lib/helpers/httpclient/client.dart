@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:plastik_ui/cache/user.dart';
 
 Dio client(UserCache _user) {
-  String baseUrl = 'http://192.168.56.1:3000/api/v1';
+  String baseUrl = 'http://62764524.ngrok.io/api/v1';
   if (null != _user.getCompanyId()) {
     baseUrl = '$baseUrl/company/${_user.getCompanyId()}';
   }

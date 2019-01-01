@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:plastik_ui/presentations/screens/seller/screens/seller-list.dart';
 import 'package:plastik_ui/presentations/screens/supplier/screens/supplier-list.dart';
+import 'package:plastik_ui/presentations/screens/transaction-type/screens/transaction-type-list.dart';
 
 final List<Map<String, dynamic>> items = [
   {
@@ -72,7 +73,16 @@ final List<Map<String, dynamic>> items = [
       {
         'name': 'Tipe Lainnya',
         'asset': 'assets/svg/004-structure.svg',
-        'onPress': (BuildContext context) {},
+        'onPress': (BuildContext context) {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => TransactionTypeList(),
+              settings: RouteSettings(
+                name: TransactionTypeList.routerName,
+              ),
+            ),
+          );
+        },
       }
     ]
   }
