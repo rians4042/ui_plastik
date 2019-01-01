@@ -11,7 +11,7 @@ import 'package:plastik_ui/values/colors.dart';
 import 'package:plastik_ui/app.dart';
 
 class TransactionTypeList extends StatefulWidget {
-  static String routerName = '/transactiontype';
+  static String routeName = '/transactiontype';
 
   @override
   State<StatefulWidget> createState() => _TransactionTypeListState();

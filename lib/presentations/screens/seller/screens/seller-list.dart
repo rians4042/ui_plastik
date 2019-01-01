@@ -9,7 +9,7 @@ import 'package:plastik_ui/presentations/shared/widgets/not-found.dart';
 import 'package:plastik_ui/values/colors.dart';
 
 class SellerList extends StatefulWidget {
-  static String routerName = '/seller';
+  static String routeName = '/seller';
 
   @override
   State<StatefulWidget> createState() => _SellerListState();

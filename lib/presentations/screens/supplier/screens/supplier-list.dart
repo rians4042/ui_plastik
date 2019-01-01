@@ -11,7 +11,7 @@ import 'package:plastik_ui/values/colors.dart';
 import 'package:plastik_ui/app.dart';
 
 class SupplierList extends StatefulWidget {
-  static String routerName = '/supplier';
+  static String routeName = '/supplier';
 
   @override
   State<StatefulWidget> createState() => _SupplierListState();

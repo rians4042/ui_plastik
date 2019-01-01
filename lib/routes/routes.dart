@@ -8,7 +8,7 @@ typedef Widget ValueRouteType(BuildContext ctx);
 Map<String, ValueRouteType> initialRoute() {
   return {
     HomeTabbarNav.routeName: (BuildContext ctx) => HomeTabbarNav(),
-    SupplierList.routerName: (BuildContext ctx) => SupplierList(),
+    SupplierList.routeName: (BuildContext ctx) => SupplierList(),
     SupplierForm.routeName: (BuildContext ctx) => SupplierForm(),
   };
 }

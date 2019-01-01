@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:plastik_ui/presentations/screens/seller/screens/seller-list.dart';
 import 'package:plastik_ui/presentations/screens/supplier/screens/supplier-list.dart';
+import 'package:plastik_ui/presentations/screens/transaction-in/screens/transaction-in-form.dart';
 import 'package:plastik_ui/presentations/screens/transaction-type/screens/transaction-type-list.dart';
 
 final List<Map<String, dynamic>> items = [
@@ -35,7 +36,7 @@ final List<Map<String, dynamic>> items = [
             MaterialPageRoute(
               builder: (_) => SupplierList(),
               settings: RouteSettings(
-                name: SupplierList.routerName,
+                name: SupplierList.routeName,
               ),
             ),
           );
@@ -49,7 +50,7 @@ final List<Map<String, dynamic>> items = [
             MaterialPageRoute(
               builder: (_) => SellerList(),
               settings: RouteSettings(
-                name: SellerList.routerName,
+                name: SellerList.routeName,
               ),
             ),
           );
@@ -63,7 +64,16 @@ final List<Map<String, dynamic>> items = [
       {
         'name': 'Masuk',
         'asset': 'assets/svg/036-profit.svg',
-        'onPress': (BuildContext context) {},
+        'onPress': (BuildContext context) {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => TransactionInForm(),
+              settings: RouteSettings(
+                name: TransactionInForm.routeName,
+              ),
+            ),
+          );
+        },
       },
       {
         'name': 'Keluar',
@@ -83,7 +93,7 @@ final List<Map<String, dynamic>> items = [
             MaterialPageRoute(
               builder: (_) => TransactionTypeList(),
               settings: RouteSettings(
-                name: TransactionTypeList.routerName,
+                name: TransactionTypeList.routeName,
               ),
             ),
           );
