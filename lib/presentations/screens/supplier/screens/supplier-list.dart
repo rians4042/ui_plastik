@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plastik_ui/domains/actor/service/actor.dart';
 import 'package:plastik_ui/presentations/screens/supplier/blocs/supplier-list.dart';
 import 'package:plastik_ui/presentations/screens/supplier/screens/supplier-form.dart';
 import 'package:plastik_ui/presentations/screens/supplier/states/supplier-list.dart';
@@ -7,6 +8,7 @@ import 'package:plastik_ui/presentations/shared/widgets/item-right-arrow.dart';
 import 'package:plastik_ui/presentations/shared/widgets/loading-indicator.dart';
 import 'package:plastik_ui/presentations/shared/widgets/not-found.dart';
 import 'package:plastik_ui/values/colors.dart';
+import 'package:plastik_ui/app.dart';
 
 class SupplierList extends StatefulWidget {
   static String routerName = '/supplier';
@@ -19,7 +21,7 @@ class _SupplierListState extends State<SupplierList> {
   SupplierListBloc _supplierListBloc;
 
   _SupplierListState() {
-    _supplierListBloc = SupplierListBloc();
+    _supplierListBloc = SupplierListBloc(actorService: getIt<ActorService>());
   }
 
   @override

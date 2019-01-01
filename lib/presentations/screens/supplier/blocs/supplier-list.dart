@@ -1,15 +1,16 @@
+import 'package:meta/meta.dart';
 import 'package:plastik_ui/domains/actor/model/dto/supplier.dart';
 import 'package:plastik_ui/domains/actor/service/actor.dart';
 import 'package:plastik_ui/presentations/screens/supplier/states/supplier-list.dart';
 import 'package:plastik_ui/presentations/shared/blocs/base-bloc.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:plastik_ui/app.dart';
 
 class SupplierListBloc implements BaseBloc {
+  final ActorService actorService;
   SupplierListState supplier;
   BehaviorSubject<SupplierListState> _stateSupplier;
 
-  SupplierListBloc() {
+  SupplierListBloc({@required this.actorService}) {
     supplier = SupplierListState.empty();
     _stateSupplier = BehaviorSubject<SupplierListState>(
         seedValue: SupplierListState.empty());
@@ -21,8 +22,7 @@ class SupplierListBloc implements BaseBloc {
     try {
       _stateSupplier.sink.add(supplier..changeLoading(true));
 
-      final List<Supplier> _suppliers =
-          await (getIt<ActorService>() as ActorService).getSuppliers();
+      final List<Supplier> _suppliers = await actorService.getSuppliers();
 
       _stateSupplier.sink.add(supplier..changeLoading(false));
       _stateSupplier.sink.add(supplier..addSuppliers(_suppliers));

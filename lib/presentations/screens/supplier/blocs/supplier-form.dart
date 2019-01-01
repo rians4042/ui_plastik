@@ -1,15 +1,16 @@
 import 'dart:async';
 
+import 'package:meta/meta.dart';
 import 'package:plastik_ui/domains/actor/model/dto/supplier.dart';
 import 'package:plastik_ui/domains/actor/service/actor.dart';
 import 'package:plastik_ui/presentations/shared/blocs/base-bloc.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:plastik_ui/app.dart';
 import 'package:plastik_ui/validators/format-phone.dart';
 
 class SupplierFormBloc extends Object
     with FormatPhoneValidator, FormatPhoneValidatorStream
     implements BaseBloc {
+  final ActorService actorService;
   BehaviorSubject<String> _stateName;
   BehaviorSubject<String> _statePhone;
   BehaviorSubject<String> _stateAddress;
@@ -25,7 +26,7 @@ class SupplierFormBloc extends Object
   Stream<String> get address => _stateAddress.stream;
   Stream<bool> get loading => _stateLoading.stream;
 
-  SupplierFormBloc() {
+  SupplierFormBloc({@required this.actorService}) {
     _stateName = BehaviorSubject<String>();
     _statePhone = BehaviorSubject<String>();
     _stateAddress = BehaviorSubject<String>();
@@ -38,8 +39,7 @@ class SupplierFormBloc extends Object
     if (id != null && _isPreviousDataIsNull()) {
       try {
         _stateLoading.sink.add(true);
-        Supplier supplier =
-            await (getIt<ActorService>() as ActorService).getSupplierDetail(id);
+        Supplier supplier = await actorService.getSupplierDetail(id);
 
         _stateName.sink.add(supplier.name);
         _statePhone.sink.add(supplier.phone);
@@ -60,13 +60,13 @@ class SupplierFormBloc extends Object
       if (_validate()) {
         _stateLoading.sink.add(true);
         if (id == null) {
-          await (getIt<ActorService>() as ActorService).createSupplier(Supplier(
+          await actorService.createSupplier(Supplier(
             name: _stateName.stream.value,
             phone: _statePhone.stream.value,
             address: _stateAddress.stream.value,
           ));
         } else {
-          await (getIt<ActorService>() as ActorService).updateSupplier(
+          await actorService.updateSupplier(
               id,
               Supplier(
                 name: _stateName.stream.value,
@@ -87,7 +87,7 @@ class SupplierFormBloc extends Object
       {Function(String message) onError, Function() onSuccess}) async {
     try {
       _stateLoading.sink.add(true);
-      await (getIt<ActorService>() as ActorService).deleteSupplier(id);
+      await actorService.deleteSupplier(id);
       _stateLoading.sink.add(false);
       onSuccess();
     } catch (e) {
