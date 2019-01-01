@@ -36,8 +36,8 @@ class SupplierFormBloc extends Object
   Future<void> getSupplierDetail(String id,
       {Function(String message) onError,
       Function(Supplier supplier) onSuccess}) async {
-    if (id != null && _isPreviousDataIsNull()) {
-      try {
+    try {
+      if (id != null && _isPreviousDataIsNull()) {
         _stateLoading.sink.add(true);
         Supplier supplier = await actorService.getSupplierDetail(id);
 
@@ -47,10 +47,10 @@ class SupplierFormBloc extends Object
         _stateLoading.sink.add(false);
 
         onSuccess(supplier);
-      } catch (e) {
-        _stateLoading.sink.add(false);
-        onError(e?.message ?? 'Terjadi Kesalahan Pada Server');
       }
+    } catch (e) {
+      _stateLoading.sink.add(false);
+      onError(e?.message ?? 'Terjadi Kesalahan Pada Server');
     }
   }
 
