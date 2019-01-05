@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:plastik_ui/domains/actor/model/dto/seller.dart';
+import 'package:plastik_ui/domains/actor/service/actor.dart';
 import 'package:plastik_ui/presentations/screens/seller/blocs/seller-form.dart';
 import 'package:plastik_ui/presentations/shared/widgets/button-loading.dart';
-import 'package:plastik_ui/presentations/shared/widgets/error-notification.dart';
 import 'package:plastik_ui/values/colors.dart';
+import 'package:plastik_ui/app.dart';
 
 class SellerForm extends StatefulWidget {
   final String id;
@@ -25,7 +26,7 @@ class _SellerFormState extends State<StatefulWidget> {
   TextEditingController _addressController;
 
   _SellerFormState({this.id}) {
-    _sellerFormBloc = SellerFormBloc();
+    _sellerFormBloc = SellerFormBloc(actorService: getIt<ActorService>());
     _nameController = TextEditingController();
     _phoneController = TextEditingController();
     _addressController = TextEditingController();

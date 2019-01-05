@@ -1,16 +1,17 @@
 import 'dart:async';
 
+import 'package:meta/meta.dart';
 import 'package:plastik_ui/domains/report/service/report.dart';
 import 'package:plastik_ui/helpers/number/format-currency.dart';
 import 'package:plastik_ui/presentations/shared/blocs/base-bloc.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:plastik_ui/app.dart';
 
 class SummaryTransactionsBloc implements BaseBloc {
   BehaviorSubject<String> _statesSummaryTransaction;
   Stream<String> get amountTransaction => _statesSummaryTransaction.stream;
+  ReportService reportService;
 
-  SummaryTransactionsBloc() {
+  SummaryTransactionsBloc({@required this.reportService}) {
     _statesSummaryTransaction = BehaviorSubject<String>();
   }
 
@@ -24,8 +25,8 @@ class SummaryTransactionsBloc implements BaseBloc {
       String startAt = '${curr.year}-${curr.month}-${curr.day} 00:00:00';
       String endAt = '${next.year}-${next.month}-${next.day} 00:00:00';
 
-      double amount = await (getIt<ReportService>() as ReportService)
-          .getSummaryTransactions(startAt, endAt);
+      double amount =
+          await reportService.getSummaryTransactions(startAt, endAt);
       _statesSummaryTransaction.sink.add(formatCurrency(amount));
     } catch (e) {
       _statesSummaryTransaction.sink.addError('Tidak dapat memuat');

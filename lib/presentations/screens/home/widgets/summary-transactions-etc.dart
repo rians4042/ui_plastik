@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:plastik_ui/domains/report/service/report.dart';
 import 'package:plastik_ui/presentations/screens/home/blocs/summary-transactions-etc.dart';
 import 'package:plastik_ui/presentations/screens/home/widgets/base-summary-report.dart';
+import 'package:plastik_ui/app.dart';
 
 class SummaryTransactionsEtc extends StatefulWidget {
   @override
@@ -11,7 +13,8 @@ class _SummaryTransactionsEtcState extends State<SummaryTransactionsEtc> {
   SummaryTransactionsEtcBloc _summaryTransactionsEtcBloc;
 
   _SummaryTransactionsEtcState() {
-    _summaryTransactionsEtcBloc = SummaryTransactionsEtcBloc();
+    _summaryTransactionsEtcBloc =
+        SummaryTransactionsEtcBloc(reportService: getIt<ReportService>());
     _summaryTransactionsEtcBloc.fetchAmountTransactions();
   }
 

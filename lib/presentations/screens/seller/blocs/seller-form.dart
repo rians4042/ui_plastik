@@ -1,15 +1,17 @@
 import 'dart:async';
 
+import 'package:meta/meta.dart';
 import 'package:plastik_ui/domains/actor/model/dto/seller.dart';
 import 'package:plastik_ui/domains/actor/service/actor.dart';
 import 'package:plastik_ui/presentations/shared/blocs/base-bloc.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:plastik_ui/app.dart';
 import 'package:plastik_ui/validators/format-phone.dart';
 
 class SellerFormBloc extends Object
     with FormatPhoneValidator, FormatPhoneValidatorStream
     implements BaseBloc {
+  ActorService actorService;
+
   BehaviorSubject<String> _stateName;
   BehaviorSubject<String> _statePhone;
   BehaviorSubject<String> _stateAddress;
@@ -25,7 +27,7 @@ class SellerFormBloc extends Object
   Stream<String> get address => _stateAddress.stream;
   Stream<bool> get loading => _stateLoading.stream;
 
-  SellerFormBloc() {
+  SellerFormBloc({@required this.actorService}) {
     _stateName = BehaviorSubject<String>();
     _statePhone = BehaviorSubject<String>();
     _stateAddress = BehaviorSubject<String>();
@@ -37,8 +39,7 @@ class SellerFormBloc extends Object
       Function(Seller seller) onSuccess}) async {
     if (id != null && _isPreviousDataIsNull()) {
       try {
-        Seller seller =
-            await (getIt<ActorService>() as ActorService).getSellerDetail(id);
+        Seller seller = await actorService.getSellerDetail(id);
 
         _stateName.sink.add(seller.name);
         _statePhone.sink.add(seller.phone);
@@ -58,13 +59,13 @@ class SellerFormBloc extends Object
       if (_validate()) {
         _stateLoading.sink.add(true);
         if (id == null) {
-          await (getIt<ActorService>() as ActorService).createSeller(Seller(
+          await actorService.createSeller(Seller(
             name: _stateName.stream.value,
             phone: _statePhone.stream.value,
             address: _stateAddress.stream.value,
           ));
         } else {
-          await (getIt<ActorService>() as ActorService).updateSeller(
+          await actorService.updateSeller(
               id,
               Seller(
                 name: _stateName.stream.value,
@@ -76,7 +77,6 @@ class SellerFormBloc extends Object
         onSuccess();
       }
     } catch (e) {
-      print(e);
       _stateLoading.sink.add(false);
       onError(e?.message ?? 'Terjadi Kesalahan Pada Server');
     }
@@ -86,7 +86,7 @@ class SellerFormBloc extends Object
       {Function(String message) onError, Function() onSuccess}) async {
     try {
       _stateLoading.sink.add(true);
-      await (getIt<ActorService>() as ActorService).deleteSeller(id);
+      await actorService.deleteSeller(id);
       _stateLoading.sink.add(false);
       onSuccess();
     } catch (e) {

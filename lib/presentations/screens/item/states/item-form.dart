@@ -93,7 +93,7 @@ class ItemFormState extends Model {
         notifyListeners();
 
         if (id == null) {
-          await (getIt<ItemService>() as ItemService).createItem(
+          await itemService.createItem(
             Item(
               name: _name,
               itemCategoryId: _itemCategoryId,
@@ -101,7 +101,7 @@ class ItemFormState extends Model {
             ),
           );
         } else {
-          await (getIt<ItemService>() as ItemService).updateItem(
+          await itemService.updateItem(
             id,
             Item(
               name: _name,
@@ -130,7 +130,7 @@ class ItemFormState extends Model {
       _loading = true;
       notifyListeners();
 
-      await (getIt<ItemService>() as ItemService).deleteItem(id);
+      await itemService.deleteItem(id);
 
       _loading = false;
       notifyListeners();

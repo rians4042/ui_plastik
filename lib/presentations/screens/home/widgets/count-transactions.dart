@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:plastik_ui/domains/report/service/report.dart';
 import 'package:plastik_ui/presentations/screens/home/blocs/count-transactions.dart';
 import 'package:plastik_ui/presentations/screens/home/widgets/base-summary-report.dart';
+import 'package:plastik_ui/app.dart';
 
 class CountTransactions extends StatefulWidget {
   @override
@@ -11,7 +13,8 @@ class _CountTransactionsState extends State<CountTransactions> {
   CountTransactionsBloc _countTransactionsBloc;
 
   _CountTransactionsState() {
-    _countTransactionsBloc = CountTransactionsBloc();
+    _countTransactionsBloc =
+        CountTransactionsBloc(reportService: getIt<ReportService>());
     _countTransactionsBloc.fetchCountTransactions();
   }
 
