@@ -99,7 +99,7 @@ class TransactionAPIImplementation extends Object
 
   @override
   Future<bool> deleteTransactionEtcType(String id) async {
-    final Response response = await client.delete('/transaction/$id');
+    final Response response = await client.delete('/transaction/etc/type/$id');
     throwErrorIfErrorFounded(response);
     return true;
   }

@@ -25,6 +25,8 @@ class SellerAPIImplementation extends Object
   Future<bool> createSeller(model.SellerAPI seller) async {
     final Response response = await client.post('/seller', data: {
       'name': seller.name,
+      'phone': seller.phone,
+      'address': seller.address,
     });
     throwErrorIfErrorFounded(response);
     return true;
@@ -48,8 +50,10 @@ class SellerAPIImplementation extends Object
 
   @override
   Future<bool> updateSeller(String id, model.SellerAPI seller) async {
-    final Response response = await client.patch('/seller', data: {
+    final Response response = await client.patch('/seller/$id', data: {
       'name': seller.name,
+      'phone': seller.phone,
+      'address': seller.address,
     });
     throwErrorIfErrorFounded(response);
     return true;

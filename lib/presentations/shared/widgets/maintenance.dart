@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class NotFound extends StatelessWidget {
+class Maintenance extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,7 +22,7 @@ class NotFound extends StatelessWidget {
               bottom: 4,
             ),
             child: Text(
-              'Tidak Ada Data',
+              'Halaman Sedang Dalam Pengembangan',
               style: TextStyle(
                 fontSize: 20,
               ),
@@ -30,7 +30,7 @@ class NotFound extends StatelessWidget {
             ),
           ),
           Text(
-            'Silahkan Tekan Tombol Tambah Di Bawah Untuk Masukkan Data',
+            'Mohon maaf untuk sementara waktu, halaman yang dituju tidak dapat diakses karena masih pengembangan',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 12,
@@ -39,5 +39,6 @@ class NotFound extends StatelessWidget {
         ],
       ),
     );
+    ;
   }
 }

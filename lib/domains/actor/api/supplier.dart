@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:meta/meta.dart';
 import 'package:plastik_ui/domains/actor/model/api/supplier.dart' as Model;
 import 'package:dio/dio.dart';
@@ -23,9 +25,14 @@ class SupplierAPIImplementation extends Object
 
   @override
   Future<bool> createSupplier(Model.SupplierAPI supplier) async {
-    final Response response = await client.post('/supplier', data: {
-      'name': supplier.name,
-    });
+    final Response response = await client.post(
+      '/supplier',
+      data: {
+        'name': supplier.name,
+        'phone': supplier.phone,
+        'address': supplier.address,
+      },
+    );
     throwErrorIfErrorFounded(response);
     return true;
   }
@@ -48,8 +55,10 @@ class SupplierAPIImplementation extends Object
 
   @override
   Future<bool> updateSupplier(String id, Model.SupplierAPI supplier) async {
-    final Response response = await client.patch('/supplier', data: {
+    final Response response = await client.patch('/supplier/$id', data: {
       'name': supplier.name,
+      'phone': supplier.phone,
+      'address': supplier.address,
     });
     throwErrorIfErrorFounded(response);
     return true;
