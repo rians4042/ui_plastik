@@ -5,6 +5,10 @@ import 'package:plastik_ui/presentations/screens/transaction-in/widgets/transact
 import 'package:plastik_ui/values/colors.dart';
 
 class ButtonTransactionInForm extends StatelessWidget {
+  final TextEditingController noteController;
+
+  ButtonTransactionInForm({@required this.noteController});
+
   @override
   Widget build(BuildContext context) {
     TransactionInFormBloc _transactionInFormBloc =
@@ -35,6 +39,7 @@ class ButtonTransactionInForm extends StatelessWidget {
                           );
                         },
                         onSuccess: () {
+                          noteController.clear();
                           Scaffold.of(ctx).showSnackBar(
                             SnackBar(
                               content: Text(

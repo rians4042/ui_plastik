@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:plastik_ui/helpers/number/format-currency.dart';
 import 'package:plastik_ui/values/colors.dart';
 
 class ItemTransactionInDetailsForm extends StatelessWidget {
   final String itemName;
   final int qty;
-  final int amount;
+  final double amount;
   final Function onDelete;
   final Function onEdit;
 
@@ -18,53 +19,78 @@ class ItemTransactionInDetailsForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        Column(
-          children: <Widget>[
-            Text(
-              itemName,
-              style: TextStyle(
-                fontSize: 18,
-              ),
-            ),
-            Text(
-              'Jumlah: $qty Harga /Satuan: $amount',
-              style: TextStyle(
-                fontSize: 14,
-              ),
-            )
-          ],
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 12),
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            width: 1,
+            color: GREY_COLOR,
+          ),
         ),
-        Row(
-          children: <Widget>[
-            new RawMaterialButton(
-              onPressed: () {},
-              child: new Icon(
-                Icons.edit,
-                color: PRIMARY_COLOR,
-                size: 35.0,
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                itemName,
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-              shape: new CircleBorder(),
-              fillColor: Colors.white,
-              padding: const EdgeInsets.all(15.0),
-            ),
-            new RawMaterialButton(
-              onPressed: () {},
-              child: new Icon(
-                Icons.pause,
-                color: RED_COLOR,
-                size: 35.0,
+              Text(
+                'Jumlah: $qty',
+                style: TextStyle(
+                  fontSize: 12,
+                ),
               ),
-              shape: new CircleBorder(),
-              fillColor: Colors.white,
-              padding: const EdgeInsets.all(15.0),
-            ),
-          ],
-        ),
-      ],
+              Text(
+                'Harga /Satuan: ${formatCurrency(amount)}',
+                style: TextStyle(
+                  fontSize: 12,
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              Container(
+                width: 36.0,
+                margin: EdgeInsets.symmetric(horizontal: 4),
+                child: RawMaterialButton(
+                  onPressed: onEdit,
+                  child: Icon(
+                    Icons.edit,
+                    color: WHITE_COLOR,
+                    size: 18.0,
+                  ),
+                  shape: CircleBorder(),
+                  fillColor: PRIMARY_COLOR,
+                ),
+              ),
+              Container(
+                width: 36.0,
+                margin: EdgeInsets.symmetric(horizontal: 4),
+                child: RawMaterialButton(
+                  onPressed: onDelete,
+                  child: Icon(
+                    Icons.close,
+                    color: WHITE_COLOR,
+                    size: 18.0,
+                  ),
+                  shape: CircleBorder(),
+                  fillColor: RED_COLOR,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
