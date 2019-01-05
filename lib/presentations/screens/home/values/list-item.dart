@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plastik_ui/presentations/screens/categoryitem/screens/categoryitem-list.dart';
+import 'package:plastik_ui/presentations/screens/item-stock-log/screens/item-stock-log.dart';
 import 'package:plastik_ui/presentations/screens/seller/screens/seller-list.dart';
 import 'package:plastik_ui/presentations/screens/supplier/screens/supplier-list.dart';
 import 'package:plastik_ui/presentations/screens/transaction-etc/screens/transaction-etc-form.dart';
@@ -43,7 +44,16 @@ final List<Map<String, dynamic>> items = [
       {
         'name': 'Stok',
         'asset': 'assets/svg/008-archive.svg',
-        'onPress': (BuildContext context) {},
+        'onPress': (BuildContext context) {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => ItemStockLog(),
+              settings: RouteSettings(
+                name: ItemStockLog.routeName,
+              ),
+            ),
+          );
+        },
       }
     ]
   },

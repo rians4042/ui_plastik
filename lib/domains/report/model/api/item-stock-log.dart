@@ -13,13 +13,13 @@ class ItemStockLogAPI {
 
   static ItemStockLogAPI fromJSON(Map<String, dynamic> res) {
     return ItemStockLogAPI(
-        itemId: res['itemId'],
-        itemName: res['itemName'],
+        itemId: res['id'],
+        itemName: res['name'],
         qty: res['qty'],
         unitName: res['unitName']);
   }
 
   static List<ItemStockLogAPI> fromListJSON(List<dynamic> res) {
-    return res.map((item) => ItemStockLogAPI.fromJSON(item));
+    return res.map((item) => ItemStockLogAPI.fromJSON(item)).toList();
   }
 }

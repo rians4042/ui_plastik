@@ -8,13 +8,15 @@ abstract class ReportTransformer {
 class ReportTransformerImplementation implements ReportTransformer {
   @override
   List<ItemStockLog> makeModelGetItemStockLogs(List<ItemStockLogAPI> items) {
-    return items.map(
-      (item) => ItemStockLog(
-            itemId: item.itemId,
-            itemName: item.itemName,
-            qty: item.qty,
-            unitName: item.unitName,
-          ),
-    );
+    return items
+        .map(
+          (item) => ItemStockLog(
+                itemId: item.itemId,
+                itemName: item.itemName,
+                qty: item.qty,
+                unitName: item.unitName,
+              ),
+        )
+        .toList();
   }
 }
