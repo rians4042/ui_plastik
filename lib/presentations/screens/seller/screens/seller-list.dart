@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plastik_ui/domains/actor/service/actor.dart';
 import 'package:plastik_ui/presentations/screens/seller/blocs/seller-list.dart';
 import 'package:plastik_ui/presentations/screens/seller/screens/seller-form.dart';
 import 'package:plastik_ui/presentations/screens/seller/states/seller-list.dart';
@@ -7,6 +8,7 @@ import 'package:plastik_ui/presentations/shared/widgets/item-right-arrow.dart';
 import 'package:plastik_ui/presentations/shared/widgets/loading-indicator.dart';
 import 'package:plastik_ui/presentations/shared/widgets/not-found.dart';
 import 'package:plastik_ui/values/colors.dart';
+import 'package:plastik_ui/app.dart';
 
 class SellerList extends StatefulWidget {
   static String routeName = '/seller';
@@ -19,7 +21,9 @@ class _SellerListState extends State<SellerList> {
   SellerListBloc _sellerListBloc;
 
   _SellerListState() {
-    _sellerListBloc = SellerListBloc();
+    _sellerListBloc = SellerListBloc(
+      actorService: getIt<ActorService>(),
+    );
   }
 
   @override

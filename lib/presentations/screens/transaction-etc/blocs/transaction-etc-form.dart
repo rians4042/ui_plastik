@@ -48,7 +48,9 @@ class TransactionEtcFormBloc implements BaseBloc {
       if (_statesEtcTypes.stream.value == null) {
         final List<TransactionEtcType> _types =
             await transactionService.getTransactionEtcTypes();
-        _statesEtcTypes.sink.add(_etcTypes..addAll(_types));
+
+        _etcTypes = _types;
+        _statesEtcTypes.sink.add(_etcTypes);
         _statesTypeId.sink.add(_etcTypes[0].id);
       }
     } catch (e) {

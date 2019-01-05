@@ -20,12 +20,15 @@ class SupplierListBloc implements BaseBloc {
 
   Future<void> fetchSuppliers({Function(String message) onError}) async {
     try {
-      _stateSupplier.sink.add(supplier..changeLoading(true));
+      if (_stateSupplier.stream.value == null ||
+          _stateSupplier.stream.value.count < 1) {
+        _stateSupplier.sink.add(supplier..changeLoading(true));
 
-      final List<Supplier> _suppliers = await actorService.getSuppliers();
+        final List<Supplier> _suppliers = await actorService.getSuppliers();
 
-      _stateSupplier.sink.add(supplier..changeLoading(false));
-      _stateSupplier.sink.add(supplier..addSuppliers(_suppliers));
+        _stateSupplier.sink.add(supplier..changeLoading(false));
+        _stateSupplier.sink.add(supplier..addSuppliers(_suppliers));
+      }
     } catch (e) {
       _stateSupplier.sink.addError(supplier..changeLoading(false));
       onError(e?.message ?? 'Terjadi Kesalahan Pada Server');
