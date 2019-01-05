@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:plastik_ui/domains/item/service/item.dart';
 import 'package:plastik_ui/presentations/screens/categoryitem/screens/categoryitem-form.dart';
 import 'package:plastik_ui/presentations/screens/categoryitem/states/categoryitem-list.dart';
+import 'package:plastik_ui/presentations/shared/widgets/error-notification.dart';
 import 'package:plastik_ui/presentations/shared/widgets/item-right-arrow.dart';
 import 'package:plastik_ui/presentations/shared/widgets/loading-indicator.dart';
 import 'package:plastik_ui/presentations/shared/widgets/not-found.dart';
 import 'package:plastik_ui/values/colors.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:plastik_ui/app.dart';
 
 class CategoryItemList extends StatelessWidget {
   CategoryItemListState categoryItemListState;
@@ -13,7 +16,8 @@ class CategoryItemList extends StatelessWidget {
   static String routeName = '/category';
 
   CategoryItemList() {
-    categoryItemListState = CategoryItemListState();
+    categoryItemListState =
+        CategoryItemListState(itemService: getIt<ItemService>());
   }
 
   @override
@@ -24,22 +28,34 @@ class CategoryItemList extends StatelessWidget {
       ),
       body: Builder(
         builder: (BuildContext context) {
-          categoryItemListState.fetchingItems(onError: (String massage) {
-            Scaffold.of(context).showSnackBar(SnackBar(
-              content: Text(massage),
-            ));
-          });
+          void fetchingItems() {
+            categoryItemListState.fetchingItems(onError: (String massage) {
+              Scaffold.of(context).showSnackBar(SnackBar(
+                content: Text(massage),
+              ));
+            });
+          }
+
+          fetchingItems();
           return ScopedModel<CategoryItemListState>(
               model: categoryItemListState,
               child: ScopedModelDescendant<CategoryItemListState>(
                 builder: (BuildContext contect, Widget child,
                     CategoryItemListState model) {
-                  if (model.loading == true) {
+                  if (model.loading && !model.error) {
                     return LoadingIndicator();
                   }
-                  if (model.loading == false && model.count == 0) {
+
+                  if (!model.loading && model.count == 0 && !model.error) {
                     return NotFound();
                   }
+
+                  if (!model.loading && model.error) {
+                    return ErrorNotification(
+                      onRetry: fetchingItems,
+                    );
+                  }
+
                   return ListView.builder(
                     shrinkWrap: true,
                     itemCount: model.count,
