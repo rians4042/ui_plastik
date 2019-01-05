@@ -25,6 +25,7 @@ class ItemAPIImplementation extends Object
     final Response response = await client.post('/item', data: {
       'name': item.name,
       'itemCategoryId': item.itemCategoryId,
+      'unitId': item.unitId,
     });
     throwErrorIfErrorFounded(response);
     return true;
@@ -58,6 +59,7 @@ class ItemAPIImplementation extends Object
     final Response response = await client.patch('/item/$id', data: {
       'name': item.name,
       'itemCategoryId': item.itemCategoryId,
+      'unitId': item.unitId,
     });
     throwErrorIfErrorFounded(response);
     return true;

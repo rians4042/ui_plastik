@@ -116,15 +116,17 @@ class ItemTransformerImplementation implements ItemTransformer {
 
   @override
   List<ItemUnit> makeModelItemUnit(List<ItemUnitAPI> itemUnits) {
-    return itemUnits.map(
-      (ItemUnitAPI itemUnit) => ItemUnit(
-            id: itemUnit.id,
-            name: itemUnit.name,
-            createdAt: datetime.create(
-              itemUnit.createdAt,
-              DateTimeCustomImplementation.DATEANDTIME,
-            ),
-          ),
-    );
+    return itemUnits
+        .map(
+          (ItemUnitAPI itemUnit) => ItemUnit(
+                id: itemUnit.id,
+                name: itemUnit.name,
+                createdAt: datetime.create(
+                  itemUnit.createdAt,
+                  DateTimeCustomImplementation.DATEANDTIME,
+                ),
+              ),
+        )
+        .toList();
   }
 }

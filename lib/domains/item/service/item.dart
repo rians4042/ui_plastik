@@ -32,10 +32,12 @@ class ItemServiceImplementation implements ItemService {
   ItemCategoryAPI itemCategoryAPI;
   ItemUnitAPI itemUnitAPI;
 
-  ItemServiceImplementation(
-      {@required this.transformer,
-      @required this.itemAPI,
-      @required this.itemCategoryAPI});
+  ItemServiceImplementation({
+    @required this.transformer,
+    @required this.itemAPI,
+    @required this.itemUnitAPI,
+    @required this.itemCategoryAPI,
+  });
 
   @override
   Future<bool> createItem(Item item) async {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:plastik_ui/domains/actor/model/dto/supplier.dart';
 import 'package:plastik_ui/domains/actor/service/actor.dart';
 import 'package:plastik_ui/presentations/screens/supplier/blocs/supplier-form.dart';
+import 'package:plastik_ui/presentations/shared/widgets/button-loading.dart';
 import 'package:plastik_ui/presentations/shared/widgets/error-notification.dart';
 import 'package:plastik_ui/values/colors.dart';
 import 'package:plastik_ui/app.dart';
@@ -35,6 +36,10 @@ class _SupplierFormState extends State<StatefulWidget> {
   @override
   void dispose() {
     _supplierFormBloc.dispose();
+    _nameController.dispose();
+    _phoneController.dispose();
+    _addressController.dispose();
+
     super.dispose();
   }
 
@@ -116,14 +121,6 @@ class _SupplierFormState extends State<StatefulWidget> {
                 stream: _supplierFormBloc.loading,
                 builder:
                     (BuildContext ctx, AsyncSnapshot<bool> loadingSnapshot) {
-                  bool hasError = loadingSnapshot.error != null;
-
-                  if (hasError) {
-                    return ErrorNotification(
-                      onRetry: fetchSupplierDetail,
-                    );
-                  }
-
                   return Column(
                     children: <Widget>[
                       StreamBuilder<String>(
@@ -216,20 +213,36 @@ class _SupplierFormState extends State<StatefulWidget> {
                         stream: _supplierFormBloc.loading,
                         builder: (BuildContext ctx,
                                 AsyncSnapshot<bool> loadSnapshot) =>
-                            Container(
-                              width: double.infinity,
-                              margin: EdgeInsets.symmetric(vertical: 8),
-                              child: RaisedButton(
-                                color: PRIMARY_COLOR,
-                                onPressed:
-                                    loadSnapshot.hasData && loadSnapshot.data
-                                        ? null
-                                        : addOrUpdateSupplier,
-                                child: Text(
-                                  'Simpan',
-                                  style: TextStyle(color: WHITE_COLOR),
-                                ),
-                              ),
+                            StreamBuilder<String>(
+                              stream: _supplierFormBloc.name,
+                              builder: (BuildContext ctx,
+                                      AsyncSnapshot<String> nameSnapshot) =>
+                                  StreamBuilder<String>(
+                                    stream: _supplierFormBloc.phone,
+                                    builder: (BuildContext ctx,
+                                            AsyncSnapshot<String>
+                                                phoneSnapshot) =>
+                                        Container(
+                                          width: double.infinity,
+                                          margin:
+                                              EdgeInsets.symmetric(vertical: 8),
+                                          child: ButtonLoading(
+                                            color: PRIMARY_COLOR,
+                                            loading: loadSnapshot.hasData &&
+                                                loadSnapshot.data,
+                                            disabled: !nameSnapshot.hasData ||
+                                                !phoneSnapshot.hasData ||
+                                                nameSnapshot.hasError ||
+                                                phoneSnapshot.hasError,
+                                            onPressed: addOrUpdateSupplier,
+                                            child: Text(
+                                              'Simpan',
+                                              style:
+                                                  TextStyle(color: WHITE_COLOR),
+                                            ),
+                                          ),
+                                        ),
+                                  ),
                             ),
                       ),
                       id != null
@@ -237,20 +250,39 @@ class _SupplierFormState extends State<StatefulWidget> {
                               stream: _supplierFormBloc.loading,
                               builder: (BuildContext ctx,
                                       AsyncSnapshot<bool> loadSnapshot) =>
-                                  Container(
-                                    width: double.infinity,
-                                    margin: EdgeInsets.symmetric(vertical: 8),
-                                    child: RaisedButton(
-                                      color: RED_COLOR,
-                                      onPressed: loadSnapshot.hasData &&
-                                              loadSnapshot.data
-                                          ? null
-                                          : deleteSupplier,
-                                      child: Text(
-                                        'Hapus',
-                                        style: TextStyle(color: WHITE_COLOR),
-                                      ),
-                                    ),
+                                  StreamBuilder<String>(
+                                    stream: _supplierFormBloc.name,
+                                    builder: (BuildContext ctx,
+                                            AsyncSnapshot<String>
+                                                nameSnapshot) =>
+                                        StreamBuilder<String>(
+                                          stream: _supplierFormBloc.phone,
+                                          builder: (BuildContext ctx,
+                                                  AsyncSnapshot<String>
+                                                      phoneSnapshot) =>
+                                              Container(
+                                                width: double.infinity,
+                                                margin: EdgeInsets.symmetric(
+                                                    vertical: 8),
+                                                child: ButtonLoading(
+                                                  color: RED_COLOR,
+                                                  loading:
+                                                      loadSnapshot.hasData &&
+                                                          loadSnapshot.data,
+                                                  disabled: !nameSnapshot
+                                                          .hasData ||
+                                                      !phoneSnapshot.hasData ||
+                                                      nameSnapshot.hasError ||
+                                                      phoneSnapshot.hasError,
+                                                  onPressed: deleteSupplier,
+                                                  child: Text(
+                                                    'Hapus',
+                                                    style: TextStyle(
+                                                        color: WHITE_COLOR),
+                                                  ),
+                                                ),
+                                              ),
+                                        ),
                                   ),
                             )
                           : Container(),

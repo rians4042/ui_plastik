@@ -11,7 +11,7 @@ final List<Map<String, dynamic>> items = [
     'sectionTitle': 'Barang',
     'details': [
       {
-        'name': 'Kategori Barang',
+        'name': 'Kategori',
         'asset': 'assets/svg/010-puzzle.svg',
         'onPress': (BuildContext context) {
           Navigator.of(context).push(

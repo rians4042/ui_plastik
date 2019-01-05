@@ -25,17 +25,12 @@ class TransactionTypeFormBloc implements BaseBloc {
     bool _isNullName = _statesName.stream.value == null;
     try {
       if (id != null && _isNullName) {
-        _statesLoading.sink.add(true);
-
         final TransactionEtcType transactionType =
             await transactionService.getTransactionEtcTypeDetail(id);
-
         _statesName.sink.add(transactionType.name);
-        _statesLoading.sink.add(false);
         onSuccess(transactionType);
       }
     } catch (e) {
-      _statesLoading.sink.addError(false);
       onError(e?.message ?? 'Terjadi Kesalahan Pada Server');
     }
   }

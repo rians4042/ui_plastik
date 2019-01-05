@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:plastik_ui/domains/transaction/model/dto/transaction-etc-type.dart';
 import 'package:plastik_ui/domains/transaction/service/transaction.dart';
 import 'package:plastik_ui/presentations/screens/transaction-type/blocs/transaction-type-form.dart';
+import 'package:plastik_ui/presentations/shared/widgets/button-loading.dart';
 import 'package:plastik_ui/presentations/shared/widgets/error-notification.dart';
 import 'package:plastik_ui/values/colors.dart';
 import 'package:plastik_ui/app.dart';
@@ -31,6 +32,8 @@ class _TransactionTypeFormState extends State<StatefulWidget> {
   @override
   void dispose() {
     _transactionTypeFormBloc.dispose();
+    _nameController.dispose();
+
     super.dispose();
   }
 
@@ -104,22 +107,13 @@ class _TransactionTypeFormState extends State<StatefulWidget> {
           }
 
           fetchTransactionTypeDetail();
-          return SingleChildScrollView(
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 12),
-              child: StreamBuilder<bool>(
-                stream: _transactionTypeFormBloc.loading,
-                builder:
-                    (BuildContext ctx, AsyncSnapshot<bool> loadingSnapshot) {
-                  bool hasError = loadingSnapshot.error != null;
-
-                  if (hasError) {
-                    return ErrorNotification(
-                      onRetry: fetchTransactionTypeDetail,
-                    );
-                  }
-
-                  return Column(
+          return StreamBuilder<bool>(
+            stream: _transactionTypeFormBloc.loading,
+            builder: (BuildContext ctx, AsyncSnapshot<bool> loadingSnapshot) {
+              return SingleChildScrollView(
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 12),
+                  child: Column(
                     children: <Widget>[
                       StreamBuilder<String>(
                         stream: _transactionTypeFormBloc.name,
@@ -153,20 +147,26 @@ class _TransactionTypeFormState extends State<StatefulWidget> {
                         stream: _transactionTypeFormBloc.loading,
                         builder: (BuildContext ctx,
                                 AsyncSnapshot<bool> loadSnapshot) =>
-                            Container(
-                              width: double.infinity,
-                              margin: EdgeInsets.symmetric(vertical: 8),
-                              child: RaisedButton(
-                                color: PRIMARY_COLOR,
-                                onPressed:
-                                    loadSnapshot.hasData && loadSnapshot.data
-                                        ? null
-                                        : addOrUpdateTransactionType,
-                                child: Text(
-                                  'Simpan',
-                                  style: TextStyle(color: WHITE_COLOR),
-                                ),
-                              ),
+                            StreamBuilder<String>(
+                              stream: _transactionTypeFormBloc.name,
+                              builder: (BuildContext ctx,
+                                      AsyncSnapshot<String> nameSnapshot) =>
+                                  Container(
+                                    width: double.infinity,
+                                    margin: EdgeInsets.symmetric(vertical: 8),
+                                    child: ButtonLoading(
+                                      color: PRIMARY_COLOR,
+                                      loading: loadSnapshot.hasData &&
+                                          loadSnapshot.data,
+                                      disabled: nameSnapshot.hasError ||
+                                          !nameSnapshot.hasData,
+                                      onPressed: addOrUpdateTransactionType,
+                                      child: Text(
+                                        'Simpan',
+                                        style: TextStyle(color: WHITE_COLOR),
+                                      ),
+                                    ),
+                                  ),
                             ),
                       ),
                       id != null
@@ -174,28 +174,37 @@ class _TransactionTypeFormState extends State<StatefulWidget> {
                               stream: _transactionTypeFormBloc.loading,
                               builder: (BuildContext ctx,
                                       AsyncSnapshot<bool> loadSnapshot) =>
-                                  Container(
-                                    width: double.infinity,
-                                    margin: EdgeInsets.symmetric(vertical: 8),
-                                    child: RaisedButton(
-                                      color: RED_COLOR,
-                                      onPressed: loadSnapshot.hasData &&
-                                              loadSnapshot.data
-                                          ? null
-                                          : deleteTransactionType,
-                                      child: Text(
-                                        'Hapus',
-                                        style: TextStyle(color: WHITE_COLOR),
-                                      ),
-                                    ),
+                                  StreamBuilder<String>(
+                                    stream: _transactionTypeFormBloc.name,
+                                    builder: (BuildContext ctx,
+                                            AsyncSnapshot<String>
+                                                nameSnapshot) =>
+                                        Container(
+                                          width: double.infinity,
+                                          margin:
+                                              EdgeInsets.symmetric(vertical: 8),
+                                          child: ButtonLoading(
+                                            color: RED_COLOR,
+                                            loading: loadSnapshot.hasData &&
+                                                loadSnapshot.data,
+                                            disabled: nameSnapshot.hasError ||
+                                                !nameSnapshot.hasData,
+                                            onPressed: deleteTransactionType,
+                                            child: Text(
+                                              'Hapus',
+                                              style:
+                                                  TextStyle(color: WHITE_COLOR),
+                                            ),
+                                          ),
+                                        ),
                                   ),
                             )
                           : Container(),
                     ],
-                  );
-                },
-              ),
-            ),
+                  ),
+                ),
+              );
+            },
           );
         },
       ),

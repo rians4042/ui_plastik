@@ -38,13 +38,11 @@ class SupplierFormBloc extends Object
       Function(Supplier supplier) onSuccess}) async {
     try {
       if (id != null && _isPreviousDataIsNull()) {
-        _stateLoading.sink.add(true);
         Supplier supplier = await actorService.getSupplierDetail(id);
 
         _stateName.sink.add(supplier.name);
         _statePhone.sink.add(supplier.phone);
         _stateAddress.sink.add(supplier.address);
-        _stateLoading.sink.add(false);
 
         onSuccess(supplier);
       }

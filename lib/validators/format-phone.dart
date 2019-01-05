@@ -7,7 +7,7 @@ bool _validate(String phone) {
 
 mixin FormatPhoneValidator {
   String validatePhoneNumber(String phone) {
-    if (_validate(phone)) {
+    if (phone != null && _validate(phone)) {
       return '';
     }
     return 'Invalid format phone (ex: +62xx / 08xxx)';

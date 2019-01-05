@@ -145,8 +145,8 @@ class TransactionInFormBloc implements BaseBloc {
       {Function(TransactionItemDetail) onSuccess}) {
     if (index == null) {
       String itemId = _statesItems.stream.value[0].id;
-      _statesTempFormDetailQty.sink.add(0);
-      _statesTempFormDetailAmount.sink.add(0);
+      _statesTempFormDetailQty.sink.add(null);
+      _statesTempFormDetailAmount.sink.add(null);
       _statesTempFormDetailItemId.sink.add(itemId);
     } else {
       final TransactionItemDetail transactionItemDetail =

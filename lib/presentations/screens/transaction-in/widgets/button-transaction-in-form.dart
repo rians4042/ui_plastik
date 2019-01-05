@@ -83,9 +83,10 @@ class ButtonTransactionInForm extends StatelessWidget {
                           'Simpan',
                           style: TextStyle(color: Colors.white),
                         ),
-                        disabled: detailsSnapshot.hasError ||
-                            (!suppliersSnapshot.hasData &&
-                                !itemsSnapshot.hasData),
+                        disabled: !detailsSnapshot.hasData ||
+                            detailsSnapshot.hasError ||
+                            !suppliersSnapshot.hasData ||
+                            !itemsSnapshot.hasData,
                         loading:
                             (loadingSnapshot.hasData && loadingSnapshot.data),
                         onPressed: submitForm(ctx),

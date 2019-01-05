@@ -5,6 +5,7 @@ import 'package:plastik_ui/domains/actor/api/supplier.dart';
 import 'package:plastik_ui/domains/actor/service/actor.dart';
 import 'package:plastik_ui/domains/actor/transform/actor.dart';
 import 'package:plastik_ui/domains/item/api/item-category.dart';
+import 'package:plastik_ui/domains/item/api/item-unit.dart';
 import 'package:plastik_ui/domains/item/api/item.dart';
 import 'package:plastik_ui/domains/item/service/item.dart';
 import 'package:plastik_ui/domains/item/transform/item.dart';
@@ -28,11 +29,13 @@ void injector(GetIt getIt) {
   ));
 
   ItemAPI itemAPI = ItemAPIImplementation(client: client(_user));
+  ItemUnitAPI itemUnitAPI = ItemUnitAPIImplementation(client: client(null));
   ItemCategoryAPI itemCategoryAPI =
       ItemCategoryAPIImplementation(client: client(_user));
   ItemTransformer itemTransformer = ItemTransformerImplementation();
   getIt.registerSingleton<ItemService>(ItemServiceImplementation(
     itemAPI: itemAPI,
+    itemUnitAPI: itemUnitAPI,
     itemCategoryAPI: itemCategoryAPI,
     transformer: itemTransformer,
   ));

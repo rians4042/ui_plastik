@@ -5,6 +5,7 @@ import 'package:plastik_ui/presentations/screens/transaction-in/blocs/transactio
 import 'package:plastik_ui/presentations/screens/transaction-in/widgets/item-transaction-in-details-form.dart';
 import 'package:plastik_ui/presentations/screens/transaction-in/widgets/transaction-in-form-provider.dart';
 import 'package:plastik_ui/presentations/shared/widgets/button-add-row.dart';
+import 'package:plastik_ui/presentations/shared/widgets/button-loading.dart';
 import 'package:plastik_ui/presentations/shared/widgets/dropdown-custom.dart';
 import 'package:plastik_ui/values/colors.dart';
 
@@ -162,20 +163,19 @@ class TransactionInDetailsForm extends StatelessWidget {
                               AsyncSnapshot<double> amountSnapshot) {
                             return Container(
                               width: double.infinity,
-                              child: RaisedButton(
+                              child: ButtonLoading(
                                 color: PRIMARY_COLOR,
-                                onPressed: (loadingSnapshot.hasData &&
-                                            loadingSnapshot.data) ||
-                                        qtySnapshot.hasError ||
-                                        amountSnapshot.hasError
-                                    ? null
-                                    : () {
-                                        _transactionInFormBloc
-                                            .addOrEditTransactionDetail(
-                                                prevIndex, onSuccess: () {
-                                          Navigator.of(ctx).pop();
-                                        });
-                                      },
+                                disabled: qtySnapshot.hasError ||
+                                    amountSnapshot.hasError ||
+                                    !qtySnapshot.hasData ||
+                                    !amountSnapshot.hasData,
+                                onPressed: () {
+                                  _transactionInFormBloc
+                                      .addOrEditTransactionDetail(prevIndex,
+                                          onSuccess: () {
+                                    Navigator.of(ctx).pop();
+                                  });
+                                },
                                 child: Text(
                                   'Simpan',
                                   style: TextStyle(color: WHITE_COLOR),

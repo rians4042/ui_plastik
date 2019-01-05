@@ -37,14 +37,12 @@ class SellerFormBloc extends Object
       Function(Seller seller) onSuccess}) async {
     if (id != null && _isPreviousDataIsNull()) {
       try {
-        _stateLoading.sink.add(true);
         Seller seller =
             await (getIt<ActorService>() as ActorService).getSellerDetail(id);
 
         _stateName.sink.add(seller.name);
         _statePhone.sink.add(seller.phone);
         _stateAddress.sink.add(seller.address);
-        _stateLoading.sink.add(false);
 
         onSuccess(seller);
       } catch (e) {
@@ -78,6 +76,7 @@ class SellerFormBloc extends Object
         onSuccess();
       }
     } catch (e) {
+      print(e);
       _stateLoading.sink.add(false);
       onError(e?.message ?? 'Terjadi Kesalahan Pada Server');
     }

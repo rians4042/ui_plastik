@@ -12,6 +12,7 @@ class ErrorNotification extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.red,
       width: double.infinity,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

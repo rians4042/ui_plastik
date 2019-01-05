@@ -26,12 +26,11 @@ class _SummaryTransactionsInState extends State<SummaryTransactionsIn> {
     return StreamBuilder<String>(
       stream: _summaryTransactionsInBloc.amountTransaction,
       builder: (BuildContext ctx, AsyncSnapshot<String> snapshot) {
-        bool hasError = snapshot.error != null && snapshot.error != '';
         return BaseSummaryReport(
           label: 'Total Pemasukkan Bulan Ini',
           value: !snapshot.hasData ? '' : snapshot.data,
-          loading: !snapshot.hasData && !hasError,
-          error: snapshot.error != null && snapshot.error != '',
+          loading: !snapshot.hasData && !snapshot.hasError,
+          error: snapshot.hasError,
           onRetry: _summaryTransactionsInBloc.fetchAmountTransactions,
         );
       },

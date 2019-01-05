@@ -19,7 +19,7 @@ class ButtonAddRow extends StatelessWidget {
             color: PRIMARY_COLOR,
           ),
           Text(
-            'Tambah Detail',
+            'Tambah Detail (min 1)',
             style: TextStyle(
               color: PRIMARY_COLOR,
             ),

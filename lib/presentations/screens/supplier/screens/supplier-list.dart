@@ -52,19 +52,21 @@ class _SupplierListState extends State<SupplierList> {
             stream: _supplierListBloc.suppliers,
             builder:
                 (BuildContext ctx, AsyncSnapshot<SupplierListState> snapshot) {
-              bool hasError = snapshot.error != null;
-
               // show loading when the loading state is true and error is false
-              if (snapshot.hasData && snapshot.data.loading && !hasError) {
+              if (snapshot.hasData &&
+                  snapshot.data.loading &&
+                  !snapshot.hasError) {
                 return LoadingIndicator();
               }
 
               // show page empty data whenever data is zero and no error on there
-              if (snapshot.hasData && snapshot.data.count == 0 && !hasError) {
+              if (snapshot.hasData &&
+                  snapshot.data.count == 0 &&
+                  !snapshot.hasError) {
                 return NotFound();
               }
 
-              if (hasError) {
+              if (snapshot.hasError) {
                 return ErrorNotification(
                   onRetry: fetchSuppliers,
                 );

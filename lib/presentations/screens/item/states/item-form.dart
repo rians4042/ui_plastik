@@ -1,10 +1,10 @@
 import 'dart:core';
 
+import 'package:meta/meta.dart';
 import 'package:plastik_ui/domains/item/model/dto/item-category.dart';
 import 'package:plastik_ui/domains/item/model/dto/item-unit.dart';
 import 'package:plastik_ui/domains/item/model/dto/item.dart';
 import 'package:plastik_ui/domains/item/service/item.dart';
-import 'package:plastik_ui/presentations/shared/widgets/add-button.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:plastik_ui/app.dart';
 
@@ -16,15 +16,12 @@ class ItemFormState extends Model {
   String _unitId;
   List<ItemUnit> _itemUnits;
   List<ItemCategory> _itemCategories;
+  ItemService itemService;
 
-  ItemFormState() {
-    _errName = '';
+  ItemFormState({@required this.itemService}) {
     _loading = false;
-    _name = '';
-    _itemCategoryId = '';
-    _unitId = '';
-    _itemCategories = [];
     _itemUnits = [];
+    _itemCategories = [];
   }
 
   bool get loading => _loading;
@@ -32,23 +29,93 @@ class ItemFormState extends Model {
   String get errName => _errName;
   String get itemCategoryId => _itemCategoryId;
   String get unitId => _unitId;
-  List<ItemUnit> get itemUnit => _itemUnits;
+
+  List<ItemUnit> get itemUnits => _itemUnits;
+  bool get loadingItemUnits => _itemUnits.length < 1;
+
   List<ItemCategory> get itemCategories => _itemCategories;
+  bool get loadingItemCategories => _itemCategories.length < 1;
 
-  Future<void> getInitialData({Function(String message) onError}) async {
+  Future<void> getInitialData(String id,
+      {Function onSuccess, Function(String message) onError}) async {
     try {
-      _loading = true;
-      notifyListeners();
+      if (_itemCategories.length < 1 && _itemUnits.length < 1) {
+        _loading = true;
+        notifyListeners();
 
-      List<dynamic> results = await Future.wait([
-        (getIt<ItemService>() as ItemService).getItemCategories(),
-        (getIt<ItemService>() as ItemService).getItemUnits()
-      ]);
-      _itemCategories = results[0];
-      _itemCategoryId = results[1];
+        List<dynamic> response;
+        if (id == null) {
+          response = await Future.wait(
+              [itemService.getItemCategories(), itemService.getItemUnits()]);
+        } else {
+          // conditional when the user at editing mode
+          response = await Future.wait([
+            itemService.getItemCategories(),
+            itemService.getItemUnits(),
+            itemService.getItemDetail(id),
+          ]);
+        }
 
+        Item _item;
+        _itemUnits = response[1];
+        _itemCategories = response[0];
+
+        // conditional when the user at editing mode
+        if (id != null) {
+          _item = (response[2] as Item);
+          _name = _item.name;
+          _unitId = _item.unitId;
+          _itemCategoryId = _item.itemCategoryId;
+        } else {
+          _unitId = (response[1][0] as ItemUnit).id;
+          _itemCategoryId = (response[0][0] as ItemCategory).id;
+        }
+
+        _loading = false;
+        notifyListeners();
+
+        onSuccess(_item);
+      }
+    } catch (e) {
       _loading = false;
       notifyListeners();
+    }
+  }
+
+  Future<void> addOrUpdateItems(
+    String id, {
+    Function onSuccess,
+    Function(String message) onError,
+  }) async {
+    try {
+      if (_validate()) {
+        _loading = true;
+        notifyListeners();
+
+        if (id == null) {
+          await (getIt<ItemService>() as ItemService).createItem(
+            Item(
+              name: _name,
+              itemCategoryId: _itemCategoryId,
+              unitId: _unitId,
+            ),
+          );
+        } else {
+          await (getIt<ItemService>() as ItemService).updateItem(
+            id,
+            Item(
+              name: _name,
+              itemCategoryId: _itemCategoryId,
+              unitId: _unitId,
+            ),
+          );
+        }
+
+        _loading = false;
+        notifyListeners();
+
+        onSuccess();
+      }
     } catch (e) {
       _loading = false;
       notifyListeners();
@@ -57,26 +124,48 @@ class ItemFormState extends Model {
     }
   }
 
-  Future<void> addOrUpdateItems(String id,
-      {Function(String message) onError}) async {
+  Future<void> deleteItem(id,
+      {Function onSuccess, Function(String message) onError}) async {
     try {
       _loading = true;
       notifyListeners();
+
+      await (getIt<ItemService>() as ItemService).deleteItem(id);
+
+      _loading = false;
+      notifyListeners();
+
+      onSuccess();
     } catch (e) {
       _loading = false;
       notifyListeners();
+
       onError(e?.message ?? 'Terjadi Kesalahan Pada Server');
     }
   }
 
-  Future<void> onChangeName(String name) async {}
+  bool _validate() {
+    if (_name != '') {
+      return true;
+    }
 
-  void onChangeUnit(String id) {
+    _errName = 'Nama tidak boleh kosong';
+    notifyListeners();
+    return false;
+  }
+
+  void onChangeName(String name) {
+    _name = name;
+    _errName = null;
+    notifyListeners();
+  }
+
+  void onChangeUnitId(String id) {
     _unitId = id;
     notifyListeners();
   }
 
-  void onChangeCategory(String id) {
+  void onChangeCategoryId(String id) {
     _itemCategoryId = id;
     notifyListeners();
   }

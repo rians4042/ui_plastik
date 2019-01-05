@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:plastik_ui/domains/actor/model/dto/seller.dart';
 import 'package:plastik_ui/presentations/screens/seller/blocs/seller-form.dart';
+import 'package:plastik_ui/presentations/shared/widgets/button-loading.dart';
 import 'package:plastik_ui/presentations/shared/widgets/error-notification.dart';
 import 'package:plastik_ui/values/colors.dart';
 
@@ -33,6 +34,10 @@ class _SellerFormState extends State<StatefulWidget> {
   @override
   void dispose() {
     _sellerFormBloc.dispose();
+    _nameController.dispose();
+    _phoneController.dispose();
+    _addressController.dispose();
+
     super.dispose();
   }
 
@@ -114,14 +119,6 @@ class _SellerFormState extends State<StatefulWidget> {
                 stream: _sellerFormBloc.loading,
                 builder:
                     (BuildContext ctx, AsyncSnapshot<bool> loadingSnapshot) {
-                  bool hasError = loadingSnapshot.error != null;
-
-                  if (hasError) {
-                    return ErrorNotification(
-                      onRetry: fetchSellerDetail,
-                    );
-                  }
-
                   return Column(
                     children: <Widget>[
                       StreamBuilder<String>(
@@ -214,20 +211,35 @@ class _SellerFormState extends State<StatefulWidget> {
                         stream: _sellerFormBloc.loading,
                         builder: (BuildContext ctx,
                                 AsyncSnapshot<bool> loadSnapshot) =>
-                            Container(
-                              width: double.infinity,
-                              margin: EdgeInsets.symmetric(vertical: 8),
-                              child: RaisedButton(
-                                color: PRIMARY_COLOR,
-                                onPressed:
-                                    loadSnapshot.hasData && loadSnapshot.data
-                                        ? null
-                                        : addOrUpdateSeller,
-                                child: Text(
-                                  'Simpan',
-                                  style: TextStyle(color: WHITE_COLOR),
-                                ),
-                              ),
+                            StreamBuilder<String>(
+                              stream: _sellerFormBloc.name,
+                              builder: (BuildContext ctx,
+                                  AsyncSnapshot<String> nameSnapshot) {
+                                return StreamBuilder<String>(
+                                  stream: _sellerFormBloc.phone,
+                                  builder: (BuildContext ctx,
+                                      AsyncSnapshot<String> phoneSnapshot) {
+                                    return Container(
+                                      width: double.infinity,
+                                      margin: EdgeInsets.symmetric(vertical: 8),
+                                      child: ButtonLoading(
+                                        color: PRIMARY_COLOR,
+                                        loading: loadSnapshot.hasData &&
+                                            loadSnapshot.data,
+                                        disabled: !nameSnapshot.hasData ||
+                                            !phoneSnapshot.hasData ||
+                                            nameSnapshot.hasError ||
+                                            phoneSnapshot.hasError,
+                                        onPressed: addOrUpdateSeller,
+                                        child: Text(
+                                          'Simpan',
+                                          style: TextStyle(color: WHITE_COLOR),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
                             ),
                       ),
                       id != null
@@ -235,20 +247,38 @@ class _SellerFormState extends State<StatefulWidget> {
                               stream: _sellerFormBloc.loading,
                               builder: (BuildContext ctx,
                                       AsyncSnapshot<bool> loadSnapshot) =>
-                                  Container(
-                                    width: double.infinity,
-                                    margin: EdgeInsets.symmetric(vertical: 8),
-                                    child: RaisedButton(
-                                      color: RED_COLOR,
-                                      onPressed: loadSnapshot.hasData &&
-                                              loadSnapshot.data
-                                          ? null
-                                          : deleteSeller,
-                                      child: Text(
-                                        'Hapus',
-                                        style: TextStyle(color: WHITE_COLOR),
-                                      ),
-                                    ),
+                                  StreamBuilder<String>(
+                                    stream: _sellerFormBloc.name,
+                                    builder: (BuildContext ctx,
+                                        AsyncSnapshot<String> nameSnapshot) {
+                                      return StreamBuilder<String>(
+                                        stream: _sellerFormBloc.phone,
+                                        builder: (BuildContext ctx,
+                                            AsyncSnapshot<String>
+                                                phoneSnapshot) {
+                                          return Container(
+                                            width: double.infinity,
+                                            margin: EdgeInsets.symmetric(
+                                                vertical: 8),
+                                            child: ButtonLoading(
+                                              color: RED_COLOR,
+                                              loading: loadSnapshot.hasData &&
+                                                  loadSnapshot.data,
+                                              disabled: !nameSnapshot.hasData ||
+                                                  !phoneSnapshot.hasData ||
+                                                  nameSnapshot.hasError ||
+                                                  phoneSnapshot.hasError,
+                                              onPressed: deleteSeller,
+                                              child: Text(
+                                                'Hapus',
+                                                style: TextStyle(
+                                                    color: WHITE_COLOR),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    },
                                   ),
                             )
                           : Container(),
