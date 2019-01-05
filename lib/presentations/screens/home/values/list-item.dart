@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:plastik_ui/presentations/screens/categoryitem/screens/categoryitem-list.dart';
 import 'package:plastik_ui/presentations/screens/seller/screens/seller-list.dart';
 import 'package:plastik_ui/presentations/screens/supplier/screens/supplier-list.dart';
+import 'package:plastik_ui/presentations/screens/transaction-etc/screens/transaction-etc-form.dart';
 import 'package:plastik_ui/presentations/screens/transaction-in/screens/transaction-in-form.dart';
 import 'package:plastik_ui/presentations/screens/transaction-out/screens/transaction-out-form.dart';
 import 'package:plastik_ui/presentations/screens/transaction-type/screens/transaction-type-list.dart';
@@ -113,7 +114,16 @@ final List<Map<String, dynamic>> items = [
       {
         'name': 'Lainnya',
         'asset': 'assets/svg/034-meeting.svg',
-        'onPress': (BuildContext context) {},
+        'onPress': (BuildContext context) {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => TransactionEtcForm(),
+              settings: RouteSettings(
+                name: TransactionEtcForm.routeName,
+              ),
+            ),
+          );
+        },
       },
       {
         'name': 'Tipe Lainnya',

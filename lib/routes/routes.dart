@@ -6,6 +6,7 @@ import 'package:plastik_ui/presentations/screens/seller/screens/seller-form.dart
 import 'package:plastik_ui/presentations/screens/seller/screens/seller-list.dart';
 import 'package:plastik_ui/presentations/screens/supplier/screens/supplier-form.dart';
 import 'package:plastik_ui/presentations/screens/supplier/screens/supplier-list.dart';
+import 'package:plastik_ui/presentations/screens/transaction-etc/screens/transaction-etc-form.dart';
 import 'package:plastik_ui/presentations/screens/transaction-in/screens/transaction-in-form.dart';
 import 'package:plastik_ui/presentations/screens/transaction-out/screens/transaction-out-form.dart';
 import 'package:plastik_ui/presentations/screens/transaction-type/screens/transaction-type-form.dart';
@@ -26,5 +27,6 @@ Map<String, ValueRouteType> initialRoute() {
     TransactionTypeForm.routeName: (BuildContext ctx) => TransactionTypeForm(),
     TransactionOutForm.routeName: (BuildContext ctx) => TransactionOutForm(),
     TransactionInForm.routeName: (BuildContext ctx) => TransactionInForm(),
+    TransactionEtcForm.routeName: (BuildContext ctx) => TransactionEtcForm(),
   };
 }
