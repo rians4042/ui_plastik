@@ -175,18 +175,14 @@ class TransactionInFormBloc implements BaseBloc {
   Future<void> initialFetch({Function(String message) onError}) async {
     try {
       if (_statesSuppliers.stream.value == null) {
-        _statesLoading.sink.add(true);
-
         final _results = await Future.wait(
             [actorService.getSuppliers(), itemService.getItems()]);
 
         _statesItems.sink.add(_results[1]);
         _statesSuppliers.sink.add(_results[0]);
         _statesSupplierId.sink.add((_results[0][0] as Supplier).id);
-        _statesLoading.sink.add(false);
       }
     } catch (e) {
-      _statesLoading.sink.addError(false);
       onError(e?.message ?? 'Terjadi Kesalahan Pada Server');
     }
   }

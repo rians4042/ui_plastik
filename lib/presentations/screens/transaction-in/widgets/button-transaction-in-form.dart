@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:plastik_ui/domains/actor/model/dto/supplier.dart';
+import 'package:plastik_ui/domains/item/model/dto/item.dart';
 import 'package:plastik_ui/domains/transaction/model/dto/transacation-detail.dart';
 import 'package:plastik_ui/presentations/screens/transaction-in/blocs/transaction-in-form-bloc.dart';
 import 'package:plastik_ui/presentations/screens/transaction-in/widgets/transaction-in-form-provider.dart';
+import 'package:plastik_ui/presentations/shared/widgets/button-loading.dart';
 import 'package:plastik_ui/values/colors.dart';
 
 class ButtonTransactionInForm extends StatelessWidget {
@@ -64,19 +67,33 @@ class ButtonTransactionInForm extends StatelessWidget {
           stream: _transactionInFormBloc.details,
           builder: (BuildContext ctx,
               AsyncSnapshot<List<TransactionItemDetail>> detailsSnapshot) {
-            return Container(
-              width: double.infinity,
-              child: RaisedButton(
-                color: PRIMARY_COLOR,
-                child: Text(
-                  'Simpan',
-                  style: TextStyle(color: Colors.white),
-                ),
-                onPressed: (loadingSnapshot.hasData && loadingSnapshot.data) ||
-                        detailsSnapshot.hasError
-                    ? null
-                    : submitForm(ctx),
-              ),
+            return StreamBuilder<List<Supplier>>(
+              stream: _transactionInFormBloc.suppliers,
+              builder: (BuildContext ctx,
+                  AsyncSnapshot<List<Supplier>> suppliersSnapshot) {
+                return StreamBuilder<List<Item>>(
+                  stream: _transactionInFormBloc.items,
+                  builder: (BuildContext ctx,
+                      AsyncSnapshot<List<Item>> itemsSnapshot) {
+                    return Container(
+                      width: double.infinity,
+                      child: ButtonLoading(
+                        color: PRIMARY_COLOR,
+                        child: Text(
+                          'Simpan',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        disabled: detailsSnapshot.hasError ||
+                            (!suppliersSnapshot.hasData &&
+                                !itemsSnapshot.hasData),
+                        loading:
+                            (loadingSnapshot.hasData && loadingSnapshot.data),
+                        onPressed: submitForm(ctx),
+                      ),
+                    );
+                  },
+                );
+              },
             );
           },
         );

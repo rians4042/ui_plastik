@@ -5,9 +5,9 @@ import 'package:plastik_ui/values/colors.dart';
 class ButtonLoading extends StatelessWidget {
   ButtonLoading({
     @required this.child,
-    @required this.loading,
-    @required this.onPress,
-    @required this.disabled,
+    this.loading = false,
+    @required this.onPressed,
+    this.disabled = false,
     @required this.color,
   });
 
@@ -15,7 +15,7 @@ class ButtonLoading extends StatelessWidget {
   final Widget child;
   final bool disabled;
   final bool loading;
-  final Function onPress;
+  final Function onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class ButtonLoading extends StatelessWidget {
               size: 16,
             )
           : child,
-      onPressed: disabled ? null : onPress,
+      onPressed: disabled || loading ? null : onPressed,
     );
   }
 }
