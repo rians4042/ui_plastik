@@ -6,6 +6,9 @@ import 'package:plastik_ui/presentations/shared/widgets/dropdown-custom.dart';
 import 'package:plastik_ui/values/colors.dart';
 
 class TransactionInBasicForm extends StatelessWidget {
+  final TextEditingController noteController;
+  TransactionInBasicForm({@required this.noteController});
+
   @override
   Widget build(BuildContext context) {
     TransactionInFormBloc _transactionInFormBloc =
@@ -40,7 +43,8 @@ class TransactionInBasicForm extends StatelessWidget {
                                 ))
                             ?.toList(),
                         onChanged: (String supplierId) {
-                          _transactionInFormBloc.onChangeNote.add(supplierId);
+                          _transactionInFormBloc.onChangeSupplier
+                              .add(supplierId);
                         },
                         isExpanded: true,
                       );
@@ -62,6 +66,7 @@ class TransactionInBasicForm extends StatelessWidget {
                         (BuildContext ctx, AsyncSnapshot<String> snapshotNote) {
                       return TextField(
                         maxLines: null,
+                        controller: noteController,
                         onChanged: (String address) =>
                             _transactionInFormBloc.onChangeNote.add(address),
                         keyboardType: TextInputType.multiline,

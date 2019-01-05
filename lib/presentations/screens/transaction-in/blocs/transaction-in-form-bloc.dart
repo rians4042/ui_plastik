@@ -64,7 +64,7 @@ class TransactionInFormBloc implements BaseBloc {
     _statesSuppliers = BehaviorSubject<List<Supplier>>();
     _statesSupplierId = BehaviorSubject<String>();
     _statesDetails = BehaviorSubject<List<TransactionItemDetail>>();
-    _statesImages = BehaviorSubject<List<String>>();
+    _statesImages = BehaviorSubject<List<String>>(seedValue: []);
     _statesItems = BehaviorSubject<List<Item>>();
     _statesTempFormDetailItemId = BehaviorSubject<String>();
     _statesTempFormDetailQty = BehaviorSubject<int>();
@@ -175,23 +175,19 @@ class TransactionInFormBloc implements BaseBloc {
   Future<void> initialFetch({Function(String message) onError}) async {
     try {
       if (_statesSuppliers.stream.value == null) {
-        _statesLoading.sink.add(true);
-
         final _results = await Future.wait(
             [actorService.getSuppliers(), itemService.getItems()]);
 
         _statesItems.sink.add(_results[1]);
         _statesSuppliers.sink.add(_results[0]);
         _statesSupplierId.sink.add((_results[0][0] as Supplier).id);
-        _statesLoading.sink.add(false);
       }
     } catch (e) {
-      _statesLoading.sink.addError(false);
       onError(e?.message ?? 'Terjadi Kesalahan Pada Server');
     }
   }
 
-  Future<void> addTransactionIn({
+  Future<void> createTransactionIn({
     Function(String message) onError,
     Function onSuccess,
   }) async {
@@ -207,6 +203,11 @@ class TransactionInFormBloc implements BaseBloc {
           ),
         );
         _statesLoading.sink.add(false);
+        _statesNote.sink.add('');
+        _statesImages.sink.add(_images..clear());
+        _statesDetails.sink.add(_details..clear());
+        _statesSupplierId.sink.add(_statesSuppliers.stream.value[0].id);
+
         onSuccess();
       }
     } catch (e) {
@@ -228,7 +229,7 @@ class TransactionInFormBloc implements BaseBloc {
     if (_statesDetails.stream.value == null ||
         !streamExistsAndLengthMoreThanZero) {
       validate = false;
-      _statesDetails.sink.addError('Detail transaksi tidak boleh kosong');
+      _statesDetails.sink.addError('Detail wajib diisi, minimal 1');
     }
 
     return validate;

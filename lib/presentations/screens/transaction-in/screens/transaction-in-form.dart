@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:plastik_ui/domains/actor/model/dto/supplier.dart';
 import 'package:plastik_ui/domains/actor/service/actor.dart';
-import 'package:plastik_ui/domains/item/model/dto/item.dart';
 import 'package:plastik_ui/domains/item/service/item.dart';
-import 'package:plastik_ui/domains/transaction/model/dto/transacation-detail.dart';
 import 'package:plastik_ui/domains/transaction/service/transaction.dart';
 import 'package:plastik_ui/presentations/screens/transaction-in/blocs/transaction-in-form-bloc.dart';
 import 'package:plastik_ui/app.dart';
+import 'package:plastik_ui/presentations/screens/transaction-in/widgets/button-transaction-in-form.dart';
 import 'package:plastik_ui/presentations/screens/transaction-in/widgets/transaction-in-basic-form.dart';
 import 'package:plastik_ui/presentations/screens/transaction-in/widgets/transaction-in-details-form.dart';
 import 'package:plastik_ui/presentations/screens/transaction-in/widgets/transaction-in-form-provider.dart';
-import 'package:plastik_ui/presentations/shared/widgets/button-add-row.dart';
-import 'package:plastik_ui/values/colors.dart';
 
 class TransactionInForm extends StatefulWidget {
   static String routeName = '/transacationin';
@@ -21,9 +17,16 @@ class TransactionInForm extends StatefulWidget {
 }
 
 class _TransactionInFormState extends State<TransactionInForm> {
+  TextEditingController _noteController;
+  TextEditingController _qtyController;
+  TextEditingController _amountController;
   TransactionInFormBloc _transactionInFormBloc;
 
   _TransactionInFormState() {
+    _noteController = TextEditingController();
+    _qtyController = TextEditingController();
+    _amountController = TextEditingController();
+
     _transactionInFormBloc = TransactionInFormBloc(
       actorService: getIt<ActorService>(),
       transactionService: getIt<TransactionService>(),
@@ -49,11 +52,13 @@ class _TransactionInFormState extends State<TransactionInForm> {
         body: Builder(
           builder: (BuildContext ctx) {
             void fetchInitialData() {
-              _transactionInFormBloc.initialFetch(onError: (String message) {
-                Scaffold.of(ctx).showSnackBar(SnackBar(
-                  content: Text(message),
-                ));
-              });
+              _transactionInFormBloc.initialFetch(
+                onError: (String message) {
+                  Scaffold.of(ctx).showSnackBar(SnackBar(
+                    content: Text(message),
+                  ));
+                },
+              );
             }
 
             fetchInitialData();
@@ -67,8 +72,15 @@ class _TransactionInFormState extends State<TransactionInForm> {
                       (BuildContext ctx, AsyncSnapshot<bool> loadingSnapshot) {
                     return Column(
                       children: <Widget>[
-                        TransactionInBasicForm(),
-                        TransactionInDetailsForm(),
+                        TransactionInBasicForm(
+                          noteController: _noteController,
+                        ),
+                        TransactionInDetailsForm(
+                          qtyController: _qtyController,
+                          amountController: _amountController,
+                        ),
+                        ButtonTransactionInForm(
+                            noteController: _noteController),
                       ],
                     );
                   },

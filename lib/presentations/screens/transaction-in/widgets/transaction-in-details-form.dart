@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:plastik_ui/domains/item/model/dto/item.dart';
 import 'package:plastik_ui/domains/transaction/model/dto/transacation-detail.dart';
 import 'package:plastik_ui/presentations/screens/transaction-in/blocs/transaction-in-form-bloc.dart';
+import 'package:plastik_ui/presentations/screens/transaction-in/widgets/item-transaction-in-details-form.dart';
 import 'package:plastik_ui/presentations/screens/transaction-in/widgets/transaction-in-form-provider.dart';
 import 'package:plastik_ui/presentations/shared/widgets/button-add-row.dart';
 import 'package:plastik_ui/presentations/shared/widgets/dropdown-custom.dart';
 import 'package:plastik_ui/values/colors.dart';
 
 class TransactionInDetailsForm extends StatelessWidget {
-  TextEditingController _qtyController;
-  TextEditingController _amountController;
+  final TextEditingController qtyController;
+  final TextEditingController amountController;
 
-  TransactionInDetailsForm() {
-    _qtyController = TextEditingController();
-    _amountController = TextEditingController();
-  }
+  TransactionInDetailsForm({
+    @required this.qtyController,
+    @required this.amountController,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +23,13 @@ class TransactionInDetailsForm extends StatelessWidget {
         TransactionInFormProvider.of(context).transactionInFormBloc;
 
     void showForm({int prevIndex}) {
-      _transactionInFormBloc.editTransactionDetail(prevIndex,
-          onSuccess: (TransactionItemDetail trx) {
-        _qtyController.text = trx.qty.toString();
-        _amountController.text = trx.amount.toString();
-      });
+      _transactionInFormBloc.editTransactionDetail(
+        prevIndex,
+        onSuccess: (TransactionItemDetail trx) {
+          qtyController.text = trx.qty.toString();
+          amountController.text = trx.amount.toString();
+        },
+      );
 
       showBottomSheet<void>(
         context: context,
@@ -83,7 +86,7 @@ class TransactionInDetailsForm extends StatelessWidget {
                           return Container(
                             margin: EdgeInsets.symmetric(vertical: 8),
                             child: TextField(
-                              controller: _qtyController,
+                              controller: qtyController,
                               maxLines: null,
                               onChanged: (String qty) {
                                 _transactionInFormBloc
@@ -119,7 +122,7 @@ class TransactionInDetailsForm extends StatelessWidget {
                         return Container(
                           margin: EdgeInsets.symmetric(vertical: 8),
                           child: TextField(
-                            controller: _amountController,
+                            controller: amountController,
                             maxLines: null,
                             onChanged: (String amount) {
                               _transactionInFormBloc
@@ -137,6 +140,7 @@ class TransactionInDetailsForm extends StatelessWidget {
                               enabled: loadingSnapshot.hasData
                                   ? !loadingSnapshot.data
                                   : true,
+                              errorText: amountSnapshot.error,
                             ),
                           ),
                         );
@@ -191,16 +195,55 @@ class TransactionInDetailsForm extends StatelessWidget {
       );
     }
 
+    void deleteItemDetail(BuildContext ctx, int index) {
+      showDialog(
+        context: ctx,
+        builder: (BuildContext context) => AlertDialog(
+              title: Text('Hapus'),
+              content: Text('Apakah anda yakin menghapus data ini ?'),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text('Tidak'),
+                  onPressed: () => Navigator.of(ctx).pop(),
+                ),
+                FlatButton(
+                  child: Text('Hapus'),
+                  onPressed: () {
+                    Navigator.of(ctx).pop();
+                    _transactionInFormBloc.removeTransactionDetail(index);
+                  },
+                ),
+              ],
+            ),
+      );
+    }
+
     return Container(
       margin: EdgeInsets.symmetric(vertical: 8),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          ButtonAddRow(
-            onPress: () {
-              showForm();
-            },
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              StreamBuilder<List<TransactionItemDetail>>(
+                stream: _transactionInFormBloc.details,
+                builder: (BuildContext ctx,
+                    AsyncSnapshot<List<TransactionItemDetail>>
+                        detailsSnapshot) {
+                  return Text(
+                    detailsSnapshot.error ?? '',
+                    style: TextStyle(color: RED_COLOR),
+                  );
+                },
+              ),
+              ButtonAddRow(
+                onPress: () {
+                  showForm();
+                },
+              ),
+            ],
           ),
           StreamBuilder<List<TransactionItemDetail>>(
             stream: _transactionInFormBloc.details,
@@ -212,7 +255,17 @@ class TransactionInDetailsForm extends StatelessWidget {
                     detailsSnapshot.hasData ? detailsSnapshot.data.length : 0,
                 physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (BuildContext ctx, int index) {
-                  return Text('helo');
+                  return ItemTransactionInDetailsForm(
+                    qty: detailsSnapshot.data[index].qty,
+                    itemName: detailsSnapshot.data[index].itemName,
+                    amount: detailsSnapshot.data[index].amount,
+                    onEdit: () {
+                      showForm(prevIndex: index);
+                    },
+                    onDelete: () {
+                      deleteItemDetail(ctx, index);
+                    },
+                  );
                 },
               );
             },
