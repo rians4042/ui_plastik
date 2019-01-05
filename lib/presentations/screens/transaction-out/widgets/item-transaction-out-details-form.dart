@@ -50,7 +50,7 @@ class ItemTransactionOutDetailsForm extends StatelessWidget {
                 ),
               ),
               Text(
-                'Harga /Satuan: ${formatCurrency(amount)}',
+                'Total Harga: ${formatCurrency(amount)}',
                 style: TextStyle(
                   fontSize: 12,
                 ),
