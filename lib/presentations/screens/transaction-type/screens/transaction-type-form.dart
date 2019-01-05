@@ -3,7 +3,6 @@ import 'package:plastik_ui/domains/transaction/model/dto/transaction-etc-type.da
 import 'package:plastik_ui/domains/transaction/service/transaction.dart';
 import 'package:plastik_ui/presentations/screens/transaction-type/blocs/transaction-type-form.dart';
 import 'package:plastik_ui/presentations/shared/widgets/button-loading.dart';
-import 'package:plastik_ui/presentations/shared/widgets/error-notification.dart';
 import 'package:plastik_ui/values/colors.dart';
 import 'package:plastik_ui/app.dart';
 

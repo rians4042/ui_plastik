@@ -3,6 +3,7 @@ import 'package:plastik_ui/presentations/screens/categoryitem/screens/categoryit
 import 'package:plastik_ui/presentations/screens/seller/screens/seller-list.dart';
 import 'package:plastik_ui/presentations/screens/supplier/screens/supplier-list.dart';
 import 'package:plastik_ui/presentations/screens/transaction-in/screens/transaction-in-form.dart';
+import 'package:plastik_ui/presentations/screens/transaction-out/screens/transaction-out-form.dart';
 import 'package:plastik_ui/presentations/screens/transaction-type/screens/transaction-type-list.dart';
 import 'package:plastik_ui/presentations/screens/item/screens/item-list.dart';
 
@@ -98,7 +99,16 @@ final List<Map<String, dynamic>> items = [
       {
         'name': 'Keluar',
         'asset': 'assets/svg/047-handshake.svg',
-        'onPress': (BuildContext context) {},
+        'onPress': (BuildContext context) {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => TransactionOutForm(),
+              settings: RouteSettings(
+                name: TransactionOutForm.routeName,
+              ),
+            ),
+          );
+        },
       },
       {
         'name': 'Lainnya',
