@@ -10,20 +10,32 @@ import 'package:plastik_ui/values/colors.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:plastik_ui/app.dart';
 
-class CategoryItemList extends StatelessWidget {
-  CategoryItemListState categoryItemListState;
-
+class CategoryItemList extends StatefulWidget {
   static String routeName = '/category';
 
-  CategoryItemList() {
+  @override
+  _CategoryItemListState createState() => _CategoryItemListState();
+}
+
+class _CategoryItemListState extends State<CategoryItemList> {
+  _CategoryItemListState() {
     categoryItemListState =
         CategoryItemListState(itemService: getIt<ItemService>());
   }
 
   @override
+  void dispose() {
+    categoryItemListState.removeListener(() {});
+    super.dispose();
+  }
+
+  CategoryItemListState categoryItemListState;
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text('Kategori Barang'),
       ),
       body: Builder(
