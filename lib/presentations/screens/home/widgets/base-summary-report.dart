@@ -75,7 +75,7 @@ class BaseSummaryReport extends StatelessWidget {
                         : Text(
                             value,
                             style: TextStyle(
-                              fontSize: 36,
+                              fontSize: 32,
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
                             ),

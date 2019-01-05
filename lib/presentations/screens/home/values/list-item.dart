@@ -83,8 +83,8 @@ final List<Map<String, dynamic>> items = [
     'sectionTitle': 'Transaksi',
     'details': [
       {
-        'name': 'Masuk',
-        'asset': 'assets/svg/036-profit.svg',
+        'name': 'Beli Barang',
+        'asset': 'assets/svg/047-handshake.svg',
         'onPress': (BuildContext context) {
           Navigator.of(context).push(
             MaterialPageRoute(
@@ -97,8 +97,8 @@ final List<Map<String, dynamic>> items = [
         },
       },
       {
-        'name': 'Keluar',
-        'asset': 'assets/svg/047-handshake.svg',
+        'name': 'Jual Barang',
+        'asset': 'assets/svg/036-profit.svg',
         'onPress': (BuildContext context) {
           Navigator.of(context).push(
             MaterialPageRoute(

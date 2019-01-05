@@ -27,7 +27,7 @@ class _SummaryTransactionsInState extends State<SummaryTransactionsIn> {
       stream: _summaryTransactionsInBloc.amountTransaction,
       builder: (BuildContext ctx, AsyncSnapshot<String> snapshot) {
         return BaseSummaryReport(
-          label: 'Total Pemasukkan Bulan Ini',
+          label: 'Total Pengeluaran Bulan Ini',
           value: !snapshot.hasData ? '' : snapshot.data,
           loading: !snapshot.hasData && !snapshot.hasError,
           error: snapshot.hasError,
