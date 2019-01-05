@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:plastik_ui/presentations/screens/categoryitem/screens/categoryitem-list.dart';
 import 'package:plastik_ui/presentations/screens/seller/screens/seller-list.dart';
 import 'package:plastik_ui/presentations/screens/supplier/screens/supplier-list.dart';
 import 'package:plastik_ui/presentations/screens/transaction-in/screens/transaction-in-form.dart';
 import 'package:plastik_ui/presentations/screens/transaction-type/screens/transaction-type-list.dart';
+import 'package:plastik_ui/presentations/screens/item/screens/item-list.dart';
 
 final List<Map<String, dynamic>> items = [
   {
@@ -11,12 +13,30 @@ final List<Map<String, dynamic>> items = [
       {
         'name': 'Kategori',
         'asset': 'assets/svg/010-puzzle.svg',
-        'onPress': (BuildContext context) {},
+        'onPress': (BuildContext context) {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => CategoryItemList(),
+              settings: RouteSettings(
+                name: CategoryItemList.routeName,
+              ),
+            ),
+          );
+        },
       },
       {
         'name': 'Item',
         'asset': 'assets/svg/010-puzzle.svg',
-        'onPress': (BuildContext context) {},
+        'onPress': (BuildContext context) {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => ItemList(),
+              settings: RouteSettings(
+                name: ItemList.routeName,
+              ),
+            ),
+          );
+        },
       },
       {
         'name': 'Stok',

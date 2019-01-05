@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:plastik_ui/domains/item/model/dto/item-category.dart';
+import 'package:plastik_ui/domains/item/model/dto/item-unit.dart';
 import 'package:plastik_ui/presentations/screens/item/states/item-forn.dart';
-import 'package:plastik_ui/presentations/shared/screens/base-screen.dart';
+
 import 'package:plastik_ui/presentations/shared/widgets/loading-indicator.dart';
-import 'package:plastik_ui/presentations/shared/widgets/update.dart';
+import 'package:plastik_ui/presentations/shared/widgets/update-button.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-class ItemForm extends StatelessWidget implements BaseScreen {
+class ItemForm extends StatelessWidget {
   ItemFormState itemFormState;
+
+  static String routeName = '/item/form';
 
   ItemForm() {
     itemFormState = ItemFormState();
@@ -44,6 +48,32 @@ class ItemForm extends StatelessWidget implements BaseScreen {
                             //errorText: model.errorName),
                             ),
                       ),
+                      DropdownButton(
+                        value: model.itemCategoryId,
+                        items: model.itemCategories
+                            .map((ItemCategory itemCategory) =>
+                                DropdownMenuItem<String>(
+                                  value: itemCategory.id,
+                                  child: Text(itemCategory.name),
+                                ))
+                            .toList(),
+                        onChanged: (String value) {
+                          model.onChangeCategory(value);
+                        },
+                      ),
+                      DropdownButton(
+                        value: model.unitId,
+                        items: model.itemUnit
+                            .map(
+                                (ItemUnit itemUnit) => DropdownMenuItem<String>(
+                                      value: itemUnit.id,
+                                      child: Text(itemUnit.name),
+                                    ))
+                            .toList(),
+                        onChanged: (String value) {
+                          model.onChangeUnit(value);
+                        },
+                      ),
                       UpdateWidget(),
                     ],
                   ),
@@ -55,11 +85,4 @@ class ItemForm extends StatelessWidget implements BaseScreen {
       ),
     );
   }
-
-  @override
-  String getRouteName() {
-    return '/';
-  }
 }
-
-class Update {}

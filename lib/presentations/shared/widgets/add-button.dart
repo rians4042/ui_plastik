@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:plastik_ui/values/colors.dart';
 
-class UpdateWidget extends StatelessWidget {
+class AddWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
-      //onPressed: subtractNumbers,
-      textTheme: ButtonTextTheme.accent,
-      textColor: Colors.white,
-      color: Colors.blueAccent,
-      padding: const EdgeInsets.all(8.0),
-      child: new Text(
-        "Add",
+    return Container(
+      width: double.infinity,
+      margin: EdgeInsets.symmetric(vertical: 8),
+      child: RaisedButton(
+        color: PRIMARY_COLOR,
+        child: Text(
+          'Tambah',
+          style: TextStyle(color: WHITE_COLOR),
+        ),
       ),
     );
   }
