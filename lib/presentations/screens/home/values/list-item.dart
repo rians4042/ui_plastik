@@ -50,7 +50,7 @@ final List<Map<String, dynamic>> items = [
     'details': [
       {
         'name': 'Penyuplai',
-        'asset': 'assets/svg/032-networking-1.svg',
+        'asset': 'assets/svg/033-networking-2.svg',
         'onPress': (BuildContext context) {
           Navigator.of(context).push(
             MaterialPageRoute(
@@ -64,7 +64,7 @@ final List<Map<String, dynamic>> items = [
       },
       {
         'name': 'Penjual',
-        'asset': 'assets/svg/033-networking-2.svg',
+        'asset': 'assets/svg/032-networking-1.svg',
         'onPress': (BuildContext context) {
           Navigator.of(context).push(
             MaterialPageRoute(
