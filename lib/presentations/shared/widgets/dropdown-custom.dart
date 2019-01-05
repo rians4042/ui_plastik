@@ -7,6 +7,7 @@ class DropdownCustom<T> extends StatelessWidget {
   final bool isExpanded;
   final Function(T data) onChanged;
   final List<DropdownMenuItem> items;
+  final String label;
 
   DropdownCustom({
     @required this.loading,
@@ -14,23 +15,34 @@ class DropdownCustom<T> extends StatelessWidget {
     @required this.onChanged,
     @required this.initialData,
     @required this.value,
+    @required this.label,
     this.isExpanded = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButton<T>(
-      isExpanded: isExpanded,
-      items: loading
-          ? <DropdownMenuItem<T>>[
-              DropdownMenuItem(
-                child: Text(''),
-                value: initialData,
-              )
-            ]
-          : items,
-      onChanged: onChanged,
-      value: loading ? initialData : value,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Container(
+          margin: EdgeInsets.only(bottom: 4),
+          child: Text(label),
+        ),
+        DropdownButton<T>(
+          isExpanded: isExpanded,
+          items: loading
+              ? <DropdownMenuItem<T>>[
+                  DropdownMenuItem(
+                    child: Text(''),
+                    value: initialData,
+                  )
+                ]
+              : items,
+          onChanged: onChanged,
+          value: loading ? initialData : value,
+        ),
+      ],
     );
   }
 }
