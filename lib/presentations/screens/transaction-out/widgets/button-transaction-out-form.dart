@@ -33,7 +33,7 @@ class ButtonTransactionOutForm extends StatelessWidget {
                     child: Text('Ya'),
                     onPressed: () {
                       Navigator.of(ctx).pop();
-                      _transactionOutFormBloc.createTransactionIn(
+                      _transactionOutFormBloc.createTransactionOut(
                         onError: (String message) {
                           Scaffold.of(ctx).showSnackBar(
                             SnackBar(
@@ -46,7 +46,7 @@ class ButtonTransactionOutForm extends StatelessWidget {
                           Scaffold.of(ctx).showSnackBar(
                             SnackBar(
                               content: Text(
-                                'Berhasil membuat transaksi masuk',
+                                'Berhasil membuat transaksi keluar',
                               ),
                             ),
                           );

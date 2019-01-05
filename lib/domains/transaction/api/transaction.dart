@@ -69,7 +69,7 @@ class TransactionAPIImplementation extends Object
 
   @override
   Future<bool> createTransactionOut(TransactionOutAPI trx) async {
-    final Response response = await client.post('/transaction/in', data: {
+    final Response response = await client.post('/transaction/out', data: {
       'note': trx.note,
       'sellerId': trx.sellerId,
       'details': trx.details

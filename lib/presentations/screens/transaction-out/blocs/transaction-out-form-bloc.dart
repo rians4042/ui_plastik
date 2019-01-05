@@ -187,7 +187,7 @@ class TransactionOutFormBloc implements BaseBloc {
     }
   }
 
-  Future<void> createTransactionIn({
+  Future<void> createTransactionOut({
     Function(String message) onError,
     Function onSuccess,
   }) async {
