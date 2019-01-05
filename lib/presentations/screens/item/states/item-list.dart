@@ -11,8 +11,9 @@ class ItemListState extends Model {
   ItemService itemService;
 
   ItemListState({@required this.itemService}) {
-    _loading = false;
     _items = [];
+    _error = false;
+    _loading = false;
   }
 
   bool get loading => _loading;
@@ -20,18 +21,19 @@ class ItemListState extends Model {
   int get count => _items.length;
   List<Item> get items => _items;
 
-  @override
   Future<void> fetchingItems({Function(String message) onError}) async {
     try {
-      _error = false;
-      _loading = true;
-      notifyListeners();
+      if (_items.length < 1) {
+        _error = false;
+        _loading = true;
+        notifyListeners();
 
-      final List<Item> items = await itemService.getItems();
+        final List<Item> items = await itemService.getItems();
 
-      _items = items;
-      _loading = false;
-      notifyListeners();
+        _items = items;
+        _loading = false;
+        notifyListeners();
+      }
     } catch (e) {
       _error = true;
       _loading = false;
