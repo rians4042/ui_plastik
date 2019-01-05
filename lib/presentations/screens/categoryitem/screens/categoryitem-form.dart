@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:plastik_ui/presentations/screens/categoryitem/states/categoryitem-form.dart';
 import 'package:plastik_ui/presentations/shared/widgets/loading-indicator.dart';
+import 'package:plastik_ui/values/colors.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class CategoryItemForm extends StatelessWidget {
@@ -17,7 +18,7 @@ class CategoryItemForm extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Detail Category'),
+        title: Text('Formulir Kategory'),
       ),
       body: Builder(
         builder: (BuildContext context) {
@@ -38,6 +39,18 @@ class CategoryItemForm extends StatelessWidget {
                       TextField(
                         //onChange:,
                         decoration: InputDecoration(labelText: 'Nama Kategori'),
+                      ),
+                      Container(
+                        width: double.infinity,
+                        margin: EdgeInsets.symmetric(vertical: 8),
+                        child: RaisedButton(
+                          onPressed: () {},
+                          color: PRIMARY_COLOR,
+                          child: Text(
+                            'Simpan',
+                            style: TextStyle(color: WHITE_COLOR),
+                          ),
+                        ),
                       ),
                     ],
                   ),

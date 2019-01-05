@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:plastik_ui/domains/item/model/dto/item-category.dart';
 import 'package:plastik_ui/domains/item/model/dto/item-unit.dart';
-import 'package:plastik_ui/presentations/screens/item/states/item-forn.dart';
+import 'package:plastik_ui/presentations/screens/item/states/item-form.dart';
 
 import 'package:plastik_ui/presentations/shared/widgets/loading-indicator.dart';
 import 'package:plastik_ui/presentations/shared/widgets/update-button.dart';
@@ -21,7 +21,7 @@ class ItemForm extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Tambah Item'),
+        title: Text('Formulir Barang'),
       ),
       body: Builder(
         builder: (BuildContext context) {

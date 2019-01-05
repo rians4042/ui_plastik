@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:plastik_ui/presentations/screens/item/screens/item-form.dart';
 import 'package:plastik_ui/presentations/screens/item/states/item-list.dart';
 import 'package:plastik_ui/presentations/shared/widgets/item-right-arrow.dart';
 import 'package:plastik_ui/presentations/shared/widgets/not-found.dart';
+import 'package:plastik_ui/values/colors.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:plastik_ui/presentations/shared/widgets/loading-indicator.dart';
 
@@ -19,7 +21,7 @@ class ItemList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Item'),
+        title: Text('Barang'),
       ),
       body: Builder(
         builder: (BuildContext ctx) {
@@ -45,7 +47,16 @@ class ItemList extends StatelessWidget {
                   itemBuilder: (BuildContext ctx, int index) {
                     return ItemRightArrow(
                       label: model.items[index].name,
-                      onPress: () {},
+                      onPress: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => ItemForm(),
+                            settings: RouteSettings(
+                              name: ItemForm.routeName,
+                            ),
+                          ),
+                        );
+                      },
                     );
                   },
                 );
@@ -55,10 +66,15 @@ class ItemList extends StatelessWidget {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: null,
-        tooltip: 'add',
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: PRIMARY_COLOR,
         child: Icon(Icons.add),
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (_) => ItemForm(),
+              settings: RouteSettings(
+                name: ItemForm.routeName,
+              )));
+        },
       ),
     );
   }

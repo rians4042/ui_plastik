@@ -8,10 +8,10 @@ import 'package:plastik_ui/presentations/screens/item/screens/item-list.dart';
 
 final List<Map<String, dynamic>> items = [
   {
-    'sectionTitle': 'Item',
+    'sectionTitle': 'Barang',
     'details': [
       {
-        'name': 'Kategori',
+        'name': 'Kategori Barang',
         'asset': 'assets/svg/010-puzzle.svg',
         'onPress': (BuildContext context) {
           Navigator.of(context).push(
@@ -25,7 +25,7 @@ final List<Map<String, dynamic>> items = [
         },
       },
       {
-        'name': 'Item',
+        'name': 'Barang',
         'asset': 'assets/svg/010-puzzle.svg',
         'onPress': (BuildContext context) {
           Navigator.of(context).push(

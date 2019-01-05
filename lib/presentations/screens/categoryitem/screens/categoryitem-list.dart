@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:plastik_ui/presentations/screens/categoryitem/screens/categoryitem-form.dart';
 import 'package:plastik_ui/presentations/screens/categoryitem/states/categoryitem-list.dart';
 import 'package:plastik_ui/presentations/shared/widgets/item-right-arrow.dart';
 import 'package:plastik_ui/presentations/shared/widgets/loading-indicator.dart';
 import 'package:plastik_ui/presentations/shared/widgets/not-found.dart';
+import 'package:plastik_ui/values/colors.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class CategoryItemList extends StatelessWidget {
@@ -18,7 +20,7 @@ class CategoryItemList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Kategori Item'),
+        title: Text('Kategori Barang'),
       ),
       body: Builder(
         builder: (BuildContext context) {
@@ -44,7 +46,13 @@ class CategoryItemList extends StatelessWidget {
                     itemBuilder: (BuildContext context, int index) {
                       return ItemRightArrow(
                         label: model.items[index].name,
-                        onPress: () {},
+                        onPress: () {
+                          Navigator.of(contect).push(MaterialPageRoute(
+                              builder: (_) => CategoryItemForm(),
+                              settings: RouteSettings(
+                                name: CategoryItemForm.routeName,
+                              )));
+                        },
                       );
                       //Text(model.items[index].name);
                     },
@@ -54,10 +62,18 @@ class CategoryItemList extends StatelessWidget {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: null,
-        tooltip: 'add',
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: PRIMARY_COLOR,
         child: Icon(Icons.add),
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => CategoryItemForm(),
+              settings: RouteSettings(
+                name: CategoryItemForm.routeName,
+              ),
+            ),
+          );
+        },
       ),
     );
   }
