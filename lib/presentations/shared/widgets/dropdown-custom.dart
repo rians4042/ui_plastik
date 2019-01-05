@@ -40,7 +40,7 @@ class DropdownCustom<T> extends StatelessWidget {
                 ]
               : items,
           onChanged: onChanged,
-          value: loading ? initialData : value,
+          value: loading ? initialData : value == null ? initialData : value,
         ),
       ],
     );
