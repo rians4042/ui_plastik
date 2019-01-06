@@ -8,8 +8,6 @@ class CategoryItemFormState extends Model {
   String _errName;
   bool _loading;
   String _name;
-  String _unitId;
-  List<ItemUnit> _itemUnits;
   String _itemCategoryId;
   ItemService itemService;
 
@@ -36,17 +34,14 @@ class CategoryItemFormState extends Model {
           itemService.getItemCategories(),
         ]);
       } else {
-        response = await Future.wait([
-          itemService.getItemCategories(),
-          itemService.getItemCategoryDetail(id)
-        ]);
+        response = await Future.wait([itemService.getItemCategoryDetail(id)]);
       }
 
       ItemCategory _itemCategory;
-      _itemCategory = response[0];
+      // _itemCategory = response[0];
 
-      if (id == null) {
-        _itemCategory = (response[1] as ItemCategory);
+      if (id != null) {
+        _itemCategory = (response[0] as ItemCategory);
         _name = _itemCategory.name;
       } else {}
 
