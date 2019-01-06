@@ -76,7 +76,8 @@ class _CategoryItemListState extends State<CategoryItemList> {
                         label: model.items[index].name,
                         onPress: () {
                           Navigator.of(contect).push(MaterialPageRoute(
-                              builder: (_) => CategoryItemForm(),
+                              builder: (_) =>
+                                  CategoryItemForm(id: model.items[index].id),
                               settings: RouteSettings(
                                 name: CategoryItemForm.routeName,
                               )));
