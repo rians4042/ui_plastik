@@ -1,5 +1,5 @@
+import 'package:meta/meta.dart';
 import 'package:plastik_ui/domains/item/model/dto/item-category.dart';
-import 'package:plastik_ui/domains/item/model/dto/item-unit.dart';
 import 'package:plastik_ui/domains/item/service/item.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:plastik_ui/app.dart';
@@ -11,10 +11,8 @@ class CategoryItemFormState extends Model {
   String _itemCategoryId;
   ItemService itemService;
 
-  CategoryItemForm() {
-    _errName = '';
+  CategoryItemFormState({@required this.itemService}) {
     _loading = false;
-    _name = '';
   }
 
   String get itemCategoryId => _itemCategoryId;
@@ -22,33 +20,21 @@ class CategoryItemFormState extends Model {
   String get name => _name;
   String get errName => _errName;
 
-  Future<void> getInitialData(String id,
+  void getInitialData(String id,
       {Function onSuccess, Function(String message) onError}) async {
     try {
-      _loading = true;
-      notifyListeners();
-
-      List<dynamic> response;
-      if (id == null) {
-        response = await Future.wait([
-          itemService.getItemCategories(),
-        ]);
-      } else {
-        response = await Future.wait([itemService.getItemCategoryDetail(id)]);
-      }
-
-      ItemCategory _itemCategory;
-      // _itemCategory = response[0];
-
       if (id != null) {
-        _itemCategory = (response[0] as ItemCategory);
+        _loading = true;
+        notifyListeners();
+
+        ItemCategory _itemCategory =
+            await itemService.getItemCategoryDetail(id);
         _name = _itemCategory.name;
-      } else {}
 
-      _loading = false;
-      notifyListeners();
-
-      onSuccess(_itemCategory);
+        _loading = false;
+        notifyListeners();
+        onSuccess(_itemCategory);
+      }
     } catch (e) {
       _loading = false;
       notifyListeners();
@@ -127,4 +113,3 @@ class CategoryItemFormState extends Model {
     notifyListeners();
   }
 }
-//

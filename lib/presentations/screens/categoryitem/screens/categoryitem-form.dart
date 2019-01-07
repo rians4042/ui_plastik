@@ -20,7 +20,8 @@ class CategoryItemForm extends StatefulWidget {
 
 class _CategoryItemFormState extends State<CategoryItemForm> {
   _CategoryItemFormState() {
-    _categoryItemFormState = CategoryItemFormState();
+    _categoryItemFormState =
+        CategoryItemFormState(itemService: getIt<ItemService>());
     _nameController = TextEditingController();
   }
 
@@ -38,7 +39,7 @@ class _CategoryItemFormState extends State<CategoryItemForm> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Formulir Kategory'),
+        title: Text('Formulir Kategori'),
       ),
       body: Builder(
         builder: (BuildContext ctx) {
