@@ -34,7 +34,6 @@ class CategoryItemListState extends Model {
         notifyListeners();
       }
     } catch (e) {
-      print(e);
       _loading = false;
       _error = true;
       notifyListeners();

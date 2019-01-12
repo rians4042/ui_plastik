@@ -1,10 +1,15 @@
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 import 'package:plastik_ui/domains/report/model/api/item-stock-log.dart';
+import 'package:plastik_ui/domains/report/model/api/transaction-detail.dart';
+import 'package:plastik_ui/domains/report/model/api/transaction.dart';
 import 'package:plastik_ui/helpers/request/error-handler.dart';
 import 'package:plastik_ui/helpers/request/parser.dart';
 
 abstract class ReportAPI {
+  Future<List<TransactionAPI>> getTransactions(
+      int page, String startAt, String endAt);
+  Future<TransactionDetailAPI> getTransactionDetail(String id);
   Future<int> getCountTransactions(String startAt, String endAt);
   Future<double> getSummaryTransactions(String startAt, String endAt);
   Future<double> getSummaryTransactionsIn(String startAt, String endAt);
@@ -93,5 +98,30 @@ class ReportAPIImplementation extends Object
     );
     throwErrorIfErrorFounded(response);
     return double.parse(response.data['value'].toString());
+  }
+
+  @override
+  Future<TransactionDetailAPI> getTransactionDetail(String id) async {
+    final Response response = await client.get('/transaction/$id');
+    throwErrorIfErrorFounded(response);
+    return parserRawRequest<TransactionDetailAPI, dynamic>(
+        TransactionDetailAPI.fromJSON, response.data);
+  }
+
+  @override
+  Future<List<TransactionAPI>> getTransactions(
+      int page, String startAt, String endAt) async {
+    final Response response = await client.get(
+      '/transaction',
+      data: {
+        'page': page,
+        'orderBy': '',
+        'startAt': startAt,
+        'endAt': endAt,
+      },
+    );
+    throwErrorIfErrorFounded(response);
+    return parserRawRequest<List<TransactionAPI>, List<dynamic>>(
+        TransactionAPI.fromListJSON, response.data);
   }
 }

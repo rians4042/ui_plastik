@@ -7,6 +7,8 @@ import 'package:plastik_ui/presentations/shared/widgets/error-notification.dart'
 import 'package:plastik_ui/presentations/shared/widgets/item-right-arrow.dart';
 import 'package:plastik_ui/presentations/shared/widgets/loading-indicator.dart';
 import 'package:plastik_ui/presentations/shared/widgets/not-found.dart';
+import 'package:plastik_ui/presentations/shared/widgets/shimmering/shimmering.dart';
+import 'package:plastik_ui/presentations/shared/widgets/shimmering/values/type_list.dart';
 import 'package:plastik_ui/values/colors.dart';
 import 'package:plastik_ui/app.dart';
 
@@ -56,7 +58,17 @@ class _SupplierListState extends State<SupplierList> {
               if (snapshot.hasData &&
                   snapshot.data.loading &&
                   !snapshot.hasError) {
-                return LoadingIndicator();
+                return Padding(
+                  padding: EdgeInsets.all(12),
+                  child: FluttonShimmering.list(
+                    count: 10,
+                    countLine: 5,
+                    widthLine: MediaQuery.of(context).size.width * 0.95,
+                    lastWidthLine: 28,
+                    heightLine: 6,
+                    typeList: FluttonShimmeringTypeList.ITEM,
+                  ),
+                );
               }
 
               // show page empty data whenever data is zero and no error on there

@@ -1,4 +1,4 @@
-import 'package:plastik_ui/domains/transaction/model/dto/transacation-detail.dart';
+import 'package:plastik_ui/domains/report/model/dto/transaction-detail.dart';
 
 class TransactionOut {
   String note;

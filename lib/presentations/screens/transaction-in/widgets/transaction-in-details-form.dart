@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plastik_ui/domains/item/model/dto/item.dart';
-import 'package:plastik_ui/domains/transaction/model/dto/transacation-detail.dart';
+import 'package:plastik_ui/domains/report/model/dto/transaction-detail.dart';
 import 'package:plastik_ui/presentations/screens/transaction-in/blocs/transaction-in-form-bloc.dart';
 import 'package:plastik_ui/presentations/screens/transaction-in/widgets/item-transaction-in-details-form.dart';
 import 'package:plastik_ui/presentations/screens/transaction-in/widgets/transaction-in-form-provider.dart';

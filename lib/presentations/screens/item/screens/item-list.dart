@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:plastik_ui/domains/item/service/item.dart';
 import 'package:plastik_ui/presentations/screens/item/screens/item-form.dart';
 import 'package:plastik_ui/presentations/screens/item/states/item-list.dart';
 import 'package:plastik_ui/presentations/shared/widgets/error-notification.dart';
 import 'package:plastik_ui/presentations/shared/widgets/item-right-arrow.dart';
 import 'package:plastik_ui/presentations/shared/widgets/not-found.dart';
+import 'package:plastik_ui/presentations/shared/widgets/shimmering/shimmering.dart';
+import 'package:plastik_ui/presentations/shared/widgets/shimmering/values/type_list.dart';
 import 'package:plastik_ui/values/colors.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:plastik_ui/presentations/shared/widgets/loading-indicator.dart';
 import 'package:plastik_ui/app.dart';
 
 class ItemList extends StatefulWidget {
@@ -53,7 +53,17 @@ class _ItemListState extends State<ItemList> {
             child: ScopedModelDescendant<ItemListState>(
               builder: (BuildContext ctx, Widget child, ItemListState model) {
                 if (model.loading && !model.error) {
-                  return LoadingIndicator();
+                  return Padding(
+                    padding: EdgeInsets.all(12),
+                    child: FluttonShimmering.list(
+                      count: 10,
+                      countLine: 5,
+                      widthLine: MediaQuery.of(context).size.width * 0.95,
+                      lastWidthLine: 28,
+                      heightLine: 6,
+                      typeList: FluttonShimmeringTypeList.ITEM,
+                    ),
+                  );
                 }
 
                 if (!model.loading && model.error) {

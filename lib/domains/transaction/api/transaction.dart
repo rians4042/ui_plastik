@@ -2,9 +2,6 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
-import 'package:plastik_ui/domains/transaction/model/api/transaction.dart'
-    as model;
-import 'package:plastik_ui/domains/transaction/model/api/transaction-detail.dart';
 import 'package:plastik_ui/domains/transaction/model/api/transaction-in.dart';
 import 'package:plastik_ui/domains/transaction/model/api/transaction-out.dart';
 import 'package:plastik_ui/domains/transaction/model/api/transaction-etc.dart';
@@ -13,8 +10,6 @@ import 'package:plastik_ui/helpers/request/error-handler.dart';
 import 'package:plastik_ui/helpers/request/parser.dart';
 
 abstract class TransactionAPI {
-  Future<List<model.TransactionAPI>> getTransactions();
-  Future<TransactionDetailAPI> getTransactionDetail(String id);
   Future<List<TransactionEtcTypeAPI>> getTransactionEtcTypes();
   Future<TransactionEtcTypeAPI> getTransactionEtcTypeDetail(String id);
   Future<bool> createTransactionIn(TransactionInAPI trx);
@@ -79,22 +74,6 @@ class TransactionAPIImplementation extends Object
     });
     throwErrorIfErrorFounded(response);
     return true;
-  }
-
-  @override
-  Future<TransactionDetailAPI> getTransactionDetail(String id) async {
-    final Response response = await client.get('/transaction/$id');
-    throwErrorIfErrorFounded(response);
-    return parserRawRequest<TransactionDetailAPI, dynamic>(
-        TransactionDetailAPI.fromJSON, response.data);
-  }
-
-  @override
-  Future<List<model.TransactionAPI>> getTransactions() async {
-    final Response response = await client.get('/transaction');
-    throwErrorIfErrorFounded(response);
-    return parserRawRequest<List<model.TransactionAPI>, List<dynamic>>(
-        model.TransactionAPI.fromListJSON, response.data);
   }
 
   @override

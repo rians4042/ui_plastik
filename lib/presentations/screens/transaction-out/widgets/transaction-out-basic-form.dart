@@ -31,7 +31,7 @@ class TransactionOutBasicForm extends StatelessWidget {
                     builder: (BuildContext ctx,
                         AsyncSnapshot<String> sellerSelectedSnapshot) {
                       return DropdownCustom<String>(
-                        label: 'Pilih Penjual',
+                        label: 'Pilih Pembeli',
                         initialData: '',
                         loading: !sellerSelectedSnapshot.hasData,
                         value: sellerSelectedSnapshot?.data,

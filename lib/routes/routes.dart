@@ -3,6 +3,8 @@ import 'package:plastik_ui/presentations/screens/home/screens/home-tab.dart';
 import 'package:plastik_ui/presentations/screens/item-stock-log/screens/item-stock-log.dart';
 import 'package:plastik_ui/presentations/screens/item/screens/item-form.dart';
 import 'package:plastik_ui/presentations/screens/item/screens/item-list.dart';
+import 'package:plastik_ui/presentations/screens/report-transaction/screens/report-transaction-detail.dart';
+import 'package:plastik_ui/presentations/screens/report-transaction/screens/report-transactions.dart';
 import 'package:plastik_ui/presentations/screens/seller/screens/seller-form.dart';
 import 'package:plastik_ui/presentations/screens/seller/screens/seller-list.dart';
 import 'package:plastik_ui/presentations/screens/supplier/screens/supplier-form.dart';
@@ -30,5 +32,8 @@ Map<String, ValueRouteType> initialRoute() {
     TransactionInForm.routeName: (BuildContext ctx) => TransactionInForm(),
     TransactionEtcForm.routeName: (BuildContext ctx) => TransactionEtcForm(),
     ItemStockLog.routeName: (BuildContext ctx) => ItemStockLog(),
+    ReportTransaction.routeName: (BuildContext ctx) => ReportTransaction(),
+    ReportTransactionDetail.routeName: (BuildContext ctx) =>
+        ReportTransactionDetail(),
   };
 }

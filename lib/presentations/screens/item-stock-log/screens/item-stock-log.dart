@@ -6,7 +6,8 @@ import 'package:plastik_ui/presentations/screens/item-stock-log/states/items-sto
 import 'package:plastik_ui/presentations/screens/item-stock-log/widgets/header-item-stock-log.dart';
 import 'package:plastik_ui/presentations/screens/item-stock-log/widgets/item.dart';
 import 'package:plastik_ui/presentations/shared/widgets/error-notification.dart';
-import 'package:plastik_ui/presentations/shared/widgets/loading-indicator.dart';
+import 'package:plastik_ui/presentations/shared/widgets/shimmering/shimmering.dart';
+import 'package:plastik_ui/presentations/shared/widgets/shimmering/values/type_list.dart';
 
 class ItemStockLog extends StatefulWidget {
   static String routeName = '/itemstock';
@@ -56,7 +57,17 @@ class _ItemStockLogState extends State<ItemStockLog> {
               if (!itemStockLogSnapshot.hasData &&
                   itemStockLogSnapshot.data.loading &&
                   !itemStockLogSnapshot.data.error) {
-                return LoadingIndicator();
+                return Padding(
+                  padding: EdgeInsets.all(12),
+                  child: FluttonShimmering.list(
+                    count: 10,
+                    countLine: 5,
+                    widthLine: MediaQuery.of(context).size.width * 0.95,
+                    lastWidthLine: 28,
+                    heightLine: 6,
+                    typeList: FluttonShimmeringTypeList.ITEM,
+                  ),
+                );
               }
 
               if (!itemStockLogSnapshot.data.loading &&

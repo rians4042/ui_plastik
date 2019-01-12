@@ -4,8 +4,9 @@ import 'package:plastik_ui/presentations/screens/categoryitem/screens/categoryit
 import 'package:plastik_ui/presentations/screens/categoryitem/states/categoryitem-list.dart';
 import 'package:plastik_ui/presentations/shared/widgets/error-notification.dart';
 import 'package:plastik_ui/presentations/shared/widgets/item-right-arrow.dart';
-import 'package:plastik_ui/presentations/shared/widgets/loading-indicator.dart';
 import 'package:plastik_ui/presentations/shared/widgets/not-found.dart';
+import 'package:plastik_ui/presentations/shared/widgets/shimmering/shimmering.dart';
+import 'package:plastik_ui/presentations/shared/widgets/shimmering/values/type_list.dart';
 import 'package:plastik_ui/values/colors.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:plastik_ui/app.dart';
@@ -55,7 +56,17 @@ class _CategoryItemListState extends State<CategoryItemList> {
                 builder: (BuildContext contect, Widget child,
                     CategoryItemListState model) {
                   if (model.loading && !model.error) {
-                    return LoadingIndicator();
+                    return Padding(
+                      padding: EdgeInsets.all(12),
+                      child: FluttonShimmering.list(
+                        count: 10,
+                        countLine: 5,
+                        widthLine: MediaQuery.of(context).size.width * 0.95,
+                        lastWidthLine: 28,
+                        heightLine: 6,
+                        typeList: FluttonShimmeringTypeList.ITEM,
+                      ),
+                    );
                   }
 
                   if (!model.loading && model.count == 0 && !model.error) {

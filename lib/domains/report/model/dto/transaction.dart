@@ -1,7 +1,7 @@
 class Transaction {
   String note;
   String id;
-  double amount;
+  int amount;
   String type;
   String typeName;
   String createdAt;

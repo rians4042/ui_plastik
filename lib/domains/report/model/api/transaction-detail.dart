@@ -1,7 +1,7 @@
 class TransactionDetailAPI {
   String note;
   String id;
-  double amount;
+  int amount;
   String type;
   String typeName;
   String createdAt;
@@ -80,7 +80,7 @@ class TransactionItemDetailAPI {
       (json) => results.add(
             TransactionItemDetailAPI(
               id: json['id'],
-              amount: json['amount'],
+              amount: double.parse(json['amount'].toString()),
               qty: json['qty'],
               itemId: json['itemId'],
               itemName: json['itemName'],

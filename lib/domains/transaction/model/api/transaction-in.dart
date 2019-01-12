@@ -1,4 +1,4 @@
-import 'package:plastik_ui/domains/transaction/model/api/transaction-detail.dart';
+import 'package:plastik_ui/domains/report/model/api/transaction-detail.dart';
 
 class TransactionInAPI {
   String note;

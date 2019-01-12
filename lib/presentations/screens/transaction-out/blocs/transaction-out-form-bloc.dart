@@ -3,7 +3,7 @@ import 'package:plastik_ui/domains/actor/model/dto/seller.dart';
 import 'package:plastik_ui/domains/actor/service/actor.dart';
 import 'package:plastik_ui/domains/item/model/dto/item.dart';
 import 'package:plastik_ui/domains/item/service/item.dart';
-import 'package:plastik_ui/domains/transaction/model/dto/transacation-detail.dart';
+import 'package:plastik_ui/domains/report/model/dto/transaction-detail.dart';
 import 'package:plastik_ui/domains/transaction/model/dto/transaction-out.dart';
 import 'package:plastik_ui/domains/transaction/service/transaction.dart';
 import 'package:plastik_ui/presentations/shared/blocs/base-bloc.dart';
