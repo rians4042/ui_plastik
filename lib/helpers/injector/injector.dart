@@ -1,21 +1,21 @@
 import 'package:get_it/get_it.dart';
-import 'package:plastik_ui/cache/user.dart';
-import 'package:plastik_ui/domains/actor/api/seller.dart';
-import 'package:plastik_ui/domains/actor/api/supplier.dart';
-import 'package:plastik_ui/domains/actor/service/actor.dart';
-import 'package:plastik_ui/domains/actor/transform/actor.dart';
-import 'package:plastik_ui/domains/item/api/item-category.dart';
-import 'package:plastik_ui/domains/item/api/item-unit.dart';
-import 'package:plastik_ui/domains/item/api/item.dart';
-import 'package:plastik_ui/domains/item/service/item.dart';
-import 'package:plastik_ui/domains/item/transform/item.dart';
-import 'package:plastik_ui/domains/report/api/report.dart';
-import 'package:plastik_ui/domains/report/service/report.dart';
-import 'package:plastik_ui/domains/report/transform/report.dart';
-import 'package:plastik_ui/domains/transaction/api/transaction.dart';
-import 'package:plastik_ui/domains/transaction/service/transaction.dart';
-import 'package:plastik_ui/domains/transaction/transform/transaction.dart';
-import 'package:plastik_ui/helpers/httpclient/client.dart';
+import 'package:Recet/cache/user.dart';
+import 'package:Recet/domains/actor/api/seller.dart';
+import 'package:Recet/domains/actor/api/supplier.dart';
+import 'package:Recet/domains/actor/service/actor.dart';
+import 'package:Recet/domains/actor/transform/actor.dart';
+import 'package:Recet/domains/item/api/item-category.dart';
+import 'package:Recet/domains/item/api/item-unit.dart';
+import 'package:Recet/domains/item/api/item.dart';
+import 'package:Recet/domains/item/service/item.dart';
+import 'package:Recet/domains/item/transform/item.dart';
+import 'package:Recet/domains/report/api/report.dart';
+import 'package:Recet/domains/report/service/report.dart';
+import 'package:Recet/domains/report/transform/report.dart';
+import 'package:Recet/domains/transaction/api/transaction.dart';
+import 'package:Recet/domains/transaction/service/transaction.dart';
+import 'package:Recet/domains/transaction/transform/transaction.dart';
+import 'package:Recet/helpers/httpclient/client.dart';
 
 void injector(GetIt getIt) {
   UserCache _user = UserCacheImplementation();

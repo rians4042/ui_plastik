@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:meta/meta.dart';
-import 'package:plastik_ui/domains/actor/model/dto/seller.dart';
-import 'package:plastik_ui/domains/actor/service/actor.dart';
-import 'package:plastik_ui/presentations/shared/blocs/base-bloc.dart';
+import 'package:Recet/domains/actor/model/dto/seller.dart';
+import 'package:Recet/domains/actor/service/actor.dart';
+import 'package:Recet/presentations/shared/blocs/base-bloc.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:plastik_ui/validators/format-phone.dart';
+import 'package:Recet/validators/format-phone.dart';
 
 class SellerFormBloc extends Object
     with FormatPhoneValidator, FormatPhoneValidatorStream

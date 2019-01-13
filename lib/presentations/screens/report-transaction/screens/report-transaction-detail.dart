@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:plastik_ui/app.dart';
-import 'package:plastik_ui/domains/report/model/dto/transaction-detail.dart';
-import 'package:plastik_ui/domains/report/service/report.dart';
-import 'package:plastik_ui/helpers/datetime/datetime.dart';
-import 'package:plastik_ui/helpers/number/format-currency.dart';
-import 'package:plastik_ui/presentations/screens/report-transaction/blocs/report-transaction-detail.dart';
-import 'package:plastik_ui/presentations/shared/widgets/error-notification.dart';
-import 'package:plastik_ui/presentations/shared/widgets/shimmering/shimmering.dart';
-import 'package:plastik_ui/presentations/shared/widgets/shimmering/values/type_list.dart';
-import 'package:plastik_ui/values/colors.dart';
+import 'package:Recet/app.dart';
+import 'package:Recet/domains/report/model/dto/transaction-detail.dart';
+import 'package:Recet/domains/report/service/report.dart';
+import 'package:Recet/helpers/datetime/datetime.dart';
+import 'package:Recet/helpers/number/format-currency.dart';
+import 'package:Recet/presentations/screens/report-transaction/blocs/report-transaction-detail.dart';
+import 'package:Recet/presentations/shared/widgets/error-notification.dart';
+import 'package:Recet/presentations/shared/widgets/shimmering/shimmering.dart';
+import 'package:Recet/presentations/shared/widgets/shimmering/values/type_list.dart';
+import 'package:Recet/values/colors.dart';
 
 class ReportTransactionDetail extends StatefulWidget {
   static String routeName = '/reporttranasction/detail';

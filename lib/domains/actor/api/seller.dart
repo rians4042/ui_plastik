@@ -1,8 +1,8 @@
 import 'package:meta/meta.dart';
-import 'package:plastik_ui/domains/actor/model/api/seller.dart' as model;
+import 'package:Recet/domains/actor/model/api/seller.dart' as model;
 import 'package:dio/dio.dart';
-import 'package:plastik_ui/helpers/request/parser.dart';
-import 'package:plastik_ui/helpers/request/error-handler.dart';
+import 'package:Recet/helpers/request/parser.dart';
+import 'package:Recet/helpers/request/error-handler.dart';
 
 abstract class SellerAPI {
   Future<bool> createSeller(model.SellerAPI seller);

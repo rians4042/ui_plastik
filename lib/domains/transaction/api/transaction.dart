@@ -2,12 +2,12 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
-import 'package:plastik_ui/domains/transaction/model/api/transaction-in.dart';
-import 'package:plastik_ui/domains/transaction/model/api/transaction-out.dart';
-import 'package:plastik_ui/domains/transaction/model/api/transaction-etc.dart';
-import 'package:plastik_ui/domains/transaction/model/api/transaction-etc-type.dart';
-import 'package:plastik_ui/helpers/request/error-handler.dart';
-import 'package:plastik_ui/helpers/request/parser.dart';
+import 'package:Recet/domains/transaction/model/api/transaction-in.dart';
+import 'package:Recet/domains/transaction/model/api/transaction-out.dart';
+import 'package:Recet/domains/transaction/model/api/transaction-etc.dart';
+import 'package:Recet/domains/transaction/model/api/transaction-etc-type.dart';
+import 'package:Recet/helpers/request/error-handler.dart';
+import 'package:Recet/helpers/request/parser.dart';
 
 abstract class TransactionAPI {
   Future<List<TransactionEtcTypeAPI>> getTransactionEtcTypes();

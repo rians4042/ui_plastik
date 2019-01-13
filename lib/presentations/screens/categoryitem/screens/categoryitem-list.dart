@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:plastik_ui/domains/item/service/item.dart';
-import 'package:plastik_ui/presentations/screens/categoryitem/screens/categoryitem-form.dart';
-import 'package:plastik_ui/presentations/screens/categoryitem/states/categoryitem-list.dart';
-import 'package:plastik_ui/presentations/shared/widgets/error-notification.dart';
-import 'package:plastik_ui/presentations/shared/widgets/item-right-arrow.dart';
-import 'package:plastik_ui/presentations/shared/widgets/not-found.dart';
-import 'package:plastik_ui/presentations/shared/widgets/shimmering/shimmering.dart';
-import 'package:plastik_ui/presentations/shared/widgets/shimmering/values/type_list.dart';
-import 'package:plastik_ui/values/colors.dart';
+import 'package:Recet/domains/item/service/item.dart';
+import 'package:Recet/presentations/screens/categoryitem/screens/categoryitem-form.dart';
+import 'package:Recet/presentations/screens/categoryitem/states/categoryitem-list.dart';
+import 'package:Recet/presentations/shared/widgets/error-notification.dart';
+import 'package:Recet/presentations/shared/widgets/item-right-arrow.dart';
+import 'package:Recet/presentations/shared/widgets/not-found.dart';
+import 'package:Recet/presentations/shared/widgets/shimmering/shimmering.dart';
+import 'package:Recet/presentations/shared/widgets/shimmering/values/type_list.dart';
+import 'package:Recet/values/colors.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:plastik_ui/app.dart';
+import 'package:Recet/app.dart';
 
 class CategoryItemList extends StatefulWidget {
   static String routeName = '/category';

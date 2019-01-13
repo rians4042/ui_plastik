@@ -1,16 +1,16 @@
 import 'package:meta/meta.dart';
-import 'package:plastik_ui/domains/item/api/item-category.dart';
-import 'package:plastik_ui/domains/item/api/item-unit.dart';
-import 'package:plastik_ui/domains/item/api/item.dart';
-import 'package:plastik_ui/domains/item/model/dto/item-category.dart';
-import 'package:plastik_ui/domains/item/model/dto/item-unit.dart';
-import 'package:plastik_ui/domains/item/model/dto/item.dart';
-import 'package:plastik_ui/domains/item/model/api/item.dart' as modelItem;
-import 'package:plastik_ui/domains/item/model/api/item-category.dart'
+import 'package:Recet/domains/item/api/item-category.dart';
+import 'package:Recet/domains/item/api/item-unit.dart';
+import 'package:Recet/domains/item/api/item.dart';
+import 'package:Recet/domains/item/model/dto/item-category.dart';
+import 'package:Recet/domains/item/model/dto/item-unit.dart';
+import 'package:Recet/domains/item/model/dto/item.dart';
+import 'package:Recet/domains/item/model/api/item.dart' as modelItem;
+import 'package:Recet/domains/item/model/api/item-category.dart'
     as modelItemCategory;
-import 'package:plastik_ui/domains/item/model/api/item-unit.dart'
+import 'package:Recet/domains/item/model/api/item-unit.dart'
     as modelItemUnit;
-import 'package:plastik_ui/domains/item/transform/item.dart';
+import 'package:Recet/domains/item/transform/item.dart';
 
 abstract class ItemService {
   Future<List<ItemCategory>> getItemCategories();

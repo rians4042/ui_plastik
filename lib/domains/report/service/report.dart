@@ -1,12 +1,12 @@
 import 'package:meta/meta.dart';
-import 'package:plastik_ui/domains/report/api/report.dart';
-import 'package:plastik_ui/domains/report/model/api/item-stock-log.dart';
-import 'package:plastik_ui/domains/report/model/api/transaction-detail.dart';
-import 'package:plastik_ui/domains/report/model/api/transaction.dart';
-import 'package:plastik_ui/domains/report/model/dto/item-stock-log.dart';
-import 'package:plastik_ui/domains/report/model/dto/transaction-detail.dart';
-import 'package:plastik_ui/domains/report/model/dto/transaction.dart';
-import 'package:plastik_ui/domains/report/transform/report.dart';
+import 'package:Recet/domains/report/api/report.dart';
+import 'package:Recet/domains/report/model/api/item-stock-log.dart';
+import 'package:Recet/domains/report/model/api/transaction-detail.dart';
+import 'package:Recet/domains/report/model/api/transaction.dart';
+import 'package:Recet/domains/report/model/dto/item-stock-log.dart';
+import 'package:Recet/domains/report/model/dto/transaction-detail.dart';
+import 'package:Recet/domains/report/model/dto/transaction.dart';
+import 'package:Recet/domains/report/transform/report.dart';
 
 abstract class ReportService {
   Future<List<Transaction>> getTransactions(

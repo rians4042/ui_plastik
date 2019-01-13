@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:plastik_ui/domains/actor/api/seller.dart';
-import 'package:plastik_ui/domains/actor/api/supplier.dart';
-import 'package:plastik_ui/domains/actor/model/api/seller.dart' as SellerModel;
-import 'package:plastik_ui/domains/actor/model/api/supplier.dart'
+import 'package:Recet/domains/actor/api/seller.dart';
+import 'package:Recet/domains/actor/api/supplier.dart';
+import 'package:Recet/domains/actor/model/api/seller.dart' as SellerModel;
+import 'package:Recet/domains/actor/model/api/supplier.dart'
     as SupplierModel;
-import 'package:plastik_ui/domains/actor/model/dto/seller.dart';
-import 'package:plastik_ui/domains/actor/model/dto/supplier.dart';
-import 'package:plastik_ui/domains/actor/transform/actor.dart';
+import 'package:Recet/domains/actor/model/dto/seller.dart';
+import 'package:Recet/domains/actor/model/dto/supplier.dart';
+import 'package:Recet/domains/actor/transform/actor.dart';
 
 abstract class ActorService {
   Future<List<Supplier>> getSuppliers();

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:plastik_ui/presentations/shared/widgets/loading-indicator.dart';
-import 'package:plastik_ui/values/colors.dart';
+import 'package:Recet/presentations/shared/widgets/loading-indicator.dart';
+import 'package:Recet/values/colors.dart';
 
 class BaseSummaryReport extends StatelessWidget {
   final String label;

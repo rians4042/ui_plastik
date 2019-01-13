@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:plastik_ui/presentations/screens/home/screens/home-tab.dart';
-import 'package:plastik_ui/presentations/screens/item-stock-log/screens/item-stock-log.dart';
-import 'package:plastik_ui/presentations/screens/item/screens/item-form.dart';
-import 'package:plastik_ui/presentations/screens/item/screens/item-list.dart';
-import 'package:plastik_ui/presentations/screens/report-transaction/screens/report-transaction-detail.dart';
-import 'package:plastik_ui/presentations/screens/report-transaction/screens/report-transactions.dart';
-import 'package:plastik_ui/presentations/screens/seller/screens/seller-form.dart';
-import 'package:plastik_ui/presentations/screens/seller/screens/seller-list.dart';
-import 'package:plastik_ui/presentations/screens/supplier/screens/supplier-form.dart';
-import 'package:plastik_ui/presentations/screens/supplier/screens/supplier-list.dart';
-import 'package:plastik_ui/presentations/screens/transaction-etc/screens/transaction-etc-form.dart';
-import 'package:plastik_ui/presentations/screens/transaction-in/screens/transaction-in-form.dart';
-import 'package:plastik_ui/presentations/screens/transaction-out/screens/transaction-out-form.dart';
-import 'package:plastik_ui/presentations/screens/transaction-type/screens/transaction-type-form.dart';
-import 'package:plastik_ui/presentations/screens/transaction-type/screens/transaction-type-list.dart';
+import 'package:Recet/presentations/screens/home/screens/home-tab.dart';
+import 'package:Recet/presentations/screens/item-stock-log/screens/item-stock-log.dart';
+import 'package:Recet/presentations/screens/item/screens/item-form.dart';
+import 'package:Recet/presentations/screens/item/screens/item-list.dart';
+import 'package:Recet/presentations/screens/report-transaction/screens/report-transaction-detail.dart';
+import 'package:Recet/presentations/screens/report-transaction/screens/report-transactions.dart';
+import 'package:Recet/presentations/screens/seller/screens/seller-form.dart';
+import 'package:Recet/presentations/screens/seller/screens/seller-list.dart';
+import 'package:Recet/presentations/screens/supplier/screens/supplier-form.dart';
+import 'package:Recet/presentations/screens/supplier/screens/supplier-list.dart';
+import 'package:Recet/presentations/screens/transaction-etc/screens/transaction-etc-form.dart';
+import 'package:Recet/presentations/screens/transaction-in/screens/transaction-in-form.dart';
+import 'package:Recet/presentations/screens/transaction-out/screens/transaction-out-form.dart';
+import 'package:Recet/presentations/screens/transaction-type/screens/transaction-type-form.dart';
+import 'package:Recet/presentations/screens/transaction-type/screens/transaction-type-list.dart';
 
 typedef Widget ValueRouteType(BuildContext ctx);
 

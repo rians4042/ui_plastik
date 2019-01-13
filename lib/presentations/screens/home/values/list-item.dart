@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:plastik_ui/presentations/screens/categoryitem/screens/categoryitem-list.dart';
-import 'package:plastik_ui/presentations/screens/item-stock-log/screens/item-stock-log.dart';
-import 'package:plastik_ui/presentations/screens/seller/screens/seller-list.dart';
-import 'package:plastik_ui/presentations/screens/supplier/screens/supplier-list.dart';
-import 'package:plastik_ui/presentations/screens/transaction-etc/screens/transaction-etc-form.dart';
-import 'package:plastik_ui/presentations/screens/transaction-in/screens/transaction-in-form.dart';
-import 'package:plastik_ui/presentations/screens/transaction-out/screens/transaction-out-form.dart';
-import 'package:plastik_ui/presentations/screens/transaction-type/screens/transaction-type-list.dart';
-import 'package:plastik_ui/presentations/screens/item/screens/item-list.dart';
+import 'package:Recet/presentations/screens/categoryitem/screens/categoryitem-list.dart';
+import 'package:Recet/presentations/screens/item-stock-log/screens/item-stock-log.dart';
+import 'package:Recet/presentations/screens/seller/screens/seller-list.dart';
+import 'package:Recet/presentations/screens/supplier/screens/supplier-list.dart';
+import 'package:Recet/presentations/screens/transaction-etc/screens/transaction-etc-form.dart';
+import 'package:Recet/presentations/screens/transaction-in/screens/transaction-in-form.dart';
+import 'package:Recet/presentations/screens/transaction-out/screens/transaction-out-form.dart';
+import 'package:Recet/presentations/screens/transaction-type/screens/transaction-type-list.dart';
+import 'package:Recet/presentations/screens/item/screens/item-list.dart';
 
 final List<Map<String, dynamic>> items = [
   {

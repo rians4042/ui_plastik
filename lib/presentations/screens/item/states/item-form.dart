@@ -1,12 +1,12 @@
 import 'dart:core';
 
 import 'package:meta/meta.dart';
-import 'package:plastik_ui/domains/item/model/dto/item-category.dart';
-import 'package:plastik_ui/domains/item/model/dto/item-unit.dart';
-import 'package:plastik_ui/domains/item/model/dto/item.dart';
-import 'package:plastik_ui/domains/item/service/item.dart';
+import 'package:Recet/domains/item/model/dto/item-category.dart';
+import 'package:Recet/domains/item/model/dto/item-unit.dart';
+import 'package:Recet/domains/item/model/dto/item.dart';
+import 'package:Recet/domains/item/service/item.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:plastik_ui/app.dart';
+import 'package:Recet/app.dart';
 
 class ItemFormState extends Model {
   String _errName;

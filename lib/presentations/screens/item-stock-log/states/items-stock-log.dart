@@ -1,4 +1,4 @@
-import 'package:plastik_ui/domains/report/model/dto/item-stock-log.dart';
+import 'package:Recet/domains/report/model/dto/item-stock-log.dart';
 
 class ItemStockLogState {
   bool _loading;

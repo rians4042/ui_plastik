@@ -1,8 +1,8 @@
 import 'package:meta/meta.dart';
-import 'package:plastik_ui/domains/report/model/dto/item-stock-log.dart';
-import 'package:plastik_ui/domains/report/service/report.dart';
-import 'package:plastik_ui/presentations/screens/item-stock-log/states/items-stock-log.dart';
-import 'package:plastik_ui/presentations/shared/blocs/base-bloc.dart';
+import 'package:Recet/domains/report/model/dto/item-stock-log.dart';
+import 'package:Recet/domains/report/service/report.dart';
+import 'package:Recet/presentations/screens/item-stock-log/states/items-stock-log.dart';
+import 'package:Recet/presentations/shared/blocs/base-bloc.dart';
 import 'package:rxdart/rxdart.dart';
 
 class ItemStockLogBloc implements BaseBloc {

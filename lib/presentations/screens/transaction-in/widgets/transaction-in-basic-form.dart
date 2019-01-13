@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:plastik_ui/domains/actor/model/dto/supplier.dart';
-import 'package:plastik_ui/presentations/screens/transaction-in/blocs/transaction-in-form-bloc.dart';
-import 'package:plastik_ui/presentations/screens/transaction-in/widgets/transaction-in-form-provider.dart';
-import 'package:plastik_ui/presentations/shared/widgets/dropdown-custom.dart';
-import 'package:plastik_ui/values/colors.dart';
+import 'package:Recet/domains/actor/model/dto/supplier.dart';
+import 'package:Recet/presentations/screens/transaction-in/blocs/transaction-in-form-bloc.dart';
+import 'package:Recet/presentations/screens/transaction-in/widgets/transaction-in-form-provider.dart';
+import 'package:Recet/presentations/shared/widgets/dropdown-custom.dart';
+import 'package:Recet/values/colors.dart';
 
 class TransactionInBasicForm extends StatelessWidget {
   final TextEditingController noteController;

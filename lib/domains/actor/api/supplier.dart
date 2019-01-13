@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:meta/meta.dart';
-import 'package:plastik_ui/domains/actor/model/api/supplier.dart' as Model;
+import 'package:Recet/domains/actor/model/api/supplier.dart' as Model;
 import 'package:dio/dio.dart';
-import 'package:plastik_ui/helpers/request/parser.dart';
-import 'package:plastik_ui/helpers/request/error-handler.dart';
+import 'package:Recet/helpers/request/parser.dart';
+import 'package:Recet/helpers/request/error-handler.dart';
 
 abstract class SupplierAPI {
   Future<bool> createSupplier(Model.SupplierAPI supplier);

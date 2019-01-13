@@ -1,6 +1,6 @@
 import 'package:meta/meta.dart';
-import 'package:plastik_ui/domains/report/model/dto/transaction-detail.dart';
-import 'package:plastik_ui/domains/report/service/report.dart';
+import 'package:Recet/domains/report/model/dto/transaction-detail.dart';
+import 'package:Recet/domains/report/service/report.dart';
 import 'package:rxdart/rxdart.dart';
 
 class ReportTransactionDetailBloc {

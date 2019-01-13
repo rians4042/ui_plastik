@@ -1,8 +1,8 @@
-import 'package:plastik_ui/domains/actor/model/api/seller.dart';
-import 'package:plastik_ui/domains/actor/model/api/supplier.dart';
-import 'package:plastik_ui/domains/actor/model/dto/seller.dart';
-import 'package:plastik_ui/domains/actor/model/dto/supplier.dart';
-import 'package:plastik_ui/helpers/datetime/datetime.dart';
+import 'package:Recet/domains/actor/model/api/seller.dart';
+import 'package:Recet/domains/actor/model/api/supplier.dart';
+import 'package:Recet/domains/actor/model/dto/seller.dart';
+import 'package:Recet/domains/actor/model/dto/supplier.dart';
+import 'package:Recet/helpers/datetime/datetime.dart';
 
 abstract class ActorTransformer {
   SellerAPI makeModelSellerAPI(Seller seller);

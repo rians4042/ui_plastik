@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:plastik_ui/domains/item/model/dto/item.dart';
-import 'package:plastik_ui/domains/report/model/dto/transaction-detail.dart';
-import 'package:plastik_ui/presentations/screens/transaction-in/blocs/transaction-in-form-bloc.dart';
-import 'package:plastik_ui/presentations/screens/transaction-in/widgets/item-transaction-in-details-form.dart';
-import 'package:plastik_ui/presentations/screens/transaction-in/widgets/transaction-in-form-provider.dart';
-import 'package:plastik_ui/presentations/shared/widgets/button-add-row.dart';
-import 'package:plastik_ui/presentations/shared/widgets/button-loading.dart';
-import 'package:plastik_ui/presentations/shared/widgets/dropdown-custom.dart';
-import 'package:plastik_ui/values/colors.dart';
+import 'package:Recet/domains/item/model/dto/item.dart';
+import 'package:Recet/domains/report/model/dto/transaction-detail.dart';
+import 'package:Recet/presentations/screens/transaction-in/blocs/transaction-in-form-bloc.dart';
+import 'package:Recet/presentations/screens/transaction-in/widgets/item-transaction-in-details-form.dart';
+import 'package:Recet/presentations/screens/transaction-in/widgets/transaction-in-form-provider.dart';
+import 'package:Recet/presentations/shared/widgets/button-add-row.dart';
+import 'package:Recet/presentations/shared/widgets/button-loading.dart';
+import 'package:Recet/presentations/shared/widgets/dropdown-custom.dart';
+import 'package:Recet/values/colors.dart';
 
 class TransactionInDetailsForm extends StatelessWidget {
   final TextEditingController qtyController;

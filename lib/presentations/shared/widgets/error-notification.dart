@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:plastik_ui/values/colors.dart';
+import 'package:Recet/values/colors.dart';
 
 class ErrorNotification extends StatelessWidget {
   final Function onRetry;

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:plastik_ui/domains/actor/service/actor.dart';
-import 'package:plastik_ui/domains/item/service/item.dart';
-import 'package:plastik_ui/domains/transaction/service/transaction.dart';
-import 'package:plastik_ui/presentations/screens/transaction-in/blocs/transaction-in-form-bloc.dart';
-import 'package:plastik_ui/app.dart';
-import 'package:plastik_ui/presentations/screens/transaction-in/widgets/button-transaction-in-form.dart';
-import 'package:plastik_ui/presentations/screens/transaction-in/widgets/transaction-in-basic-form.dart';
-import 'package:plastik_ui/presentations/screens/transaction-in/widgets/transaction-in-details-form.dart';
-import 'package:plastik_ui/presentations/screens/transaction-in/widgets/transaction-in-form-provider.dart';
+import 'package:Recet/domains/actor/service/actor.dart';
+import 'package:Recet/domains/item/service/item.dart';
+import 'package:Recet/domains/transaction/service/transaction.dart';
+import 'package:Recet/presentations/screens/transaction-in/blocs/transaction-in-form-bloc.dart';
+import 'package:Recet/app.dart';
+import 'package:Recet/presentations/screens/transaction-in/widgets/button-transaction-in-form.dart';
+import 'package:Recet/presentations/screens/transaction-in/widgets/transaction-in-basic-form.dart';
+import 'package:Recet/presentations/screens/transaction-in/widgets/transaction-in-details-form.dart';
+import 'package:Recet/presentations/screens/transaction-in/widgets/transaction-in-form-provider.dart';
 
 class TransactionInForm extends StatefulWidget {
   static String routeName = '/transacationin';

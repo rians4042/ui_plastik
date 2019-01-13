@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:plastik_ui/domains/actor/service/actor.dart';
-import 'package:plastik_ui/domains/item/service/item.dart';
-import 'package:plastik_ui/domains/transaction/service/transaction.dart';
-import 'package:plastik_ui/app.dart';
-import 'package:plastik_ui/presentations/screens/transaction-out/blocs/transaction-out-form-bloc.dart';
-import 'package:plastik_ui/presentations/screens/transaction-out/widgets/button-transaction-out-form.dart';
-import 'package:plastik_ui/presentations/screens/transaction-out/widgets/transaction-out-basic-form.dart';
-import 'package:plastik_ui/presentations/screens/transaction-out/widgets/transaction-out-details-form.dart';
-import 'package:plastik_ui/presentations/screens/transaction-out/widgets/transaction-out-form-provider.dart';
+import 'package:Recet/domains/actor/service/actor.dart';
+import 'package:Recet/domains/item/service/item.dart';
+import 'package:Recet/domains/transaction/service/transaction.dart';
+import 'package:Recet/app.dart';
+import 'package:Recet/presentations/screens/transaction-out/blocs/transaction-out-form-bloc.dart';
+import 'package:Recet/presentations/screens/transaction-out/widgets/button-transaction-out-form.dart';
+import 'package:Recet/presentations/screens/transaction-out/widgets/transaction-out-basic-form.dart';
+import 'package:Recet/presentations/screens/transaction-out/widgets/transaction-out-details-form.dart';
+import 'package:Recet/presentations/screens/transaction-out/widgets/transaction-out-form-provider.dart';
 
 class TransactionOutForm extends StatefulWidget {
   static String routeName = '/transacationout';

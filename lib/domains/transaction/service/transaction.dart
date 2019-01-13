@@ -1,11 +1,11 @@
 import 'package:meta/meta.dart';
-import 'package:plastik_ui/domains/transaction/api/transaction.dart';
-import 'package:plastik_ui/domains/transaction/model/api/transaction-etc-type.dart';
-import 'package:plastik_ui/domains/transaction/model/dto/transaction-etc-type.dart';
-import 'package:plastik_ui/domains/transaction/model/dto/transaction-etc.dart';
-import 'package:plastik_ui/domains/transaction/model/dto/transaction-in.dart';
-import 'package:plastik_ui/domains/transaction/model/dto/transaction-out.dart';
-import 'package:plastik_ui/domains/transaction/transform/transaction.dart';
+import 'package:Recet/domains/transaction/api/transaction.dart';
+import 'package:Recet/domains/transaction/model/api/transaction-etc-type.dart';
+import 'package:Recet/domains/transaction/model/dto/transaction-etc-type.dart';
+import 'package:Recet/domains/transaction/model/dto/transaction-etc.dart';
+import 'package:Recet/domains/transaction/model/dto/transaction-in.dart';
+import 'package:Recet/domains/transaction/model/dto/transaction-out.dart';
+import 'package:Recet/domains/transaction/transform/transaction.dart';
 
 abstract class TransactionService {
   Future<List<TransactionEtcType>> getTransactionEtcTypes();

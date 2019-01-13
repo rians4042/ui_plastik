@@ -1,4 +1,4 @@
-import 'package:plastik_ui/domains/transaction/model/dto/transaction-etc-type.dart';
+import 'package:Recet/domains/transaction/model/dto/transaction-etc-type.dart';
 
 class TransactionTypeListState {
   bool _loading;

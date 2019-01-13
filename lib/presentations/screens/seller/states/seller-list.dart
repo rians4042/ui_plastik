@@ -1,4 +1,4 @@
-import 'package:plastik_ui/domains/actor/model/dto/seller.dart';
+import 'package:Recet/domains/actor/model/dto/seller.dart';
 
 class SellerListState {
   bool _loading;

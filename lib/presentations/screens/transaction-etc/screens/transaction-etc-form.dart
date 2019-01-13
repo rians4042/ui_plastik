@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:plastik_ui/domains/transaction/model/dto/transaction-etc-type.dart';
-import 'package:plastik_ui/domains/transaction/service/transaction.dart';
-import 'package:plastik_ui/presentations/screens/transaction-etc/blocs/transaction-etc-form.dart';
-import 'package:plastik_ui/app.dart';
-import 'package:plastik_ui/presentations/shared/widgets/button-loading.dart';
-import 'package:plastik_ui/presentations/shared/widgets/dropdown-custom.dart';
-import 'package:plastik_ui/values/colors.dart';
+import 'package:Recet/domains/transaction/model/dto/transaction-etc-type.dart';
+import 'package:Recet/domains/transaction/service/transaction.dart';
+import 'package:Recet/presentations/screens/transaction-etc/blocs/transaction-etc-form.dart';
+import 'package:Recet/app.dart';
+import 'package:Recet/presentations/shared/widgets/button-loading.dart';
+import 'package:Recet/presentations/shared/widgets/dropdown-custom.dart';
+import 'package:Recet/values/colors.dart';
 
 class TransactionEtcForm extends StatefulWidget {
   static String routeName = '/transactionetc';

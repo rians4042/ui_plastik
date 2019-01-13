@@ -1,8 +1,8 @@
 import 'package:meta/meta.dart';
-import 'package:plastik_ui/domains/transaction/model/dto/transaction-etc-type.dart';
-import 'package:plastik_ui/domains/transaction/service/transaction.dart';
-import 'package:plastik_ui/presentations/screens/transaction-type/states/transaction-type-list.dart';
-import 'package:plastik_ui/presentations/shared/blocs/base-bloc.dart';
+import 'package:Recet/domains/transaction/model/dto/transaction-etc-type.dart';
+import 'package:Recet/domains/transaction/service/transaction.dart';
+import 'package:Recet/presentations/screens/transaction-type/states/transaction-type-list.dart';
+import 'package:Recet/presentations/shared/blocs/base-bloc.dart';
 import 'package:rxdart/rxdart.dart';
 
 class TransactionTypeListBloc implements BaseBloc {

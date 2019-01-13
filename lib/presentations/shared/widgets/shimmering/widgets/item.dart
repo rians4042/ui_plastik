@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:plastik_ui/presentations/shared/widgets/shimmering/values/value.dart';
-import 'package:plastik_ui/presentations/shared/widgets/shimmering/widgets/line.dart';
-import 'package:plastik_ui/presentations/shared/widgets/shimmering/helpers/helpers.dart';
+import 'package:Recet/presentations/shared/widgets/shimmering/values/value.dart';
+import 'package:Recet/presentations/shared/widgets/shimmering/widgets/line.dart';
+import 'package:Recet/presentations/shared/widgets/shimmering/helpers/helpers.dart';
 
 class FluttonItemShimmering extends StatelessWidget
     with FluttonShimmeringHelpers {

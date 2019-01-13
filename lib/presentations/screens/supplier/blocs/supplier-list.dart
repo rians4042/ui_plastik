@@ -1,8 +1,8 @@
 import 'package:meta/meta.dart';
-import 'package:plastik_ui/domains/actor/model/dto/supplier.dart';
-import 'package:plastik_ui/domains/actor/service/actor.dart';
-import 'package:plastik_ui/presentations/screens/supplier/states/supplier-list.dart';
-import 'package:plastik_ui/presentations/shared/blocs/base-bloc.dart';
+import 'package:Recet/domains/actor/model/dto/supplier.dart';
+import 'package:Recet/domains/actor/service/actor.dart';
+import 'package:Recet/presentations/screens/supplier/states/supplier-list.dart';
+import 'package:Recet/presentations/shared/blocs/base-bloc.dart';
 import 'package:rxdart/rxdart.dart';
 
 class SupplierListBloc implements BaseBloc {

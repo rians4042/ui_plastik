@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:plastik_ui/domains/report/service/report.dart';
-import 'package:plastik_ui/presentations/screens/home/blocs/count-transactions.dart';
-import 'package:plastik_ui/presentations/screens/home/widgets/base-summary-report.dart';
-import 'package:plastik_ui/app.dart';
+import 'package:Recet/domains/report/service/report.dart';
+import 'package:Recet/presentations/screens/home/blocs/count-transactions.dart';
+import 'package:Recet/presentations/screens/home/widgets/base-summary-report.dart';
+import 'package:Recet/app.dart';
 
 class CountTransactions extends StatefulWidget {
   @override

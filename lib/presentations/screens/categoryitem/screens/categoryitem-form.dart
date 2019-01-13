@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:plastik_ui/domains/item/model/dto/item-category.dart';
-import 'package:plastik_ui/domains/item/service/item.dart';
-import 'package:plastik_ui/presentations/screens/categoryitem/states/categoryitem-form.dart';
-import 'package:plastik_ui/presentations/shared/widgets/button-loading.dart';
-import 'package:plastik_ui/presentations/shared/widgets/loading-indicator.dart';
-import 'package:plastik_ui/values/colors.dart';
+import 'package:Recet/domains/item/model/dto/item-category.dart';
+import 'package:Recet/domains/item/service/item.dart';
+import 'package:Recet/presentations/screens/categoryitem/states/categoryitem-form.dart';
+import 'package:Recet/presentations/shared/widgets/button-loading.dart';
+import 'package:Recet/presentations/shared/widgets/loading-indicator.dart';
+import 'package:Recet/values/colors.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:plastik_ui/app.dart';
+import 'package:Recet/app.dart';
 
 class CategoryItemForm extends StatefulWidget {
   CategoryItemForm({this.id});

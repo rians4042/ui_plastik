@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:meta/meta.dart';
-import 'package:plastik_ui/domains/report/service/report.dart';
-import 'package:plastik_ui/helpers/number/format-currency.dart';
-import 'package:plastik_ui/presentations/shared/blocs/base-bloc.dart';
+import 'package:Recet/domains/report/service/report.dart';
+import 'package:Recet/helpers/number/format-currency.dart';
+import 'package:Recet/presentations/shared/blocs/base-bloc.dart';
 import 'package:rxdart/rxdart.dart';
 
 class SummaryTransactionsOutBloc implements BaseBloc {

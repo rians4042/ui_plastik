@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:plastik_ui/helpers/number/format-currency.dart';
-import 'package:plastik_ui/values/colors.dart';
+import 'package:Recet/helpers/number/format-currency.dart';
+import 'package:Recet/values/colors.dart';
 
 class ItemTransactionOutDetailsForm extends StatelessWidget {
   final String itemName;

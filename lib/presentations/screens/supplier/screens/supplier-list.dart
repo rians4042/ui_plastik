@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:plastik_ui/domains/actor/service/actor.dart';
-import 'package:plastik_ui/presentations/screens/supplier/blocs/supplier-list.dart';
-import 'package:plastik_ui/presentations/screens/supplier/screens/supplier-form.dart';
-import 'package:plastik_ui/presentations/screens/supplier/states/supplier-list.dart';
-import 'package:plastik_ui/presentations/shared/widgets/error-notification.dart';
-import 'package:plastik_ui/presentations/shared/widgets/item-right-arrow.dart';
-import 'package:plastik_ui/presentations/shared/widgets/loading-indicator.dart';
-import 'package:plastik_ui/presentations/shared/widgets/not-found.dart';
-import 'package:plastik_ui/presentations/shared/widgets/shimmering/shimmering.dart';
-import 'package:plastik_ui/presentations/shared/widgets/shimmering/values/type_list.dart';
-import 'package:plastik_ui/values/colors.dart';
-import 'package:plastik_ui/app.dart';
+import 'package:Recet/domains/actor/service/actor.dart';
+import 'package:Recet/presentations/screens/supplier/blocs/supplier-list.dart';
+import 'package:Recet/presentations/screens/supplier/screens/supplier-form.dart';
+import 'package:Recet/presentations/screens/supplier/states/supplier-list.dart';
+import 'package:Recet/presentations/shared/widgets/error-notification.dart';
+import 'package:Recet/presentations/shared/widgets/item-right-arrow.dart';
+import 'package:Recet/presentations/shared/widgets/loading-indicator.dart';
+import 'package:Recet/presentations/shared/widgets/not-found.dart';
+import 'package:Recet/presentations/shared/widgets/shimmering/shimmering.dart';
+import 'package:Recet/presentations/shared/widgets/shimmering/values/type_list.dart';
+import 'package:Recet/values/colors.dart';
+import 'package:Recet/app.dart';
 
 class SupplierList extends StatefulWidget {
   static String routeName = '/supplier';

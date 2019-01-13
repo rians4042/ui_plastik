@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:plastik_ui/values/colors.dart';
+import 'package:Recet/values/colors.dart';
 
 class HeaderItemStockLog extends StatelessWidget {
   @override

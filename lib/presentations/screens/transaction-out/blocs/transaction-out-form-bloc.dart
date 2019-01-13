@@ -1,12 +1,12 @@
 import 'package:meta/meta.dart';
-import 'package:plastik_ui/domains/actor/model/dto/seller.dart';
-import 'package:plastik_ui/domains/actor/service/actor.dart';
-import 'package:plastik_ui/domains/item/model/dto/item.dart';
-import 'package:plastik_ui/domains/item/service/item.dart';
-import 'package:plastik_ui/domains/report/model/dto/transaction-detail.dart';
-import 'package:plastik_ui/domains/transaction/model/dto/transaction-out.dart';
-import 'package:plastik_ui/domains/transaction/service/transaction.dart';
-import 'package:plastik_ui/presentations/shared/blocs/base-bloc.dart';
+import 'package:Recet/domains/actor/model/dto/seller.dart';
+import 'package:Recet/domains/actor/service/actor.dart';
+import 'package:Recet/domains/item/model/dto/item.dart';
+import 'package:Recet/domains/item/service/item.dart';
+import 'package:Recet/domains/report/model/dto/transaction-detail.dart';
+import 'package:Recet/domains/transaction/model/dto/transaction-out.dart';
+import 'package:Recet/domains/transaction/service/transaction.dart';
+import 'package:Recet/presentations/shared/blocs/base-bloc.dart';
 import 'package:rxdart/rxdart.dart';
 
 class TransactionOutFormBloc implements BaseBloc {

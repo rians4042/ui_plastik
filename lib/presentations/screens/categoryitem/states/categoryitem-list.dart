@@ -1,6 +1,6 @@
 import 'package:meta/meta.dart';
-import 'package:plastik_ui/domains/item/model/dto/item-category.dart';
-import 'package:plastik_ui/domains/item/service/item.dart';
+import 'package:Recet/domains/item/model/dto/item-category.dart';
+import 'package:Recet/domains/item/service/item.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class CategoryItemListState extends Model {

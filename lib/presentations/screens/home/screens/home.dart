@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:plastik_ui/presentations/screens/home/values/list-item.dart';
-import 'package:plastik_ui/presentations/screens/home/values/list-report.dart';
-import 'package:plastik_ui/presentations/screens/home/widgets/item-home.dart';
-import 'package:plastik_ui/values/colors.dart';
+import 'package:Recet/presentations/screens/home/values/list-item.dart';
+import 'package:Recet/presentations/screens/home/values/list-report.dart';
+import 'package:Recet/presentations/screens/home/widgets/item-home.dart';
+import 'package:Recet/values/colors.dart';
 
 class Home extends StatelessWidget {
   @override

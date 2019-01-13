@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 
-import 'package:plastik_ui/domains/item/model/api/item-category.dart' as model;
-import 'package:plastik_ui/helpers/request/error-handler.dart';
-import 'package:plastik_ui/helpers/request/parser.dart';
+import 'package:Recet/domains/item/model/api/item-category.dart' as model;
+import 'package:Recet/helpers/request/error-handler.dart';
+import 'package:Recet/helpers/request/parser.dart';
 
 abstract class ItemCategoryAPI {
   Future<List<model.ItemCategoryAPI>> getCategories();

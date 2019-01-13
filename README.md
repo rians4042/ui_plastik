@@ -1,4 +1,4 @@
-# plastik_ui
+# Recet
 
 A new Flutter project.
 

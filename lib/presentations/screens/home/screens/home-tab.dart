@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:plastik_ui/presentations/screens/home/blocs/home.dart';
-import 'package:plastik_ui/presentations/screens/home/values/list-screen.dart';
-import 'package:plastik_ui/presentations/screens/home/values/list-tab.dart';
-import 'package:plastik_ui/values/colors.dart';
+import 'package:Recet/presentations/screens/home/blocs/home.dart';
+import 'package:Recet/presentations/screens/home/values/list-screen.dart';
+import 'package:Recet/presentations/screens/home/values/list-tab.dart';
+import 'package:Recet/values/colors.dart';
 
 class HomeTabbarNav extends StatefulWidget {
   static String routeName = '/';

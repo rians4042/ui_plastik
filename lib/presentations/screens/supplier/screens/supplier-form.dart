@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:plastik_ui/domains/actor/model/dto/supplier.dart';
-import 'package:plastik_ui/domains/actor/service/actor.dart';
-import 'package:plastik_ui/presentations/screens/supplier/blocs/supplier-form.dart';
-import 'package:plastik_ui/presentations/shared/widgets/button-loading.dart';
-import 'package:plastik_ui/presentations/shared/widgets/error-notification.dart';
-import 'package:plastik_ui/values/colors.dart';
-import 'package:plastik_ui/app.dart';
+import 'package:Recet/domains/actor/model/dto/supplier.dart';
+import 'package:Recet/domains/actor/service/actor.dart';
+import 'package:Recet/presentations/screens/supplier/blocs/supplier-form.dart';
+import 'package:Recet/presentations/shared/widgets/button-loading.dart';
+import 'package:Recet/presentations/shared/widgets/error-notification.dart';
+import 'package:Recet/values/colors.dart';
+import 'package:Recet/app.dart';
 
 class SupplierForm extends StatefulWidget {
   final String id;

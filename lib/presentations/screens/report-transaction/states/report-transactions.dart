@@ -1,4 +1,4 @@
-import 'package:plastik_ui/domains/report/model/dto/transaction.dart';
+import 'package:Recet/domains/report/model/dto/transaction.dart';
 
 class ReportTransactionsState {
   bool _loading;
